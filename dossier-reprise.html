@@ -1,1063 +1,817 @@
 <!DOCTYPE html>
+<!--
+  CLUB 77 — Dossier de Reprise · Slide Deck navigable (Canva-like)
+  20 slides · Navigation ← → · Plein écran F · Impression PDF P
+  v3.0 — Pour Hybie FAITH · Mai 2026
+-->
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CLUB 77 — Dossier de reprise · Hybie FAITH</title>
-<link rel="icon" href="_ressources/visuels/logo-club77-neon-transparent.png" type="image/png">
+<title>Dossier de Reprise — CLUB 77 · Hybie FAITH</title>
+<meta name="description" content="Candidature officielle à la reprise du Club 77 · Hybie FAITH · État de San Andreas">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="_ressources/visuels/logo-club77-neon-transparent.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,800;1,900&family=JetBrains+Mono:wght@400;500;600;700&family=Pacifico&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0A0A0A;
-    --bg-2:#120F18;
-    --surface:#1A1622;
-    --surface-2:#221C2E;
-    --violet:#A855F7;
-    --violet-bright:#C084FC;
-    --violet-deep:#7C3AED;
-    --pink:#EC4899;
-    --pink-bright:#F472B6;
-    --pink-deep:#DB2777;
-    --text:#FFFFFF;
-    --text-soft:#C8C0D8;
-    --text-dim:#7A7388;
-    --border:rgba(168,85,247,.18);
-    --border-strong:rgba(168,85,247,.45);
-    --glow-v:0 0 24px rgba(168,85,247,.55);
-    --glow-p:0 0 24px rgba(236,72,153,.55);
-    --ease:cubic-bezier(.16,1,.3,1);
+    --bg:#0A0A0A;--bg-2:#120F18;--surface:#1A1622;--surface-2:#221C2E;--surface-3:#2A2238;
+    --violet:#A855F7;--violet-bright:#C084FC;--violet-deep:#7C3AED;--violet-glow:#D8B4FE;
+    --pink:#EC4899;--pink-bright:#F472B6;--pink-deep:#DB2777;--pink-glow:#FBCFE8;
+    --text:#FFFFFF;--text-soft:#C8C0D8;--text-dim:#7A7388;
+    --border:rgba(255,255,255,.08);--border-strong:rgba(168,85,247,.32);--border-pink:rgba(236,72,153,.32);
+    --glow-v:0 0 24px rgba(168,85,247,.55);--glow-p:0 0 24px rgba(236,72,153,.55);
+    --slide-w:1280px;--slide-h:720px;--ease:cubic-bezier(.16,1,.3,1);
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow:hidden;height:100vh;width:100vw}
+  *{box-sizing:border-box;-webkit-font-smoothing:antialiased;margin:0;padding:0}
+  html,body{overflow:hidden}
+  body{
+    background:#000;color:var(--text);font-family:'Inter',system-ui,sans-serif;
+    font-size:16px;line-height:1.45;height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;
+  }
+  body::before{
+    content:'';position:fixed;inset:0;
+    background:radial-gradient(ellipse at 20% 30%,rgba(168,85,247,.06),transparent 55%),radial-gradient(ellipse at 80% 70%,rgba(236,72,153,.05),transparent 55%);
+    pointer-events:none;z-index:0;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer}
 
-  /* ============== DECK & SLIDES ============== */
-  .deck{height:100vh;width:100vw;position:relative;overflow:hidden}
+  /* DECK */
+  .deck{
+    position:relative;width:var(--slide-w);height:var(--slide-h);
+    max-width:calc(100vw - 80px);max-height:calc(100vh - 110px);aspect-ratio:16 / 9;
+    background:var(--bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 1px rgba(168,85,247,.06) inset;z-index:2;
+  }
   .slide{
-    position:absolute;inset:0;display:none;flex-direction:column;
-    padding:5.5vh 6vw;
-    background:radial-gradient(ellipse at top right,rgba(168,85,247,.08),transparent 60%),
-               radial-gradient(ellipse at bottom left,rgba(236,72,153,.06),transparent 60%),
-               var(--bg);
-    animation:slideIn .55s var(--ease);
+    position:absolute;inset:0;padding:36px 48px;
+    opacity:0;visibility:hidden;transform:translateX(30px);
+    transition:opacity 320ms var(--ease),transform 320ms var(--ease);
+    overflow:hidden;display:flex;flex-direction:column;
   }
-  .slide.active{display:flex}
-  @keyframes slideIn{
-    from{opacity:0;transform:translateY(12px)}
-    to{opacity:1;transform:translateY(0)}
-  }
+  .slide.active{opacity:1;visibility:visible;transform:translateX(0)}
+  .slide.prev{transform:translateX(-30px)}
 
-  /* ============== WAVES DECORATION ============== */
-  .waves{position:absolute;width:600px;height:600px;pointer-events:none;opacity:.55;z-index:0}
-  .waves.tr{top:-180px;right:-180px}
-  .waves.bl{bottom:-180px;left:-180px;transform:rotate(180deg)}
-  .waves.tl{top:-180px;left:-180px;transform:rotate(-90deg)}
-  .waves.br{bottom:-180px;right:-180px;transform:rotate(90deg)}
+  /* WAVES */
+  .waves{position:absolute;width:520px;height:520px;pointer-events:none;opacity:.45;z-index:0}
+  .waves.tr{top:-160px;right:-160px}
+  .waves.bl{bottom:-160px;left:-160px;transform:rotate(180deg)}
+  .waves.tl{top:-160px;left:-160px;transform:rotate(-90deg)}
+  .waves.br{bottom:-160px;right:-160px;transform:rotate(90deg)}
   .waves ellipse{fill:none;stroke-width:1.4}
 
-  /* ============== HEADER ============== */
-  .slide-header{position:relative;z-index:2;margin-bottom:3.5vh;display:flex;align-items:flex-end;justify-content:space-between;gap:3rem}
-  .slide-title{
-    font-family:'Inter',sans-serif;font-weight:900;font-style:italic;
-    font-size:clamp(2.2rem,4.2vw,3.8rem);line-height:1;letter-spacing:-.01em;
-    text-transform:uppercase;color:var(--text);
-    text-shadow:0 0 32px rgba(168,85,247,.25);
+  /* NAV BAR */
+  .nav-bar{
+    position:relative;z-index:3;margin-top:18px;
+    display:flex;align-items:center;gap:12px;
+    background:rgba(20,15,24,.85);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    border:1px solid var(--border-strong);border-radius:999px;padding:7px 14px;
+    box-shadow:0 12px 30px rgba(0,0,0,.55);
   }
-  .slide-title .accent{
-    background:linear-gradient(120deg,var(--violet-bright),var(--pink-bright));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
+  .nav-btn{
+    width:36px;height:36px;border-radius:50%;
+    background:var(--surface-2);border:1px solid var(--border);color:var(--text);
+    display:inline-flex;align-items:center;justify-content:center;font-size:14px;transition:200ms;
   }
-  .slide-num{
-    font-family:'Anton',sans-serif;font-size:5.5rem;line-height:.85;color:transparent;
-    -webkit-text-stroke:1.5px var(--violet);opacity:.35;
+  .nav-btn:hover{background:var(--violet);border-color:var(--violet);box-shadow:var(--glow-v)}
+  .nav-btn:disabled{opacity:.35;cursor:not-allowed}
+  .nav-btn:disabled:hover{background:var(--surface-2);border-color:var(--border);box-shadow:none}
+  .counter{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.12em;
+    color:var(--text-soft);min-width:64px;text-align:center;
   }
+  .counter .current{color:var(--text);font-weight:700}
+  .counter .total{color:var(--pink-bright)}
+  .progress-bar{flex:1;height:4px;background:var(--surface-3);border-radius:2px;overflow:hidden;min-width:180px}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--violet),var(--pink));transition:width 280ms var(--ease);box-shadow:0 0 10px var(--violet)}
+  .nav-action{
+    padding:7px 13px;border-radius:999px;background:transparent;border:1px solid var(--border);color:var(--text-soft);
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;transition:200ms;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .nav-action:hover{background:var(--surface-2);color:var(--text);border-color:var(--border-strong)}
+  .shortcuts{
+    position:absolute;bottom:14px;right:22px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--text-dim);pointer-events:none;z-index:4;
+  }
+  .shortcuts kbd{display:inline-block;padding:1px 5px;background:var(--surface-2);border:1px solid var(--border);border-radius:3px;margin:0 2px;font-size:9.5px;color:var(--text-soft)}
 
-  /* ============== COVER ============== */
-  .cover{
-    display:none;padding:0;
-    background:
-      radial-gradient(ellipse at 30% 50%,rgba(168,85,247,.18),transparent 55%),
-      radial-gradient(ellipse at 70% 60%,rgba(236,72,153,.14),transparent 55%),
-      var(--bg);
+  /* COMMON SLIDE HEADER */
+  .slide-header{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border);position:relative;z-index:2;
   }
-  .cover.active{display:grid;grid-template-columns:1.05fr 1fr;align-items:center}
-  .cover-logo{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;padding:0 4vw}
-  .cover-logo img{
-    width:min(46vw,640px);height:auto;
-    filter:drop-shadow(0 0 38px rgba(168,85,247,.55)) drop-shadow(0 0 60px rgba(236,72,153,.25));
+  .slide-eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--pink-bright);display:inline-flex;align-items:center;gap:12px;margin-bottom:6px;
+  }
+  .slide-eyebrow::before{content:'';width:26px;height:2px;background:var(--pink);border-radius:1px;box-shadow:0 0 8px var(--pink)}
+  .slide-title{font-size:28px;font-weight:900;font-style:italic;letter-spacing:-.02em;color:var(--text);margin:0 0 4px;line-height:1.05;text-transform:uppercase}
+  .slide-title .accent{background:linear-gradient(120deg,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .slide-num{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.18em;color:var(--text-dim);white-space:nowrap}
+  .slide-num strong{color:var(--violet-bright);font-weight:700}
+  .slide-content{flex:1;display:flex;flex-direction:column;min-height:0;position:relative;z-index:2}
+
+  /* COUVERTURE */
+  .slide.cover{
+    padding:0;
+    background:linear-gradient(180deg,rgba(10,10,10,.45),rgba(10,10,10,.92)),url('_ressources/visuels/hybie 2.png') center/cover no-repeat;
+  }
+  .cover-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px}
+  .cover-tag{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--pink-bright);padding:8px 18px;border:1px solid var(--pink);border-radius:999px;
+    background:rgba(236,72,153,.08);box-shadow:inset 0 0 18px rgba(236,72,153,.18),0 0 18px rgba(236,72,153,.22);
+    margin-bottom:34px;
+  }
+  .cover-logo-img{
+    width:230px;height:auto;margin-bottom:18px;
+    filter:drop-shadow(0 0 30px rgba(168,85,247,.55)) drop-shadow(0 0 50px rgba(236,72,153,.25));
     animation:logoFloat 6s ease-in-out infinite;
   }
-  @keyframes logoFloat{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-12px)}
-  }
-  .cover-text{position:relative;z-index:2;padding:0 6vw 0 2vw;display:flex;flex-direction:column;gap:1.4rem}
-  .cover-eyebrow{
-    font-family:'Pacifico',cursive;font-size:clamp(1.4rem,2vw,2rem);
-    color:var(--pink);text-shadow:var(--glow-p);
-  }
-  .cover-mega{
-    font-family:'Anton',sans-serif;font-size:clamp(4rem,8.5vw,8rem);line-height:.88;
-    text-transform:uppercase;letter-spacing:-.01em;
-    background:linear-gradient(135deg,#fff 0%,#fff 40%,var(--violet-bright) 70%,var(--pink-bright) 100%);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .cover-sub{
-    font-size:clamp(1.1rem,1.4vw,1.5rem);color:var(--text-soft);
-    font-weight:500;letter-spacing:.02em;line-height:1.5;
-  }
-  .cover-sub strong{color:var(--text);font-weight:700}
-  .cover-tag{
-    display:inline-flex;align-items:center;gap:.6rem;
-    padding:.7rem 1.2rem;margin-top:.6rem;
-    border:1.5px solid var(--violet);border-radius:999px;
-    color:var(--violet-bright);font-size:.85rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
-    box-shadow:inset 0 0 18px rgba(168,85,247,.18),var(--glow-v);
-    width:fit-content;
-  }
-  .cover-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--violet-bright);box-shadow:var(--glow-v)}
+  @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .cover-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--text-soft);margin-top:8px;max-width:680px;line-height:1.45}
+  .cover-quote strong{color:#fff;font-weight:500}
+  .cover-divider{display:inline-flex;gap:8px;margin:22px 0 24px}
+  .cover-divider span{display:inline-block;width:36px;height:3px;border-radius:2px;background:var(--violet)}
+  .cover-divider span:nth-child(2){background:#fff;width:14px}
+  .cover-divider span:nth-child(3){background:var(--pink)}
+  .cover-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-dim);text-align:center;line-height:1.9}
+  .cover-meta strong{color:var(--text);font-weight:700}
 
-  /* ============== SOMMAIRE ============== */
-  .toc{display:grid;grid-template-columns:1fr 1fr;gap:.7rem 4rem;position:relative;z-index:2}
-  .toc-item{display:flex;align-items:center;gap:1.2rem;padding:.7rem 0;border-bottom:1px solid var(--border)}
-  .toc-num{
-    font-family:'Anton',sans-serif;font-size:1.9rem;line-height:1;min-width:3rem;
-    background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .toc-label{font-size:1rem;font-weight:500;color:var(--text);flex:1}
-  .toc-badge{
-    font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-    padding:.2rem .55rem;border-radius:4px;border:1px solid var(--pink);
-    color:var(--pink-bright);background:rgba(236,72,153,.08);
-  }
+  /* SOMMAIRE */
+  .toc{display:grid;grid-template-columns:1fr 1fr;gap:.45rem 3rem;position:relative;z-index:2}
+  .toc-item{display:flex;align-items:center;gap:.9rem;padding:.45rem 0;border-bottom:1px solid var(--border)}
+  .toc-num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent;min-width:30px}
+  .toc-label{font-size:13.5px;font-weight:500;color:var(--text);flex:1}
+  .toc-badge{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:2px 7px;border-radius:4px;border:1px solid var(--pink);color:var(--pink-bright);background:rgba(236,72,153,.08)}
 
-  /* ============== BIO / GÉRANTE ============== */
-  .bio{display:grid;grid-template-columns:1.5fr 1fr;gap:3rem;position:relative;z-index:2;flex:1;overflow:hidden}
-  .bio-text{display:flex;flex-direction:column;gap:.85rem;font-size:.97rem;line-height:1.6;color:var(--text-soft)}
-  .bio-text strong{color:var(--text);font-weight:600}
-  .bio-text .hl{color:var(--pink-bright);font-weight:600}
-  .bio-meta{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.2rem;
-    padding:1.2rem;border:1px solid var(--border-strong);border-radius:14px;
-    background:linear-gradient(135deg,rgba(168,85,247,.08),rgba(236,72,153,.04));
-  }
-  .bio-meta-item{display:flex;flex-direction:column;gap:.25rem}
-  .bio-meta-label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);font-weight:600}
-  .bio-meta-value{font-size:1rem;color:var(--text);font-weight:700}
-  .bio-aside{display:flex;flex-direction:column;gap:1rem}
-  .bio-portrait{
-    border:2px solid var(--border-strong);border-radius:18px;
-    background:
-      radial-gradient(ellipse at 30% 30%,rgba(236,72,153,.22),transparent 60%),
-      radial-gradient(ellipse at 70% 70%,rgba(168,85,247,.22),transparent 60%),
-      var(--surface);
-    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;padding:1.6rem;
-    box-shadow:inset 0 0 40px rgba(168,85,247,.15),0 0 30px rgba(168,85,247,.15);
-    position:relative;overflow:hidden;flex:1;min-height:160px;
-  }
-  .bio-portrait::before{
-    content:"";position:absolute;inset:0;
-    background:repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(168,85,247,.04) 3px,rgba(168,85,247,.04) 4px);
-  }
-  .bio-portrait-icon{
-    font-size:5rem;background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    position:relative;z-index:2;
-  }
-  .bio-portrait-label{color:var(--text-dim);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;position:relative;z-index:2;text-align:center}
-  .bio-qualities{
-    padding:1.2rem;border:1px solid var(--border);border-radius:14px;
-    background:linear-gradient(160deg,var(--surface),var(--bg-2));
-  }
-  .bio-qualities h4{
-    font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--violet-bright);margin-bottom:.8rem;
-  }
-  .qualities-tags{display:flex;flex-wrap:wrap;gap:.4rem}
-  .quality-tag{
-    padding:.35rem .75rem;border-radius:999px;font-size:.78rem;font-weight:600;
-    background:rgba(236,72,153,.1);color:var(--pink-bright);border:1px solid rgba(236,72,153,.3);
-  }
+  /* VISION */
+  .slide.vision-slide{padding:0;text-align:center;background:radial-gradient(ellipse at 30% 40%,rgba(168,85,247,.22),transparent 55%),radial-gradient(ellipse at 70% 60%,rgba(236,72,153,.18),transparent 55%),var(--bg)}
+  .vision-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 80px;position:relative;z-index:2}
+  .vision-eyebrow{font-family:'Pacifico',cursive;font-size:24px;color:var(--pink);text-shadow:var(--glow-p);margin-bottom:24px}
+  .vision-punchline{font-family:'Anton',sans-serif;font-size:64px;line-height:1.05;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:24px;color:#fff}
+  .vision-punchline em{font-family:'Inter',sans-serif;font-style:italic;font-weight:900;font-size:30px;text-transform:none;letter-spacing:.01em;color:var(--text-soft);display:block;margin-top:14px}
+  .vision-punchline .accent{background:linear-gradient(120deg,var(--violet-bright) 20%,var(--pink-bright) 80%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .vision-punchline .hl{background:linear-gradient(120deg,#fff,var(--violet-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .vision-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--text-soft);max-width:760px;line-height:1.55}
+  .vision-sub strong{color:var(--text);font-weight:500}
 
-  /* ============== PLACEHOLDER (En attente / À venir) ============== */
-  .placeholder-wrap{flex:1;display:flex;align-items:center;justify-content:center;position:relative;z-index:2}
-  .placeholder-card{
-    display:flex;flex-direction:column;align-items:center;text-align:center;
-    padding:4rem 3.5rem;border:2px dashed var(--border-strong);border-radius:24px;
-    background:
-      radial-gradient(ellipse at center,rgba(168,85,247,.06),transparent 70%),
-      linear-gradient(160deg,var(--surface),var(--bg-2));
-    max-width:680px;gap:1.5rem;
-    box-shadow:inset 0 0 60px rgba(168,85,247,.06);
-  }
-  .placeholder-icon{
-    font-size:5rem;line-height:1;
-    filter:drop-shadow(0 0 24px rgba(168,85,247,.55));
-    animation:pulseGlow 2.5s ease-in-out infinite;
-  }
-  @keyframes pulseGlow{
-    0%,100%{filter:drop-shadow(0 0 24px rgba(168,85,247,.55))}
-    50%{filter:drop-shadow(0 0 36px rgba(236,72,153,.7))}
-  }
-  .placeholder-title{
-    font-family:'Anton',sans-serif;font-size:2.2rem;text-transform:uppercase;letter-spacing:.04em;
-    background:linear-gradient(120deg,#fff,var(--violet-bright),var(--pink-bright));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .placeholder-desc{color:var(--text-soft);font-size:1rem;line-height:1.7;max-width:460px}
-  .placeholder-tag{
-    padding:.55rem 1.3rem;border:1.5px solid var(--pink);
-    color:var(--pink-bright);border-radius:999px;
-    font-size:.7rem;font-weight:700;letter-spacing:.22em;
-    background:rgba(236,72,153,.08);
-    box-shadow:inset 0 0 16px rgba(236,72,153,.18),0 0 16px rgba(236,72,153,.3);
-    text-transform:uppercase;
-  }
-
-  /* ============== VISION (manifeste) ============== */
-  .vision-slide{
-    display:none;padding:0;text-align:center;
-    background:
-      radial-gradient(ellipse at 30% 40%,rgba(168,85,247,.22),transparent 55%),
-      radial-gradient(ellipse at 70% 60%,rgba(236,72,153,.18),transparent 55%),
-      var(--bg);
-  }
-  .vision-slide.active{display:flex;align-items:center;justify-content:center;flex-direction:column;padding:0 8vw}
-  .vision-eyebrow{
-    font-family:'Pacifico',cursive;font-size:clamp(1.3rem,1.8vw,1.8rem);
-    color:var(--pink);text-shadow:var(--glow-p);margin-bottom:2rem;
-    position:relative;z-index:2;
-  }
-  .vision-punchline{
-    font-family:'Anton',sans-serif;font-size:clamp(3rem,7vw,6.5rem);line-height:1.05;
-    text-transform:uppercase;letter-spacing:-.01em;margin-bottom:2rem;
-    position:relative;z-index:2;color:#fff;
-  }
-  .vision-punchline em{
-    font-family:'Inter',sans-serif;font-style:italic;font-weight:900;
-    font-size:.55em;text-transform:none;letter-spacing:.01em;
-    color:var(--text-soft);display:block;margin-top:.8rem;
-  }
-  .vision-punchline .accent{
-    background:linear-gradient(120deg,var(--violet-bright) 20%,var(--pink-bright) 80%);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .vision-punchline .hl{
-    background:linear-gradient(120deg,#fff,var(--violet-bright));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .vision-sub{
-    font-size:clamp(1rem,1.3vw,1.3rem);color:var(--text-soft);
-    max-width:780px;line-height:1.6;font-weight:500;position:relative;z-index:2;
-  }
-  .vision-sub strong{color:var(--text);font-weight:700}
-
-  /* ============== TRIPTYQUE PASSION/AMBITION/IDENTITÉ ============== */
-  .triptyque{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;position:relative;z-index:2;flex:1;align-content:center}
-  .tri-card{
-    padding:2.2rem 1.8rem;border:1px solid var(--border-strong);border-radius:20px;
-    background:
-      radial-gradient(ellipse at top,rgba(168,85,247,.12),transparent 70%),
-      linear-gradient(160deg,var(--surface),var(--bg-2));
-    display:flex;flex-direction:column;gap:1.2rem;align-items:flex-start;
-    box-shadow:inset 0 0 40px rgba(168,85,247,.06);
-    transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
-    position:relative;overflow:hidden;
-  }
-  .tri-card::before{
-    content:"";position:absolute;top:0;left:0;width:100%;height:4px;
-    background:linear-gradient(90deg,var(--violet),var(--pink));
-  }
+  /* TRIPTYQUE */
+  .triptyque{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1;align-content:center}
+  .tri-card{padding:28px 24px;border:1px solid var(--border-strong);border-radius:16px;background:radial-gradient(ellipse at top,rgba(168,85,247,.12),transparent 70%),linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:14px;box-shadow:inset 0 0 40px rgba(168,85,247,.06);position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+  .tri-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--violet),var(--pink))}
   .tri-card:nth-child(2)::before{background:linear-gradient(90deg,var(--pink),var(--violet-bright))}
   .tri-card:nth-child(3)::before{background:linear-gradient(90deg,var(--violet-bright),var(--pink-bright))}
-  .tri-card:hover{transform:translateY(-6px);box-shadow:var(--glow-v),inset 0 0 40px rgba(168,85,247,.1);border-color:var(--violet)}
-  .tri-num{
-    font-family:'Anton',sans-serif;font-size:1.4rem;color:transparent;
-    -webkit-text-stroke:1px var(--violet);letter-spacing:.05em;
-  }
-  .tri-label{
-    font-family:'Anton',sans-serif;font-size:clamp(2.4rem,3.2vw,3rem);line-height:1;
-    text-transform:uppercase;letter-spacing:.03em;
-    background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
+  .tri-card:hover{transform:translateY(-4px);box-shadow:var(--glow-v)}
+  .tri-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--text-dim)}
+  .tri-label{font-family:'Anton',sans-serif;font-size:38px;line-height:1;letter-spacing:.04em;text-transform:uppercase;background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
   .tri-card:nth-child(2) .tri-label{background:linear-gradient(135deg,var(--pink-bright),var(--violet-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .tri-text{font-size:1rem;line-height:1.65;color:var(--text-soft)}
+  .tri-text{font-size:14.5px;line-height:1.6;color:var(--text-soft)}
   .tri-text strong{color:var(--text);font-weight:600}
 
-  /* ============== AMBITIONS ============== */
-  .ambitions-intro{font-size:1rem;line-height:1.7;color:var(--text-soft);max-width:1100px;margin-bottom:2.5rem;position:relative;z-index:2}
+  /* BIO / GÉRANTE */
+  .bio{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;flex:1;overflow:hidden}
+  .bio-text{display:flex;flex-direction:column;gap:10px;font-size:13.5px;line-height:1.55;color:var(--text-soft);overflow:hidden}
+  .bio-text strong{color:var(--text);font-weight:600}
+  .bio-text .hl{color:var(--pink-bright);font-weight:600}
+  .bio-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;padding:12px 16px;border:1px solid var(--border-strong);border-radius:12px;background:linear-gradient(135deg,rgba(168,85,247,.08),rgba(236,72,153,.04))}
+  .bio-meta-item{display:flex;flex-direction:column;gap:3px}
+  .bio-meta-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+  .bio-meta-value{font-size:13.5px;color:var(--text);font-weight:700}
+  .bio-aside{display:flex;flex-direction:column;gap:12px;min-height:0}
+  .bio-portrait{border:2px solid var(--border-strong);border-radius:14px;overflow:hidden;background:#000;box-shadow:inset 0 0 40px rgba(168,85,247,.18),0 0 24px rgba(168,85,247,.18);position:relative;flex:1;min-height:0}
+  .bio-portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(.9) contrast(1.05)}
+  .bio-portrait::after{content:"Hybie FAITH";position:absolute;left:0;right:0;bottom:0;padding:18px 16px 12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text);font-weight:700;text-align:center}
+  .bio-qualities{padding:11px 14px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(160deg,var(--surface),var(--bg-2))}
+  .bio-qualities h4{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--violet-bright);margin-bottom:7px}
+  .qualities-tags{display:flex;flex-wrap:wrap;gap:5px}
+  .quality-tag{padding:4px 9px;border-radius:999px;font-size:11.5px;font-weight:600;background:rgba(236,72,153,.1);color:var(--pink-bright);border:1px solid rgba(236,72,153,.3)}
+
+  /* POURQUOI MOI */
+  .pourquoi{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;flex:1;overflow:hidden}
+  .pourquoi-intro{display:flex;flex-direction:column;justify-content:center;gap:14px}
+  .pourquoi-intro p{font-size:14.5px;line-height:1.65;color:var(--text-soft)}
+  .pourquoi-intro p strong{color:var(--text);font-weight:600}
+  .pourquoi-intro .hl{color:var(--pink-bright);font-weight:600}
+  .pourquoi-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--violet-bright);line-height:1.4;padding-left:14px;border-left:3px solid var(--violet);margin-top:8px}
+  .pourquoi-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:center}
+  .pourquoi-card{padding:16px 16px;border:1px solid var(--border-strong);border-radius:12px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:8px;transition:transform .3s var(--ease)}
+  .pourquoi-card:hover{transform:translateY(-3px);box-shadow:var(--glow-v)}
+  .pourquoi-card .pc-icon{font-size:22px;line-height:1;filter:drop-shadow(0 0 10px rgba(168,85,247,.5))}
+  .pourquoi-card h4{font-size:13px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.04em}
+  .pourquoi-card p{font-size:12px;line-height:1.5;color:var(--text-soft)}
+
+  /* PLACEHOLDER */
+  .placeholder-wrap{flex:1;display:flex;align-items:center;justify-content:center;position:relative;z-index:2}
+  .placeholder-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:42px 38px;border:2px dashed var(--border-strong);border-radius:20px;background:radial-gradient(ellipse at center,rgba(168,85,247,.06),transparent 70%),linear-gradient(160deg,var(--surface),var(--bg-2));max-width:580px;gap:16px;box-shadow:inset 0 0 60px rgba(168,85,247,.06)}
+  .placeholder-icon{font-size:56px;line-height:1;filter:drop-shadow(0 0 24px rgba(168,85,247,.55));animation:pulseGlow 2.5s ease-in-out infinite}
+  @keyframes pulseGlow{0%,100%{filter:drop-shadow(0 0 24px rgba(168,85,247,.55))}50%{filter:drop-shadow(0 0 36px rgba(236,72,153,.7))}}
+  .placeholder-title{font-family:'Anton',sans-serif;font-size:30px;text-transform:uppercase;letter-spacing:.04em;background:linear-gradient(120deg,#fff,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .placeholder-desc{color:var(--text-soft);font-size:13.5px;line-height:1.65;max-width:440px}
+  .placeholder-desc strong{color:var(--text)}
+  .placeholder-tag{padding:6px 14px;border:1.5px solid var(--pink);color:var(--pink-bright);border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.22em;background:rgba(236,72,153,.08);box-shadow:inset 0 0 16px rgba(236,72,153,.18),0 0 16px rgba(236,72,153,.3);text-transform:uppercase}
+
+  /* ORGANIGRAMME */
+  .org{flex:1;display:flex;flex-direction:column;gap:14px;overflow:hidden}
+  .org-level{display:flex;flex-direction:column;gap:8px}
+  .org-level-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--violet-bright);display:flex;align-items:center;gap:10px}
+  .org-level-tag::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-strong),transparent)}
+  .org-nodes{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .org-node{padding:9px 14px;border:1px solid var(--border-strong);border-radius:10px;background:linear-gradient(135deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;align-items:center;gap:2px;min-width:130px}
+  .org-node strong{font-size:12px;color:var(--text);font-weight:700;text-align:center}
+  .org-node span{font-size:10px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;letter-spacing:.05em}
+  .org-node.lead{border-color:var(--pink);background:linear-gradient(135deg,rgba(236,72,153,.18),rgba(168,85,247,.08));box-shadow:var(--glow-p)}
+  .org-node.lead strong{color:#fff}
+  .org-node.lead span{color:var(--pink-bright)}
+  .org-node.warn{border-color:var(--violet);background:linear-gradient(135deg,rgba(168,85,247,.14),rgba(168,85,247,.04));border-style:dashed}
+  .org-effectif{
+    margin-top:auto;padding:10px 14px;border:1px solid var(--border-pink);border-radius:10px;
+    background:linear-gradient(135deg,rgba(236,72,153,.06),rgba(168,85,247,.04));
+    display:flex;flex-wrap:wrap;justify-content:space-around;gap:12px;
+  }
+  .org-effectif-item{display:flex;flex-direction:column;align-items:center;gap:2px}
+  .org-effectif-item span{font-family:'Anton',sans-serif;font-size:20px;line-height:1;background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .org-effectif-item small{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+
+  /* POSTES & RESPONSABILITÉS */
+  .postes-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:10px;flex:1;overflow:hidden}
+  .poste-full{padding:11px 13px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:5px;border-top:2px solid var(--violet)}
+  .poste-full:nth-child(even){border-top-color:var(--pink)}
+  .poste-full h4{font-size:11px;font-weight:800;color:var(--pink-bright);text-transform:uppercase;letter-spacing:.08em;font-family:'JetBrains Mono',monospace}
+  .poste-full:nth-child(even) h4{color:var(--violet-bright)}
+  .poste-full ul{list-style:none;display:flex;flex-direction:column;gap:3px;margin:0;padding:0}
+  .poste-full li{font-size:11px;line-height:1.4;color:var(--text-soft);display:flex;gap:5px}
+  .poste-full li::before{content:'·';color:var(--violet-bright);font-weight:900;margin-top:-1px}
+
+  /* LOCALISATION */
+  .locale{display:grid;grid-template-columns:1fr 1.2fr;gap:24px;flex:1;overflow:hidden}
+  .locale-map{border:1px solid var(--border-strong);border-radius:14px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:24px;position:relative;overflow:hidden;box-shadow:inset 0 0 30px rgba(168,85,247,.08)}
+  .locale-map::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(168,85,247,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,.05) 1px,transparent 1px);background-size:30px 30px;opacity:.5;pointer-events:none}
+  .locale-map-pin{font-size:54px;filter:drop-shadow(0 0 18px rgba(236,72,153,.7));position:relative;z-index:2;animation:pulseGlow 2.5s ease-in-out infinite}
+  .locale-map-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);text-align:center;position:relative;z-index:2;line-height:1.5}
+  .locale-map-label strong{color:var(--violet-bright);display:block;margin-bottom:4px;font-size:13px}
+  .locale-info{display:flex;flex-direction:column;gap:14px;justify-content:center}
+  .locale-info p{font-size:14.5px;line-height:1.65;color:var(--text-soft)}
+  .locale-info p strong{color:var(--text);font-weight:600}
+  .locale-info .hl{color:var(--pink-bright);font-weight:600}
+  .locale-points{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+  .locale-point{padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:linear-gradient(135deg,var(--surface),var(--bg-2))}
+  .locale-point h5{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);font-weight:700;margin-bottom:3px}
+  .locale-point p{font-size:12px;color:var(--text);font-weight:600;line-height:1.3}
+
+  /* AMBITIONS */
+  .ambitions-intro{font-size:14.5px;line-height:1.65;color:var(--text-soft);max-width:1100px;margin-bottom:18px;position:relative;z-index:2}
   .ambitions-intro strong{color:var(--text);font-weight:600}
   .ambitions-intro .hl{color:var(--pink-bright);font-weight:600}
-  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;position:relative;z-index:2;flex:1;align-content:start}
-  .pillar{
-    padding:1.5rem;border:1px solid var(--border-strong);border-radius:14px;
-    background:linear-gradient(160deg,var(--surface),var(--bg-2));
-    display:flex;flex-direction:column;gap:.8rem;
-    transition:transform .3s var(--ease),box-shadow .3s var(--ease);
-  }
+  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;flex:1;align-content:start}
+  .pillar{padding:16px;border:1px solid var(--border-strong);border-radius:12px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:8px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
   .pillar:hover{transform:translateY(-4px);box-shadow:var(--glow-v)}
-  .pillar-num{
-    font-family:'Anton',sans-serif;font-size:2.4rem;line-height:1;
-    background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-  }
-  .pillar-title{font-size:1.05rem;font-weight:700;color:var(--text);line-height:1.3}
-  .pillar-desc{font-size:.85rem;color:var(--text-dim);line-height:1.5}
+  .pillar-num{font-family:'Anton',sans-serif;font-size:30px;line-height:1;background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .pillar-title{font-size:14px;font-weight:700;color:var(--text);line-height:1.3}
+  .pillar-desc{font-size:12.5px;color:var(--text-dim);line-height:1.5}
 
-  /* ============== COMMUNICATION ============== */
-  .comm{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;position:relative;z-index:2;flex:1;align-content:start}
-  .comm-card{
-    padding:1.7rem;border:1px solid var(--border);border-radius:16px;
-    background:linear-gradient(160deg,var(--surface),var(--bg-2));
-    display:flex;flex-direction:column;gap:1rem;
-    border-top:3px solid var(--violet);
-    transition:transform .3s var(--ease)
-  }
+  /* COMMUNICATION */
+  .comm{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;flex:1;align-content:start}
+  .comm-card{padding:20px;border:1px solid var(--border);border-radius:14px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:10px;border-top:3px solid var(--violet);transition:transform .3s var(--ease)}
   .comm-card:nth-child(2){border-top-color:var(--pink)}
   .comm-card:nth-child(3){border-top-color:var(--violet-bright)}
   .comm-card:hover{transform:translateY(-4px)}
-  .comm-icon{
-    font-size:2.1rem;width:54px;height:54px;border-radius:12px;
-    display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(236,72,153,.12));
-    border:1px solid var(--border-strong);
-  }
-  .comm-title{font-size:1.05rem;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.04em}
-  .comm-desc{font-size:.9rem;line-height:1.6;color:var(--text-soft)}
+  .comm-icon{font-size:24px;width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(168,85,247,.18),rgba(236,72,153,.12));border:1px solid var(--border-strong)}
+  .comm-title{font-size:13.5px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.04em}
+  .comm-desc{font-size:12.5px;line-height:1.55;color:var(--text-soft)}
   .comm-desc strong{color:var(--violet-bright);font-weight:600}
 
-  /* ============== ÉCHANGES COMMERCIAUX ============== */
-  .echanges{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;position:relative;z-index:2;flex:1;align-content:start}
-  .ech-card{
-    padding:0;border:1px solid var(--border);border-radius:18px;overflow:hidden;
-    background:linear-gradient(160deg,var(--surface),var(--bg-2));
-    display:flex;flex-direction:column;
-    transition:transform .3s var(--ease),box-shadow .3s var(--ease);
-  }
-  .ech-card:hover{transform:translateY(-4px);box-shadow:var(--glow-v)}
-  .ech-visual{
-    height:140px;position:relative;display:flex;align-items:center;justify-content:center;
-    background:radial-gradient(ellipse at center,rgba(168,85,247,.22),transparent 60%),linear-gradient(135deg,var(--bg-2),var(--surface));
-    border-bottom:1px solid var(--border-strong);overflow:hidden;
-  }
-  .ech-card:nth-child(2) .ech-visual{background:radial-gradient(ellipse at center,rgba(236,72,153,.22),transparent 60%),linear-gradient(135deg,var(--bg-2),var(--surface))}
-  .ech-card:nth-child(3) .ech-visual{background:radial-gradient(ellipse at center,rgba(192,132,252,.22),transparent 60%),linear-gradient(135deg,var(--bg-2),var(--surface))}
-  .ech-visual svg{width:80px;height:80px;filter:drop-shadow(0 0 16px rgba(168,85,247,.6))}
-  .ech-card:nth-child(2) .ech-visual svg{filter:drop-shadow(0 0 16px rgba(236,72,153,.6))}
-  .ech-body{padding:1.5rem;display:flex;flex-direction:column;gap:.7rem}
-  .ech-title{font-size:1.05rem;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.04em}
-  .ech-desc{font-size:.9rem;line-height:1.6;color:var(--text-soft)}
+  /* PARTENARIATS & CONTREPARTIES */
+  .partenariats{display:grid;grid-template-columns:1.2fr 1fr;gap:22px;flex:1;overflow:hidden}
+  .part-block h3{font-family:'Anton',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--violet-bright);margin-bottom:12px;text-transform:uppercase}
+  .part-block:nth-child(2) h3{color:var(--pink-bright)}
+  .part-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .part-card{padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:3px;border-left:3px solid var(--violet)}
+  .part-card:nth-child(even){border-left-color:var(--pink)}
+  .part-card h4{font-size:12px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.04em}
+  .part-card p{font-size:11px;line-height:1.4;color:var(--text-soft)}
+  .contreparties-list{display:flex;flex-direction:column;gap:9px;padding:14px;border:1px solid var(--border-pink);border-radius:12px;background:linear-gradient(135deg,rgba(236,72,153,.06),rgba(168,85,247,.04))}
+  .contreparties-list li{list-style:none;display:flex;gap:10px;font-size:13px;line-height:1.5;color:var(--text-soft);align-items:flex-start}
+  .contreparties-list li strong{color:var(--text);font-weight:600}
+  .contreparties-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--pink);box-shadow:0 0 8px var(--pink);margin-top:7px;flex-shrink:0}
+  .contre-footer{margin-top:auto;padding-top:8px;font-size:11.5px;font-style:italic;color:var(--text-dim);line-height:1.5}
 
-  /* ============== ÉVÈNEMENTS ============== */
-  .evts{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;position:relative;z-index:2;flex:1;align-content:start}
-  .evt{
-    padding:1.3rem;border:1px solid var(--border-strong);border-radius:14px;
-    background:linear-gradient(180deg,var(--surface),var(--bg-2));
-    display:flex;flex-direction:column;gap:.7rem;
-    transition:transform .3s var(--ease),box-shadow .3s var(--ease);
-    position:relative;overflow:hidden;
-  }
+  /* ÉVÈNEMENTS */
+  .evts{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;flex:1;align-content:start}
+  .evt{padding:14px 12px;border:1px solid var(--border-strong);border-radius:12px;background:linear-gradient(180deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:7px;transition:transform .3s var(--ease),box-shadow .3s var(--ease);position:relative;overflow:hidden}
   .evt::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--violet),var(--pink))}
   .evt:hover{transform:translateY(-4px);box-shadow:var(--glow-v)}
-  .evt-icon{font-size:1.9rem;filter:drop-shadow(0 0 12px rgba(168,85,247,.5))}
-  .evt-title{font-size:1rem;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.03em}
-  .evt-desc{font-size:.78rem;line-height:1.5;color:var(--text-soft)}
+  .evt-icon{font-size:22px;filter:drop-shadow(0 0 10px rgba(168,85,247,.5))}
+  .evt-title{font-size:12px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.03em}
+  .evt-desc{font-size:11px;line-height:1.5;color:var(--text-soft)}
+  .evt-desc strong{color:var(--pink-bright);font-weight:600}
 
-  /* ============== RECRUTEMENT ============== */
-  .recrut{display:grid;grid-template-columns:1.3fr 1fr;gap:2.5rem;position:relative;z-index:2;flex:1;overflow:hidden}
-  .recrut-block h3{
-    font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:.04em;
-    color:var(--violet-bright);margin-bottom:1.2rem;text-transform:uppercase;
-  }
+  /* SIGNATURE — Les Nuits du 7 */
+  .slide.signature-slide{padding:0;text-align:center;background:radial-gradient(ellipse at 50% 50%,rgba(236,72,153,.18),transparent 60%),radial-gradient(ellipse at 30% 30%,rgba(168,85,247,.15),transparent 55%),var(--bg)}
+  .signature-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:34px 60px;gap:14px;position:relative;z-index:2}
+  .signature-eyebrow{font-family:'Pacifico',cursive;font-size:22px;color:var(--pink);text-shadow:var(--glow-p)}
+  .signature-title{font-family:'Anton',sans-serif;font-size:88px;line-height:.95;text-transform:uppercase;letter-spacing:.01em;background:linear-gradient(135deg,#fff 0%,var(--pink-bright) 50%,var(--violet-bright) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 40px rgba(236,72,153,.18)}
+  .signature-title .seven{font-family:'Anton',sans-serif;font-size:120px;display:inline-block;line-height:.85;background:linear-gradient(180deg,var(--pink-bright),var(--pink-deep));-webkit-background-clip:text;background-clip:text;color:transparent;vertical-align:-12px;text-shadow:0 0 28px rgba(236,72,153,.6)}
+  .signature-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--text-soft);max-width:760px;line-height:1.5}
+  .signature-sub strong{color:var(--text);font-weight:500}
+  .signature-advantages{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;width:100%;max-width:1080px;margin-top:6px}
+  .signature-adv{padding:14px 10px;border:1px solid var(--border-strong);border-radius:12px;background:linear-gradient(160deg,rgba(26,22,34,.85),rgba(18,15,24,.85));display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+  .signature-adv .adv-icon{font-size:22px}
+  .signature-adv .adv-title{font-size:11px;font-weight:800;color:var(--pink-bright);text-transform:uppercase;letter-spacing:.06em;font-family:'JetBrains Mono',monospace}
+  .signature-adv .adv-desc{font-size:11px;line-height:1.4;color:var(--text-soft)}
+  .signature-footer{font-family:'Pacifico',cursive;font-size:18px;color:var(--violet-bright);margin-top:4px;text-shadow:var(--glow-v)}
+
+  /* RECRUTEMENT */
+  .recrut{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;flex:1;overflow:hidden}
+  .recrut-block h3{font-family:'Anton',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--violet-bright);margin-bottom:12px;text-transform:uppercase}
   .recrut-block:nth-child(2) h3{color:var(--pink-bright)}
-  .postes{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.5rem}
-  .poste{
-    padding:.8rem 1rem;border:1px solid var(--border);border-radius:10px;
-    background:linear-gradient(135deg,var(--surface),var(--bg-2));
-    display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  }
-  .poste-name{font-size:.92rem;font-weight:600;color:var(--text)}
-  .poste-count{
-    font-family:'Anton',sans-serif;font-size:1.25rem;
-    color:var(--pink-bright);min-width:32px;text-align:right;
-  }
-  .valeurs{
-    padding:1rem 1.2rem;border:1px solid var(--border-strong);border-radius:12px;
-    background:linear-gradient(135deg,rgba(168,85,247,.08),rgba(236,72,153,.04));
-  }
-  .valeurs h4{
-    font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--violet-bright);margin-bottom:.6rem;
-  }
-  .valeurs-list{display:flex;flex-wrap:wrap;gap:.4rem}
-  .valeur-tag{
-    padding:.3rem .7rem;border-radius:999px;font-size:.75rem;font-weight:600;
-    background:rgba(236,72,153,.1);color:var(--pink-bright);border:1px solid rgba(236,72,153,.3);
-  }
-  .methode{display:flex;flex-direction:column;gap:.8rem}
-  .methode-step{
-    display:flex;gap:1rem;padding:.95rem 1rem;border:1px solid var(--border);border-radius:10px;
-    background:linear-gradient(135deg,var(--surface),var(--bg-2));
-  }
-  .methode-step-num{
-    font-family:'Anton',sans-serif;font-size:1.5rem;line-height:1;min-width:32px;
-    color:var(--violet-bright);
-  }
-  .methode-step-text{font-size:.88rem;line-height:1.5;color:var(--text-soft)}
+  .postes{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+  .poste{padding:8px 11px;border:1px solid var(--border);border-radius:9px;background:linear-gradient(135deg,var(--surface),var(--bg-2));display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .poste-name{font-size:12px;font-weight:600;color:var(--text)}
+  .poste-count{font-family:'Anton',sans-serif;font-size:15px;color:var(--pink-bright);min-width:28px;text-align:right}
+  .valeurs{padding:10px 13px;border:1px solid var(--border-strong);border-radius:10px;background:linear-gradient(135deg,rgba(168,85,247,.08),rgba(236,72,153,.04))}
+  .valeurs h4{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--violet-bright);margin-bottom:7px}
+  .valeurs-list{display:flex;flex-wrap:wrap;gap:5px}
+  .valeur-tag{padding:4px 9px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(236,72,153,.1);color:var(--pink-bright);border:1px solid rgba(236,72,153,.3)}
+  .methode{display:flex;flex-direction:column;gap:9px}
+  .methode-step{display:flex;gap:11px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,var(--surface),var(--bg-2))}
+  .methode-step-num{font-family:'Anton',sans-serif;font-size:18px;line-height:1;min-width:26px;color:var(--violet-bright)}
+  .methode-step-text{font-size:12px;line-height:1.5;color:var(--text-soft)}
   .methode-step-text strong{color:var(--text);font-weight:600}
 
-  /* ============== OBJECTIFS ============== */
-  .objs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;position:relative;z-index:2;flex:1;align-content:start}
-  .obj-col{
-    padding:1.7rem;border:1px solid var(--border-strong);border-radius:16px;
-    background:linear-gradient(160deg,var(--surface),var(--bg-2));
-    display:flex;flex-direction:column;gap:1.1rem;
-  }
-  .obj-head{display:flex;align-items:center;gap:.8rem;padding-bottom:.9rem;border-bottom:1px solid var(--border-strong)}
-  .obj-tag{
-    padding:.3rem .7rem;border-radius:999px;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-    background:rgba(168,85,247,.15);color:var(--violet-bright);border:1px solid var(--violet);
-  }
+  /* OBJECTIFS */
+  .objs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1;align-content:start}
+  .obj-col{padding:18px;border:1px solid var(--border-strong);border-radius:14px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:13px}
+  .obj-head{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--border-strong)}
+  .obj-tag{padding:4px 10px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(168,85,247,.15);color:var(--violet-bright);border:1px solid var(--violet)}
   .obj-col:nth-child(2) .obj-tag{background:rgba(236,72,153,.15);color:var(--pink-bright);border-color:var(--pink)}
   .obj-col:nth-child(3) .obj-tag{background:rgba(192,132,252,.15);color:var(--violet-bright);border-color:var(--violet-bright)}
-  .obj-title{font-family:'Anton',sans-serif;font-size:1.3rem;color:var(--text);letter-spacing:.02em}
-  .obj-list{list-style:none;display:flex;flex-direction:column;gap:.7rem}
-  .obj-list li{display:flex;gap:.7rem;font-size:.88rem;color:var(--text-soft);line-height:1.5}
+  .obj-title{font-family:'Anton',sans-serif;font-size:17px;color:var(--text);letter-spacing:.02em}
+  .obj-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .obj-list li{display:flex;gap:8px;font-size:12px;color:var(--text-soft);line-height:1.5}
   .obj-list li::before{content:"▸";color:var(--violet-bright);font-weight:800;margin-top:1px}
   .obj-col:nth-child(2) .obj-list li::before{color:var(--pink-bright)}
-  .obj-note{
-    margin-top:auto;padding-top:.7rem;font-size:.7rem;color:var(--text-dim);
-    border-top:1px dashed var(--border);font-style:italic;
-  }
+  .obj-note{margin-top:auto;padding-top:7px;font-size:10px;color:var(--text-dim);border-top:1px dashed var(--border);font-style:italic}
 
-  /* ============== FUTURS PROJETS ============== */
-  .futur-intro{font-size:1rem;line-height:1.7;color:var(--text-soft);max-width:1100px;margin-bottom:2rem;position:relative;z-index:2}
+  /* FUTURS PROJETS */
+  .futur-intro{font-size:14.5px;line-height:1.65;color:var(--text-soft);max-width:1100px;margin-bottom:16px;position:relative;z-index:2}
   .futur-intro strong{color:var(--text);font-weight:600}
-  .projets{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;position:relative;z-index:2;flex:1;align-content:start}
-  .projet{
-    padding:1.3rem;border:1px solid var(--border);border-radius:12px;
-    background:linear-gradient(160deg,var(--surface),var(--bg-2));
-    display:flex;flex-direction:column;gap:.6rem;
-    transition:transform .3s var(--ease),box-shadow .3s var(--ease);
-  }
+  .projets{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;flex:1;align-content:start}
+  .projet{padding:16px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:7px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
   .projet:hover{transform:translateY(-4px);box-shadow:var(--glow-p)}
-  .projet-icon{font-size:1.7rem;filter:drop-shadow(0 0 10px rgba(236,72,153,.5))}
-  .projet-title{font-size:.95rem;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.03em}
-  .projet-desc{font-size:.8rem;line-height:1.55;color:var(--text-dim)}
+  .projet-icon{font-size:22px;filter:drop-shadow(0 0 10px rgba(236,72,153,.5))}
+  .projet-title{font-size:12.5px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.03em}
+  .projet-desc{font-size:11.5px;line-height:1.5;color:var(--text-dim)}
 
-  /* ============== CONCLUSION ============== */
-  .conclusion{
-    display:none;padding:0;text-align:center;
-    background:radial-gradient(ellipse at center,rgba(168,85,247,.18),transparent 60%),var(--bg);
-  }
-  .conclusion.active{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.6rem}
-  .concl-logo img{
-    width:min(26vw,340px);
-    filter:drop-shadow(0 0 38px rgba(168,85,247,.55)) drop-shadow(0 0 60px rgba(236,72,153,.25));
-    animation:logoFloat 6s ease-in-out infinite;
-  }
-  .concl-title{
-    font-family:'Anton',sans-serif;font-size:clamp(3.5rem,7vw,6rem);line-height:1;
-    background:linear-gradient(135deg,#fff,var(--violet-bright),var(--pink-bright));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    text-transform:uppercase;letter-spacing:.02em;
-  }
-  .concl-sub{font-size:1.15rem;color:var(--text-soft);max-width:760px;line-height:1.6}
-  .concl-sub strong{color:var(--text)}
-  .concl-contact{display:flex;gap:1.4rem;margin-top:.6rem;flex-wrap:wrap;justify-content:center}
-  .concl-contact-item{
-    padding:.9rem 1.4rem;border:1.5px solid var(--violet);border-radius:999px;
-    display:flex;align-items:center;gap:.7rem;
-    background:linear-gradient(135deg,rgba(168,85,247,.08),rgba(236,72,153,.04));
-    box-shadow:inset 0 0 18px rgba(168,85,247,.18);
-  }
+  /* CONCLUSION */
+  .slide.conclusion{padding:0;text-align:center;background:radial-gradient(ellipse at center,rgba(168,85,247,.18),transparent 60%),var(--bg)}
+  .concl-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:36px;position:relative;z-index:2}
+  .concl-logo img{width:140px;filter:drop-shadow(0 0 30px rgba(168,85,247,.55)) drop-shadow(0 0 50px rgba(236,72,153,.25));animation:logoFloat 6s ease-in-out infinite}
+  .concl-title{font-family:'Anton',sans-serif;font-size:72px;line-height:1;background:linear-gradient(135deg,#fff,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent;text-transform:uppercase;letter-spacing:.02em}
+  .concl-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:15.5px;color:var(--text-soft);max-width:760px;line-height:1.55}
+  .concl-sub strong{color:var(--text);font-weight:500}
+  .concl-contact{display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;justify-content:center}
+  .concl-contact-item{padding:9px 16px;border:1.5px solid var(--violet);border-radius:999px;display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(168,85,247,.08),rgba(236,72,153,.04));box-shadow:inset 0 0 18px rgba(168,85,247,.18)}
   .concl-contact-item:nth-child(2){border-color:var(--pink)}
-  .concl-contact-label{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
-  .concl-contact-value{font-size:1.05rem;font-weight:700;color:var(--text)}
-  .concl-signature{margin-top:1.4rem;font-family:'Pacifico',cursive;font-size:1.3rem;color:var(--pink);text-shadow:var(--glow-p)}
+  .concl-contact-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+  .concl-contact-value{font-size:13.5px;font-weight:700;color:var(--text)}
+  .concl-signature{margin-top:12px;font-family:'Pacifico',cursive;font-size:17px;color:var(--pink);text-shadow:var(--glow-p)}
 
-  /* ============== CONTROLS ============== */
-  .controls{
-    position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);
-    z-index:100;display:flex;align-items:center;gap:.8rem;
-    padding:.55rem;border-radius:999px;
-    background:rgba(20,15,24,.85);backdrop-filter:blur(12px);
-    border:1px solid var(--border-strong);
-    box-shadow:0 8px 30px rgba(0,0,0,.6);
-  }
-  .controls button{
-    width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;
-    background:linear-gradient(135deg,var(--violet),var(--violet-deep));
-    color:#fff;font-size:1.1rem;font-weight:700;
-    transition:transform .2s var(--ease),box-shadow .2s var(--ease);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .controls button:hover{transform:scale(1.08);box-shadow:var(--glow-v)}
-  .controls button:disabled{opacity:.35;cursor:not-allowed}
-  .counter{padding:0 1rem;font-size:.82rem;color:var(--text-soft);font-weight:600;letter-spacing:.06em;font-variant-numeric:tabular-nums}
-  .counter strong{color:var(--violet-bright);font-weight:800}
-  .hint{
-    position:fixed;top:1.1rem;left:1.1rem;z-index:100;
-    padding:.4rem .9rem;font-size:.68rem;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;
-    background:rgba(20,15,24,.7);border:1px solid var(--border);border-radius:999px;
-    backdrop-filter:blur(8px);
-  }
-  .hint kbd{
-    display:inline-block;padding:.1rem .4rem;margin:0 .2rem;
-    background:var(--surface);border:1px solid var(--border-strong);border-radius:4px;
-    color:var(--violet-bright);font-family:'Inter';font-weight:600;
-  }
-  .print-btn{
-    position:fixed;top:1.1rem;right:1.1rem;z-index:100;
-    padding:.55rem 1.05rem;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-    border:1.5px solid var(--pink);border-radius:999px;
-    background:rgba(236,72,153,.08);color:var(--pink-bright);cursor:pointer;
-    transition:all .2s var(--ease);
-    display:flex;align-items:center;gap:.5rem;
-  }
-  .print-btn:hover{background:var(--pink);color:#fff;box-shadow:var(--glow-p)}
+  /* FULLSCREEN */
+  body.fullscreen .deck{width:100vw;height:100vh;max-width:100vw;max-height:100vh;border-radius:0;border:none;box-shadow:none}
+  body.fullscreen .nav-bar,body.fullscreen .shortcuts{display:none}
 
-  /* ============== PRINT (PDF A4 PAYSAGE) ============== */
+  /* PRINT */
   @media print{
     @page{size:A4 landscape;margin:0}
     html,body{overflow:visible;height:auto}
-    .deck{height:auto}
-    .controls,.hint,.print-btn{display:none!important}
-    .slide,.cover,.conclusion{
-      display:flex!important;page-break-after:always;page-break-inside:avoid;
-      position:relative;width:297mm;height:210mm;padding:12mm 16mm;
-      animation:none!important;
-    }
-    .cover.active{display:grid!important}
-    .conclusion.active{display:flex!important}
-    .waves{opacity:.4}
-    body{background:var(--bg)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    body{display:block;background:var(--bg)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    body::before{display:none}
+    .nav-bar,.shortcuts{display:none!important}
+    .deck{width:297mm;height:210mm;max-width:none;max-height:none;border-radius:0;border:none;box-shadow:none;height:auto;display:block}
+    .slide{opacity:1!important;visibility:visible!important;transform:none!important;position:relative!important;page-break-after:always;page-break-inside:avoid;transition:none!important;animation:none!important}
     *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-  }
-
-  @media (max-width:1100px){
-    .cover.active{grid-template-columns:1fr;text-align:center}
-    .cover-text{padding:2rem;align-items:center}
-    .pillars,.evts,.comm,.echanges,.objs,.projets{grid-template-columns:1fr 1fr}
-    .toc{grid-template-columns:1fr}
-    .bio,.recrut{grid-template-columns:1fr}
   }
 </style>
 </head>
 <body>
 
-<!-- SVG decoration helper (réutilisable) -->
-<svg width="0" height="0" style="position:absolute">
-  <defs>
-    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#A855F7" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#EC4899" stop-opacity="0.5"/>
-    </linearGradient>
-    <linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#C084FC"/>
-      <stop offset="100%" stop-color="#F472B6"/>
-    </linearGradient>
-  </defs>
-</svg>
-
-<div class="hint">Navigation : <kbd>←</kbd> <kbd>→</kbd> · <kbd>P</kbd> imprimer</div>
-<button class="print-btn" onclick="window.print()">⬇ Imprimer en PDF</button>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#A855F7" stop-opacity="0.9"/><stop offset="100%" stop-color="#EC4899" stop-opacity="0.5"/></linearGradient>
+  <linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C084FC"/><stop offset="100%" stop-color="#F472B6"/></linearGradient>
+</defs></svg>
 
 <main class="deck">
 
-  <!-- ============== 01 · COVER ============== -->
+  <!-- 01 · COVER -->
   <section class="slide cover active">
-    <div class="cover-logo">
-      <img src="_ressources/visuels/logo-club77-neon-transparent.png" alt="Logo Club 77">
-    </div>
-    <div class="cover-text">
-      <span class="cover-eyebrow">présenté par</span>
-      <span class="cover-mega">Hybie<br>FAITH</span>
-      <p class="cover-sub">
-        Dossier de reprise officiel<br>
-        <strong>CLUB 77</strong> — Vie nocturne · État de San Andreas
-      </p>
-      <span class="cover-tag">Candidature gérante · 2026</span>
+    <div class="cover-inner">
+      <span class="cover-tag">Dossier de candidature à la reprise</span>
+      <img class="cover-logo-img" src="_ressources/visuels/logo-club77-neon-transparent.png" alt="Logo Club 77">
+      <p class="cover-quote">« Faire du <strong>Club 77</strong> un <strong>lieu culte</strong> — une adresse dont on parle, dont on veut faire partie. »</p>
+      <div class="cover-divider"><span></span><span></span><span></span></div>
+      <p class="cover-meta">Présenté à la direction du Club 77<br><strong>Constitué par Hybie FAITH</strong><br>Mai 2026</p>
     </div>
   </section>
 
-  <!-- ============== 02 · SOMMAIRE ============== -->
+  <!-- 02 · SOMMAIRE -->
   <section class="slide">
-    <svg class="waves tr" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="90" ry="210" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="120" ry="240" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="150" ry="270" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="180" ry="300" transform="rotate(35 300 300)"/>
-      </g>
-    </svg>
+    <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="90" ry="210" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="120" ry="240" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="150" ry="270" transform="rotate(35 300 300)"/></g></svg>
     <div class="slide-header">
-      <h2 class="slide-title"><span class="accent">Sommaire</span></h2>
+      <div><span class="slide-eyebrow">Navigation</span><h2 class="slide-title">Sommaire du <span class="accent">dossier</span></h2></div>
+      <span class="slide-num"><strong>00</strong> / TABLE</span>
     </div>
-    <div class="toc">
+    <div class="slide-content"><div class="toc">
       <div class="toc-item"><span class="toc-num">01</span><span class="toc-label">Notre vision</span></div>
       <div class="toc-item"><span class="toc-num">02</span><span class="toc-label">Présentation de la gérante</span></div>
-      <div class="toc-item"><span class="toc-num">03</span><span class="toc-label">Présentation du co-patron</span><span class="toc-badge">En attente</span></div>
-      <div class="toc-item"><span class="toc-num">04</span><span class="toc-label">Organigramme de l'entreprise</span><span class="toc-badge">En attente</span></div>
-      <div class="toc-item"><span class="toc-num">05</span><span class="toc-label">Ambitions et motivations</span></div>
-      <div class="toc-item"><span class="toc-num">06</span><span class="toc-label">Plan de communication</span></div>
-      <div class="toc-item"><span class="toc-num">07</span><span class="toc-label">Échanges commerciaux prévus</span></div>
-      <div class="toc-item"><span class="toc-num">08</span><span class="toc-label">Évènements organisés</span></div>
-      <div class="toc-item"><span class="toc-num">09</span><span class="toc-label">Recrutement & équipe</span></div>
-      <div class="toc-item"><span class="toc-num">10</span><span class="toc-label">Comptabilité prévisionnelle</span><span class="toc-badge">À venir</span></div>
-      <div class="toc-item"><span class="toc-num">11</span><span class="toc-label">Objectifs court / moyen / long terme</span></div>
-      <div class="toc-item"><span class="toc-num">12</span><span class="toc-label">Futurs projets de développement</span></div>
-      <div class="toc-item"><span class="toc-num">13</span><span class="toc-label">Conclusion & contact</span></div>
-    </div>
+      <div class="toc-item"><span class="toc-num">03</span><span class="toc-label">Pourquoi moi</span></div>
+      <div class="toc-item"><span class="toc-num">04</span><span class="toc-label">Présentation du co-patron</span><span class="toc-badge">En attente</span></div>
+      <div class="toc-item"><span class="toc-num">05</span><span class="toc-label">Organigramme de l'entreprise</span></div>
+      <div class="toc-item"><span class="toc-num">06</span><span class="toc-label">Postes & responsabilités</span></div>
+      <div class="toc-item"><span class="toc-num">07</span><span class="toc-label">Localisation du club</span></div>
+      <div class="toc-item"><span class="toc-num">08</span><span class="toc-label">Ambitions et motivations</span></div>
+      <div class="toc-item"><span class="toc-num">09</span><span class="toc-label">Plan de communication</span></div>
+      <div class="toc-item"><span class="toc-num">10</span><span class="toc-label">Partenariats & contreparties</span></div>
+      <div class="toc-item"><span class="toc-num">11</span><span class="toc-label">Évènements organisés</span></div>
+      <div class="toc-item"><span class="toc-num">12</span><span class="toc-label">Concept signature « Les Nuits du 7 »</span></div>
+      <div class="toc-item"><span class="toc-num">13</span><span class="toc-label">Recrutement & équipe</span></div>
+      <div class="toc-item"><span class="toc-num">14</span><span class="toc-label">Comptabilité prévisionnelle</span><span class="toc-badge">À venir</span></div>
+      <div class="toc-item"><span class="toc-num">15</span><span class="toc-label">Objectifs court / moyen / long terme</span></div>
+      <div class="toc-item"><span class="toc-num">16</span><span class="toc-label">Futurs projets de développement</span></div>
+      <div class="toc-item"><span class="toc-num">17</span><span class="toc-label">Conclusion & contact</span></div>
+    </div></div>
   </section>
 
-  <!-- ============== 03 · VISION (manifeste punchline) ============== -->
+  <!-- 03 · VISION -->
   <section class="slide vision-slide">
-    <svg class="waves tr" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="180" ry="300" transform="rotate(35 300 300)"/>
-      </g>
-    </svg>
-    <svg class="waves bl" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/>
-      </g>
-    </svg>
-    <span class="vision-eyebrow">Notre vision</span>
-    <h2 class="vision-punchline">
-      Faire du <span class="hl">Club 77</span><br>
-      un <span class="accent">lieu culte</span>
-      <em>une adresse dont on parle, dont on veut faire partie.</em>
-    </h2>
-    <p class="vision-sub">Bien plus qu'une boîte de nuit — <strong>une institution de la vie nocturne</strong> de l'État de San Andreas. Hisser le Club 77 au rang des meilleures adresses de la nuit.</p>
-  </section>
-
-  <!-- ============== 04 · TRIPTYQUE PASSION / AMBITION / IDENTITÉ ============== -->
-  <section class="slide">
-    <svg class="waves tl" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/>
-      </g>
-    </svg>
-    <svg class="waves br" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/>
-      </g>
-    </svg>
-    <div class="slide-header">
-      <h2 class="slide-title">Notre vision en <span class="accent">3 mots</span></h2>
-      <span class="slide-num">01</span>
-    </div>
-    <div class="triptyque">
-      <div class="tri-card">
-        <span class="tri-num">01</span>
-        <span class="tri-label">Passion</span>
-        <p class="tri-text">Une gérante qui <strong>vit la nuit</strong>, comprend la culture du club et sait ce que les noctambules attendent d'une vraie expérience festive — chaleur, énergie, immersion totale.</p>
-      </div>
-      <div class="tri-card">
-        <span class="tri-num">02</span>
-        <span class="tri-label">Ambition</span>
-        <p class="tri-text">Faire du Club 77 <strong>la destination incontournable</strong> de la ville — un endroit que les citoyens choisissent par envie, jamais par défaut, et dont ils se souviennent.</p>
-      </div>
-      <div class="tri-card">
-        <span class="tri-num">03</span>
-        <span class="tri-label">Identité</span>
-        <p class="tri-text">Affirmer une <strong>identité chaleureuse, festive et fédératrice</strong>, qui réunit tous les profils dans un cadre sécurisé, qualitatif et fidèle à l'esprit Club 77.</p>
-      </div>
+    <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="180" ry="300" transform="rotate(35 300 300)"/></g></svg>
+    <svg class="waves bl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/></g></svg>
+    <div class="vision-inner">
+      <span class="vision-eyebrow">Notre vision</span>
+      <h2 class="vision-punchline">Faire du <span class="hl">Club 77</span><br>un <span class="accent">lieu culte</span><em>— une adresse dont on parle, dont on veut faire partie.</em></h2>
+      <p class="vision-sub">Bien plus qu'une boîte de nuit — <strong>une institution de la vie nocturne</strong> de l'État de San Andreas. Hisser le Club 77 au rang des meilleures adresses de la nuit.</p>
     </div>
   </section>
 
-  <!-- ============== 05 · GÉRANTE ============== -->
+  <!-- 04 · TRIPTYQUE -->
   <section class="slide">
-    <svg class="waves bl" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="90" ry="210" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="120" ry="240" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="150" ry="270" transform="rotate(35 300 300)"/>
-      </g>
-    </svg>
+    <svg class="waves tl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/></g></svg>
+    <svg class="waves br" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/></g></svg>
     <div class="slide-header">
-      <h2 class="slide-title"><span class="accent">Gérante</span></h2>
-      <span class="slide-num">02</span>
+      <div><span class="slide-eyebrow">Vision · 01</span><h2 class="slide-title">Notre vision en <span class="accent">3 mots</span></h2></div>
+      <span class="slide-num"><strong>01</strong> / VISION</span>
     </div>
-    <div class="bio">
+    <div class="slide-content"><div class="triptyque">
+      <div class="tri-card"><span class="tri-num">01</span><span class="tri-label">Passion</span><p class="tri-text">Une gérante qui <strong>vit la nuit</strong>, comprend la culture du club et sait ce que les noctambules attendent — chaleur, énergie, immersion totale.</p></div>
+      <div class="tri-card"><span class="tri-num">02</span><span class="tri-label">Ambition</span><p class="tri-text">Faire du Club 77 <strong>la destination incontournable</strong> de la ville — un endroit que les citoyens choisissent par envie, jamais par défaut.</p></div>
+      <div class="tri-card"><span class="tri-num">03</span><span class="tri-label">Identité</span><p class="tri-text">Affirmer une <strong>identité chaleureuse, festive et fédératrice</strong>, qui réunit tous les profils dans un cadre sécurisé et qualitatif.</p></div>
+    </div></div>
+  </section>
+
+  <!-- 05 · GÉRANTE -->
+  <section class="slide">
+    <svg class="waves bl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="90" ry="210" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="120" ry="240" transform="rotate(35 300 300)"/></g></svg>
+    <div class="slide-header">
+      <div><span class="slide-eyebrow">Présentation · 02</span><h2 class="slide-title">La <span class="accent">Gérante</span></h2></div>
+      <span class="slide-num"><strong>02</strong> / ÉQUIPE</span>
+    </div>
+    <div class="slide-content"><div class="bio">
       <div>
         <div class="bio-meta">
           <div class="bio-meta-item"><span class="bio-meta-label">Nom</span><span class="bio-meta-value">Hybie FAITH</span></div>
           <div class="bio-meta-item"><span class="bio-meta-label">Âge</span><span class="bio-meta-value">24 ans</span></div>
-          <div class="bio-meta-item"><span class="bio-meta-label">Métier actuel</span><span class="bio-meta-value">Gouvernement</span></div>
+          <div class="bio-meta-item"><span class="bio-meta-label">Poste actuel</span><span class="bio-meta-value">Gouvernement</span></div>
         </div>
         <div class="bio-text">
           <p>Je m'appelle <strong>Hybie</strong>, je suis <span class="hl">originaire du Congo</span>. Mon passé n'a pas toujours été facile, mais il m'a permis de devenir une personne forte, déterminée et ambitieuse.</p>
           <p>Après avoir quitté mon pays avec ma sœur pour reconstruire notre vie aux États-Unis, j'ai appris à <span class="hl">toujours avancer malgré les difficultés</span> et à ne jamais abandonner mes objectifs.</p>
-          <p>Aujourd'hui, depuis maintenant <strong>4 mois</strong>, je travaille au sein du gouvernement, ce qui m'a permis de développer un grand <span class="hl">sens des responsabilités</span>, de la <span class="hl">gestion</span> et du <span class="hl">travail en équipe</span>.</p>
+          <p>Aujourd'hui, depuis <strong>4 mois</strong>, je travaille au sein du gouvernement, ce qui m'a permis de développer un grand <span class="hl">sens des responsabilités</span>, de la <span class="hl">gestion</span> et du <span class="hl">travail en équipe</span>.</p>
           <p>Je suis quelqu'un de très <strong>sociable</strong>, j'aime énormément le contact avec les personnes et surtout m'investir à fond dans tout ce que j'entreprends.</p>
         </div>
       </div>
       <div class="bio-aside">
-        <div class="bio-portrait">
-          <div class="bio-portrait-icon">✦</div>
-          <div class="bio-portrait-label">Hybie FAITH · Gérante</div>
-        </div>
+        <div class="bio-portrait"><img src="_ressources/visuels/hybie 1.png" alt="Hybie FAITH"></div>
         <div class="bio-qualities">
           <h4>Qualités clés</h4>
           <div class="qualities-tags">
-            <span class="quality-tag">Sérieuse</span>
-            <span class="quality-tag">Sociable</span>
-            <span class="quality-tag">Engagée</span>
-            <span class="quality-tag">Responsable</span>
-            <span class="quality-tag">Polyvalente</span>
-            <span class="quality-tag">Déterminée</span>
+            <span class="quality-tag">Sérieuse</span><span class="quality-tag">Sociable</span><span class="quality-tag">Engagée</span><span class="quality-tag">Responsable</span><span class="quality-tag">Polyvalente</span><span class="quality-tag">Déterminée</span>
           </div>
         </div>
       </div>
-    </div>
+    </div></div>
   </section>
 
-  <!-- ============== 04 · CO-PATRON (en attente) ============== -->
+  <!-- 06 · POURQUOI MOI -->
   <section class="slide">
-    <svg class="waves tr" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/>
-      </g>
-    </svg>
+    <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/></g></svg>
     <div class="slide-header">
-      <h2 class="slide-title"><span class="accent">Co-Patron</span></h2>
-      <span class="slide-num">03</span>
+      <div><span class="slide-eyebrow">Engagement · 03</span><h2 class="slide-title">Pourquoi <span class="accent">moi</span> ?</h2></div>
+      <span class="slide-num"><strong>03</strong> / ÉQUIPE</span>
     </div>
-    <div class="placeholder-wrap">
-      <div class="placeholder-card">
-        <div class="placeholder-icon">👥</div>
-        <h3 class="placeholder-title">Présentation à venir</h3>
-        <p class="placeholder-desc">Le poste de co-patron est <strong style="color:var(--text)">actuellement vacant</strong>. La présentation sera intégrée dès qu'une personne de confiance aura été identifiée pour rejoindre la direction du Club 77.</p>
-        <span class="placeholder-tag">En attente</span>
+    <div class="slide-content"><div class="pourquoi">
+      <div class="pourquoi-intro">
+        <p>Le <strong>Club 77</strong> mérite une gérante qui s'engage <strong>à 100 %</strong>. Pas une signature de plus en bas d'un contrat, mais une personne qui vit le projet, comprend les enjeux et porte le club <span class="hl">au quotidien</span>.</p>
+        <p>Je suis cette personne. Mon parcours au gouvernement, ma personnalité et ma vision me donnent les <strong>clés concrètes</strong> pour reprendre le Club 77 et le hisser au rang des meilleures adresses de la ville.</p>
+        <p class="pourquoi-quote">« Reprendre le Club 77, ce n'est pas hériter d'un nom — c'est s'engager à en faire une légende. »</p>
       </div>
-    </div>
+      <div class="pourquoi-cards">
+        <div class="pourquoi-card"><span class="pc-icon">⚡</span><h4>Sérieux & engagement</h4><p>4 mois au gouvernement, sens aigu des responsabilités, rigueur dans la gestion d'équipe et le suivi des dossiers.</p></div>
+        <div class="pourquoi-card"><span class="pc-icon">🔥</span><h4>Énergie & disponibilité</h4><p>Investissement total dans tout ce que j'entreprends, présence régulière en jeu et réactivité continue.</p></div>
+        <div class="pourquoi-card"><span class="pc-icon">🤝</span><h4>Sens du contact</h4><p>Sociable, j'aime profondément le contact humain, créer du lien, fédérer une équipe et accueillir une clientèle.</p></div>
+        <div class="pourquoi-card"><span class="pc-icon">🎯</span><h4>Vision long terme</h4><p>Un projet sérieux et durable, structuré, avec une feuille de route claire à 1, 3 et 6 mois — pas un coup d'éclat.</p></div>
+      </div>
+    </div></div>
   </section>
 
-  <!-- ============== 05 · ORGANIGRAMME (en attente) ============== -->
+  <!-- 07 · CO-PATRON -->
   <section class="slide">
-    <svg class="waves bl" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/>
-      </g>
-    </svg>
+    <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/></g></svg>
     <div class="slide-header">
-      <h2 class="slide-title">Organigramme de <span class="accent">l'entreprise</span></h2>
-      <span class="slide-num">04</span>
+      <div><span class="slide-eyebrow">Présentation · 04</span><h2 class="slide-title">Le <span class="accent">Co-Patron</span></h2></div>
+      <span class="slide-num"><strong>04</strong> / ÉQUIPE</span>
     </div>
-    <div class="placeholder-wrap">
-      <div class="placeholder-card">
-        <div class="placeholder-icon">🗂</div>
-        <h3 class="placeholder-title">Organigramme à venir</h3>
-        <p class="placeholder-desc">La structure hiérarchique complète du Club 77 sera détaillée ici : direction, encadrement, équipe terrain. <strong style="color:var(--text)">Schéma à intégrer</strong> dès validation de la composition de l'équipe.</p>
-        <span class="placeholder-tag">En attente</span>
-      </div>
-    </div>
+    <div class="slide-content"><div class="placeholder-wrap"><div class="placeholder-card">
+      <div class="placeholder-icon">👥</div>
+      <h3 class="placeholder-title">Présentation à venir</h3>
+      <p class="placeholder-desc">Le poste de co-patron est <strong>actuellement vacant</strong>. La présentation sera intégrée dès qu'une personne de confiance aura été identifiée pour rejoindre la direction du Club 77.</p>
+      <span class="placeholder-tag">En attente</span>
+    </div></div></div>
   </section>
 
-  <!-- ============== 06 · AMBITIONS ============== -->
+  <!-- 08 · ORGANIGRAMME -->
   <section class="slide">
-    <svg class="waves tr" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="90" ry="210" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="120" ry="240" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="150" ry="270" transform="rotate(-35 300 300)"/>
-      </g>
-    </svg>
+    <svg class="waves bl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/></g></svg>
     <div class="slide-header">
-      <h2 class="slide-title">Ambitions & <span class="accent">Motivations</span></h2>
-      <span class="slide-num">05</span>
+      <div><span class="slide-eyebrow">Structure · 05</span><h2 class="slide-title">Organigramme de <span class="accent">l'entreprise</span></h2></div>
+      <span class="slide-num"><strong>05</strong> / ÉQUIPE</span>
     </div>
-    <p class="ambitions-intro">
-      Notre ambition : faire du Club 77 un <strong>haut lieu de la nightlife</strong> de la ville — une <span class="hl">institution festive</span> où l'on vient pour vivre des soirées dont on se souvient, dans un cadre <strong>sécurisé et qualitatif</strong>.<br><br>
-      Le <strong>Club 77</strong> représente pour nous un <span class="hl">véritable projet sérieux et durable</span>. Nous voulons construire une équipe solide, <strong>hisser l'établissement au rang des meilleures adresses de la nuit</strong> et en faire <span class="hl">la référence incontournable</span> de la vie nocturne. Déterminée, active et investie, je suis prête à m'engager pleinement pour apporter du contenu de qualité et dynamiser la ville.
-    </p>
-    <div class="pillars">
-      <div class="pillar">
-        <span class="pillar-num">01</span>
-        <span class="pillar-title">Organiser des évènements</span>
-        <span class="pillar-desc">Une programmation rythmée et variée pour faire vivre le club chaque semaine.</span>
-      </div>
-      <div class="pillar">
-        <span class="pillar-num">02</span>
-        <span class="pillar-title">Construire une équipe sérieuse</span>
-        <span class="pillar-desc">Recruter des profils investis, formés et fiables pour garantir la qualité du service.</span>
-      </div>
-      <div class="pillar">
-        <span class="pillar-num">03</span>
-        <span class="pillar-title">Maintenir une activité régulière</span>
-        <span class="pillar-desc">Assurer des ouvertures stables et constantes pour fidéliser la clientèle.</span>
-      </div>
-      <div class="pillar">
-        <span class="pillar-num">04</span>
-        <span class="pillar-title">Développer des partenariats</span>
-        <span class="pillar-desc">Tisser un réseau solide avec les entreprises et médias de la ville.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============== 07 · PLAN DE COMMUNICATION ============== -->
-  <section class="slide">
-    <svg class="waves bl" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="180" ry="300" transform="rotate(35 300 300)"/>
-      </g>
-    </svg>
-    <div class="slide-header">
-      <h2 class="slide-title">Plan de <span class="accent">Communication</span></h2>
-      <span class="slide-num">06</span>
-    </div>
-    <div class="comm">
-      <div class="comm-card">
-        <div class="comm-icon">📍</div>
-        <h3 class="comm-title">Communication en ville</h3>
-        <p class="comm-desc">Une stratégie de visibilité urbaine déployée à <strong>360°</strong> : affichage publicitaire dans les zones de passage, distribution ciblée de flyers et activation de <strong>partenariats croisés</strong> avec les commerces de la ville pour amplifier chaque ouverture et événement.</p>
-      </div>
-      <div class="comm-card">
-        <div class="comm-icon">📱</div>
-        <h3 class="comm-title">Réseaux sociaux & médias</h3>
-        <p class="comm-desc">Lancement de comptes officiels <strong>Birdy</strong> et <strong>Instapick</strong> alimentés en continu : teasers de soirées, reportages photos en after, annonces exclusives. Coopération directe avec <strong>Weazel News</strong> et <strong>Life Invader</strong> pour des couvertures dédiées à la réouverture.</p>
-      </div>
-      <div class="comm-card">
-        <div class="comm-icon">📢</div>
-        <h3 class="comm-title">Promotion des évènements</h3>
-        <p class="comm-desc">Communication systématique <strong>en amont de chaque ouverture</strong> : countdown sur les réseaux, flyer dédié par événement, et relais auprès de la communauté pour entretenir l'attente et garantir une <strong>affluence stable</strong> à chaque soirée.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============== 08 · ÉCHANGES COMMERCIAUX ============== -->
-  <section class="slide">
-    <svg class="waves tl" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/>
-      </g>
-    </svg>
-    <div class="slide-header">
-      <h2 class="slide-title">Échanges <span class="accent">Commerciaux</span></h2>
-      <span class="slide-num">07</span>
-    </div>
-    <div class="echanges">
-      <div class="ech-card">
-        <div class="ech-visual">
-          <svg viewBox="0 0 80 80" fill="none" stroke="url(#iconGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M40 12 L62 24 L62 50 L40 62 L18 50 L18 24 Z"/>
-            <path d="M40 12 L40 62"/>
-            <path d="M18 24 L62 50"/>
-            <path d="M62 24 L18 50"/>
-          </svg>
-        </div>
-        <div class="ech-body">
-          <h3 class="ech-title">Partenaires actuels</h3>
-          <p class="ech-desc">Nous <strong>conserverons</strong> les partenaires actuels qui fournissent déjà les matières premières nécessaires au fonctionnement du Club afin d'assurer une <strong>continuité stable et professionnelle</strong> pour l'entreprise.</p>
+    <div class="slide-content"><div class="org">
+      <div class="org-level">
+        <span class="org-level-tag">Niveau 1 · Direction</span>
+        <div class="org-nodes">
+          <div class="org-node lead"><strong>Hybie FAITH</strong><span>Gérante</span></div>
+          <div class="org-node warn"><strong>Co-Patron</strong><span>en attente</span></div>
         </div>
       </div>
-      <div class="ech-card">
-        <div class="ech-visual">
-          <svg viewBox="0 0 80 80" fill="none" stroke="url(#iconGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="14" y="22" width="52" height="36" rx="4"/>
-            <path d="M14 30 L66 30"/>
-            <circle cx="22" cy="26" r="1.5" fill="url(#iconGrad)"/>
-            <circle cx="28" cy="26" r="1.5" fill="url(#iconGrad)"/>
-            <path d="M26 42 L40 42 M26 50 L54 50"/>
-            <path d="M44 38 L58 38 L58 46 L44 46 Z"/>
-          </svg>
-        </div>
-        <div class="ech-body">
-          <h3 class="ech-title">Partenariats médias</h3>
-          <p class="ech-desc">Nous souhaitons collaborer avec <strong>Life Invader</strong> ainsi que <strong>Weazel News</strong> afin de promouvoir la réouverture du club, nos futures soirées et augmenter la visibilité de l'établissement auprès des citoyens.</p>
+      <div class="org-level">
+        <span class="org-level-tag">Niveau 2 · Encadrement</span>
+        <div class="org-nodes">
+          <div class="org-node"><strong>Manager</strong><span>encadrement soirées</span></div>
+          <div class="org-node"><strong>Responsable</strong><span>supervision globale</span></div>
+          <div class="org-node"><strong>DRH</strong><span>RH & plannings</span></div>
         </div>
       </div>
-      <div class="ech-card">
-        <div class="ech-visual">
-          <svg viewBox="0 0 80 80" fill="none" stroke="url(#iconGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M40 14 L46 30 L64 32 L50 44 L54 62 L40 52 L26 62 L30 44 L16 32 L34 30 Z"/>
-          </svg>
+      <div class="org-level">
+        <span class="org-level-tag">Niveau 3 · Cellules opérationnelles</span>
+        <div class="org-nodes">
+          <div class="org-node"><strong>Responsable Bar</strong><span>bar & stocks</span></div>
+          <div class="org-node"><strong>Chef Sécurité</strong><span>équipe sécu</span></div>
+          <div class="org-node"><strong>Responsable Événementiel</strong><span>soirées & artistes</span></div>
         </div>
-        <div class="ech-body">
-          <h3 class="ech-title">Organisation d'évènements</h3>
-          <p class="ech-desc">Nous aimerions travailler avec <strong>Maze Event</strong> pour l'organisation de nos évènements afin de proposer des animations de qualité et assurer la <strong>bonne évolution de l'entreprise</strong> sur le long terme.</p>
+      </div>
+      <div class="org-level">
+        <span class="org-level-tag">Niveau 4 · Équipe terrain</span>
+        <div class="org-nodes">
+          <div class="org-node"><strong>Barmen</strong><span>service & accueil</span></div>
+          <div class="org-node"><strong>Agents Sécurité</strong><span>contrôle & ordre</span></div>
+          <div class="org-node"><strong>DJ résident·e</strong><span>animation musicale</span></div>
+          <div class="org-node"><strong>Danseurs / Danseuses</strong><span>animation scène</span></div>
         </div>
+      </div>
+      <div class="org-effectif">
+        <div class="org-effectif-item"><span>≤ 9</span><small>Agents sécurité</small></div>
+        <div class="org-effectif-item"><span>≤ 4</span><small>Barmen</small></div>
+        <div class="org-effectif-item"><span>1-2</span><small>DJ résidents</small></div>
+        <div class="org-effectif-item"><span>1-2</span><small>Danseuses</small></div>
+        <div class="org-effectif-item"><span>~15</span><small>Effectif total cible</small></div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 09 · POSTES & RESPONSABILITÉS -->
+  <section class="slide">
+    <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/></g></svg>
+    <div class="slide-header">
+      <div><span class="slide-eyebrow">Rôles · 06</span><h2 class="slide-title">Postes & <span class="accent">responsabilités</span></h2></div>
+      <span class="slide-num"><strong>06</strong> / ÉQUIPE</span>
+    </div>
+    <div class="slide-content"><div class="postes-grid">
+      <div class="poste-full"><h4>Patron</h4><ul><li>Gestion générale de l'établissement</li><li>Organisation du personnel</li><li>Mise en place des événements & partenariats</li></ul></div>
+      <div class="poste-full"><h4>Co-Patron</h4><ul><li>Épauler la gérante au quotidien</li><li>Communication & développement de l'image</li><li>Suivi des projets stratégiques</li></ul></div>
+      <div class="poste-full"><h4>Responsable</h4><ul><li>Supervision du bon fonctionnement</li><li>Coordination entre services</li><li>Gestion des imprévus</li></ul></div>
+      <div class="poste-full"><h4>Manager</h4><ul><li>Encadrement du personnel en soirée</li><li>Vérification du bon déroulement</li><li>Remontée des informations à la direction</li></ul></div>
+      <div class="poste-full"><h4>DRH</h4><ul><li>Recrutement du personnel</li><li>Gestion des plannings & présences</li><li>Veille au climat de travail</li></ul></div>
+      <div class="poste-full"><h4>Chef Sécurité</h4><ul><li>Organisation de l'équipe sécurité</li><li>Contrôle de la sécurité clients & personnel</li><li>Intervention en cas de conflit</li></ul></div>
+      <div class="poste-full"><h4>Responsable Bar</h4><ul><li>Gestion du bar & des stocks</li><li>Organisation du travail des barmen</li><li>Contrôle qualité du service</li></ul></div>
+      <div class="poste-full"><h4>Responsable Évènementiel</h4><ul><li>Organisation des soirées à thème</li><li>Mise en place des concours</li><li>Coordination avec artistes & partenaires</li></ul></div>
+      <div class="poste-full"><h4>DJ</h4><ul><li>Animation musicale du club</li><li>Adaptation à l'ambiance de la soirée</li><li>Participation aux événements spéciaux</li></ul></div>
+      <div class="poste-full"><h4>Barman / Barmaid</h4><ul><li>Préparation & service des boissons</li><li>Accueil & interaction clients</li><li>Maintien de la propreté du bar</li></ul></div>
+      <div class="poste-full"><h4>Agent de Sécurité</h4><ul><li>Contrôle des entrées & accès</li><li>Surveillance & prévention</li><li>Intervention en cas de trouble</li></ul></div>
+      <div class="poste-full"><h4>Danseur / Danseuse</h4><ul><li>Animation visuelle de la piste</li><li>Performances chorégraphiées</li><li>Présence sur scènes thématiques</li></ul></div>
+    </div></div>
+  </section>
+
+  <!-- 10 · LOCALISATION -->
+  <section class="slide">
+    <svg class="waves br" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/></g></svg>
+    <div class="slide-header">
+      <div><span class="slide-eyebrow">Lieu · 07</span><h2 class="slide-title"><span class="accent">Localisation</span> du club</h2></div>
+      <span class="slide-num"><strong>07</strong> / LIEU</span>
+    </div>
+    <div class="slide-content"><div class="locale">
+      <div class="locale-map">
+        <div class="locale-map-pin">📍</div>
+        <div class="locale-map-label"><strong>Carte à insérer</strong>Capture de la map IG<br>avec marqueur Club 77</div>
+      </div>
+      <div class="locale-info">
+        <p>Le <strong>Club 77</strong> est idéalement implanté au cœur de la ville, dans une zone à forte affluence nocturne, à proximité directe des principaux axes de transit et des quartiers les plus animés de Los Santos.</p>
+        <p>Cette localisation <span class="hl">stratégique</span> en fait un point de passage naturel pour la clientèle noctambule : visibilité maximale, accessibilité optimale, et environnement déjà rodé à la vie nocturne.</p>
+        <div class="locale-points">
+          <div class="locale-point"><h5>Adresse IG</h5><p>À confirmer</p></div>
+          <div class="locale-point"><h5>Type d'établissement</h5><p>Boîte de nuit · Nightclub</p></div>
+          <div class="locale-point"><h5>Capacité</h5><p>À confirmer</p></div>
+          <div class="locale-point"><h5>Accès</h5><p>Façade + parking proche</p></div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 11 · AMBITIONS -->
+  <section class="slide">
+    <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="90" ry="210" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="120" ry="240" transform="rotate(-35 300 300)"/></g></svg>
+    <div class="slide-header">
+      <div><span class="slide-eyebrow">Stratégie · 08</span><h2 class="slide-title">Ambitions & <span class="accent">motivations</span></h2></div>
+      <span class="slide-num"><strong>08</strong> / PROJET</span>
+    </div>
+    <div class="slide-content">
+      <p class="ambitions-intro">Notre ambition : faire du Club 77 un <strong>haut lieu de la nightlife</strong> de la ville — une <span class="hl">institution festive</span> où l'on vient pour vivre des soirées dont on se souvient, dans un cadre <strong>sécurisé et qualitatif</strong>.<br><br>Le <strong>Club 77</strong> représente un <span class="hl">véritable projet sérieux et durable</span>. Nous voulons construire une équipe solide, <strong>hisser l'établissement au rang des meilleures adresses de la nuit</strong> et en faire <span class="hl">la référence incontournable</span> de la vie nocturne.</p>
+      <div class="pillars">
+        <div class="pillar"><span class="pillar-num">01</span><span class="pillar-title">Organiser des évènements</span><span class="pillar-desc">Une programmation rythmée et variée pour faire vivre le club chaque semaine.</span></div>
+        <div class="pillar"><span class="pillar-num">02</span><span class="pillar-title">Construire une équipe sérieuse</span><span class="pillar-desc">Recruter des profils investis, formés et fiables pour garantir la qualité du service.</span></div>
+        <div class="pillar"><span class="pillar-num">03</span><span class="pillar-title">Maintenir une activité régulière</span><span class="pillar-desc">Assurer des ouvertures stables et constantes pour fidéliser la clientèle.</span></div>
+        <div class="pillar"><span class="pillar-num">04</span><span class="pillar-title">Développer des partenariats</span><span class="pillar-desc">Tisser un réseau solide avec les entreprises et médias de la ville.</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============== 09 · ÉVÈNEMENTS ============== -->
+  <!-- 12 · COMMUNICATION -->
   <section class="slide">
-    <svg class="waves br" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="180" ry="300" transform="rotate(35 300 300)"/>
-      </g>
-    </svg>
+    <svg class="waves bl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/></g></svg>
     <div class="slide-header">
-      <h2 class="slide-title">Évènements <span class="accent">Organisés</span></h2>
-      <span class="slide-num">08</span>
+      <div><span class="slide-eyebrow">Marketing · 09</span><h2 class="slide-title">Plan de <span class="accent">communication</span></h2></div>
+      <span class="slide-num"><strong>09</strong> / PROJET</span>
     </div>
-    <div class="evts">
-      <div class="evt">
-        <span class="evt-icon">🎭</span>
-        <span class="evt-title">Soirées à thème</span>
-        <span class="evt-desc">Chaque mois, une <strong style="color:var(--pink-bright)">thématique inédite</strong> habille le club — années 80, glow party, soirée masquée, casino night. Dress code, animations dédiées et décoration sur-mesure à chaque édition.</span>
+    <div class="slide-content"><div class="comm">
+      <div class="comm-card"><div class="comm-icon">📍</div><h3 class="comm-title">Communication en ville</h3><p class="comm-desc">Une stratégie de visibilité urbaine déployée à <strong>360°</strong> : affichage publicitaire dans les zones de passage, distribution ciblée de flyers et activation de <strong>partenariats croisés</strong> avec les commerces de la ville pour amplifier chaque ouverture et événement.</p></div>
+      <div class="comm-card"><div class="comm-icon">📱</div><h3 class="comm-title">Réseaux sociaux & médias</h3><p class="comm-desc">Lancement de comptes officiels <strong>Birdy</strong> et <strong>Instapick</strong> alimentés en continu : teasers de soirées, reportages photos en after, annonces exclusives. Coopération directe avec <strong>Weazel News</strong> et <strong>Life Invader</strong>.</p></div>
+      <div class="comm-card"><div class="comm-icon">📢</div><h3 class="comm-title">Promotion des évènements</h3><p class="comm-desc">Communication systématique <strong>en amont de chaque ouverture</strong> : countdown sur les réseaux, flyer dédié par événement, et relais auprès de la communauté pour entretenir l'attente et garantir une <strong>affluence stable</strong>.</p></div>
+    </div></div>
+  </section>
+
+  <!-- 13 · PARTENARIATS & CONTREPARTIES -->
+  <section class="slide">
+    <svg class="waves tl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/></g></svg>
+    <div class="slide-header">
+      <div><span class="slide-eyebrow">Business · 10</span><h2 class="slide-title">Partenariats & <span class="accent">contreparties</span></h2></div>
+      <span class="slide-num"><strong>10</strong> / PROJET</span>
+    </div>
+    <div class="slide-content"><div class="partenariats">
+      <div class="part-block">
+        <h3>Partenaires envisagés</h3>
+        <div class="part-list">
+          <div class="part-card"><h4>LS Motorcycles</h4><p>Concours pour gagner une moto ou des accessoires lors de soirées spéciales.</p></div>
+          <div class="part-card"><h4>PDM</h4><p>Exposition de véhicules devant le club ou concours avec récompenses automobiles.</p></div>
+          <div class="part-card"><h4>LD Organic</h4><p>Événements promotionnels et mise en avant de leurs produits dans le club.</p></div>
+          <div class="part-card"><h4>Esthétique de Paleto</h4><p>Salon partenaire proposant offres spéciales et participations aux événements.</p></div>
+          <div class="part-card"><h4>Label musical local</h4><p>Soirées showcases avec artistes du label en exclusivité.</p></div>
+          <div class="part-card"><h4>Weazel News & Life Invader</h4><p>Couvertures médiatiques de la réouverture et des temps forts du club.</p></div>
+        </div>
       </div>
-      <div class="evt">
-        <span class="evt-icon">🎤</span>
-        <span class="evt-title">Karaokés</span>
-        <span class="evt-desc">Une nuit par semaine dédiée aux performances : <strong style="color:var(--pink-bright)">scène ouverte</strong>, large catalogue de titres, jury invité et concours avec prix. Un rendez-vous récurrent qui fidélise une clientèle régulière.</span>
+      <div class="part-block">
+        <h3>Ce que nous offrons</h3>
+        <ul class="contreparties-list">
+          <li><span><strong>Visibilité aux événements</strong> — bannières et mentions lors des soirées.</span></li>
+          <li><span><strong>Publicité dans le club</strong> — signalétique sur les supports internes.</span></li>
+          <li><span><strong>Soirées sponsorisées</strong> — événements co-brandés avec le partenaire.</span></li>
+          <li><span><strong>Mise en avant produits</strong> — dégustations, distributions, démos.</span></li>
+          <li><span><strong>Co-branding réseaux</strong> — mentions sur Birdy & Instapick.</span></li>
+        </ul>
+        <p class="contre-footer">Ces collaborations créent une <strong style="color:var(--text)">dynamique positive</strong> entre les entreprises locales et le Club 77.</p>
       </div>
-      <div class="evt">
-        <span class="evt-icon">💎</span>
-        <span class="evt-title">Soirées VIP</span>
-        <span class="evt-desc">Accès restreint sur invitation ou réservation premium : <strong style="color:var(--pink-bright)">carré privatisé</strong>, service de table dédié, carte de cocktails signature et bouteilles haut de gamme pour une expérience exclusive.</span>
+    </div></div>
+  </section>
+
+  <!-- 14 · ÉVÈNEMENTS -->
+  <section class="slide">
+    <svg class="waves br" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/></g></svg>
+    <div class="slide-header">
+      <div><span class="slide-eyebrow">Programmation · 11</span><h2 class="slide-title">Évènements <span class="accent">organisés</span></h2></div>
+      <span class="slide-num"><strong>11</strong> / PROJET</span>
+    </div>
+    <div class="slide-content"><div class="evts">
+      <div class="evt"><span class="evt-icon">🎭</span><span class="evt-title">Soirées à thème</span><span class="evt-desc">Styles variés — <strong>urbain, latino, années 90/2000, électro</strong>. Dress codes (élégant, noir & blanc, luxe) et décorations sur-mesure à chaque édition.</span></div>
+      <div class="evt"><span class="evt-icon">🎤</span><span class="evt-title">Concours & animations</span><span class="evt-desc"><strong>Miss & Mister 77</strong> (entrée gratuite 1 mois), concours de danse, défilés, tirages au sort avec lots premium.</span></div>
+      <div class="evt"><span class="evt-icon">💎</span><span class="evt-title">Soirées VIP</span><span class="evt-desc">Accès restreint, <strong>carré privatisé</strong>, service de table dédié, cocktails signature et bouteilles haut de gamme.</span></div>
+      <div class="evt"><span class="evt-icon">🤝</span><span class="evt-title">Inter-entreprises</span><span class="evt-desc">Afterworks corporate, lancements de produits, <strong>soirées service public</strong>, networking entre patrons et factions légales.</span></div>
+      <div class="evt"><span class="evt-icon">🎶</span><span class="evt-title">Showcases & artistes</span><span class="evt-desc">Performances live avec <strong>artistes locaux du serveur</strong> et label musical partenaire — DJ sets, concerts acoustiques exclusifs.</span></div>
+    </div></div>
+  </section>
+
+  <!-- 15 · LES NUITS DU 7 (signature) -->
+  <section class="slide signature-slide">
+    <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="180" ry="300" transform="rotate(35 300 300)"/></g></svg>
+    <svg class="waves bl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/></g></svg>
+    <div class="signature-inner">
+      <span class="signature-eyebrow">Concept signature</span>
+      <h2 class="signature-title">Les Nuits du <span class="seven">7</span></h2>
+      <p class="signature-sub">Toutes les dates se terminant par un <strong>7</strong> deviennent des rendez-vous d'exception : <strong>le 7, le 17, le 27</strong> de chaque mois — la signature qui fera l'identité du Club 77.</p>
+      <div class="signature-advantages">
+        <div class="signature-adv"><span class="adv-icon">🎟</span><span class="adv-title">Entrée gratuite</span><span class="adv-desc">Pour certaines catégories de clients sélectionnées</span></div>
+        <div class="signature-adv"><span class="adv-icon">🎁</span><span class="adv-title">Tirages au sort</span><span class="adv-desc">Lots premium et cadeaux importants à la clé</span></div>
+        <div class="signature-adv"><span class="adv-icon">👔</span><span class="adv-title">Dress code</span><span class="adv-desc">Ambiance prestigieuse, tenue élégante exigée</span></div>
+        <div class="signature-adv"><span class="adv-icon">🎧</span><span class="adv-title">Artistes invités</span><span class="adv-desc">DJ et performers exclusifs à chaque édition</span></div>
+        <div class="signature-adv"><span class="adv-icon">🏆</span><span class="adv-title">Animations</span><span class="adv-desc">Concours et événements spéciaux pendant la soirée</span></div>
       </div>
-      <div class="evt">
-        <span class="evt-icon">🤝</span>
-        <span class="evt-title">Inter-entreprises</span>
-        <span class="evt-desc">Le Club 77 ouvre ses portes aux soirées corporate : <strong style="color:var(--pink-bright)">afterworks</strong>, lancements de produits, networking entre patrons. Un cadre prestigieux pour les liens commerciaux de la ville.</span>
-      </div>
-      <div class="evt">
-        <span class="evt-icon">🎶</span>
-        <span class="evt-title">Concerts</span>
-        <span class="evt-desc">Programmation live régulière avec des <strong style="color:var(--pink-bright)">artistes du serveur</strong> : DJ sets, concerts acoustiques, performances exclusives. Une véritable scène culturelle de la vie nocturne.</span>
-      </div>
+      <p class="signature-footer">— Le 7, le 17, le 27. Chaque mois, le Club 77 vit ses Nuits du 7.</p>
     </div>
   </section>
 
-  <!-- ============== 10 · RECRUTEMENT ============== -->
+  <!-- 16 · RECRUTEMENT -->
   <section class="slide">
-    <svg class="waves tr" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/>
-      </g>
-    </svg>
+    <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/></g></svg>
     <div class="slide-header">
-      <h2 class="slide-title">Recrutement & <span class="accent">Équipe</span></h2>
-      <span class="slide-num">09</span>
+      <div><span class="slide-eyebrow">RH · 13</span><h2 class="slide-title">Recrutement & <span class="accent">équipe</span></h2></div>
+      <span class="slide-num"><strong>13</strong> / PROJET</span>
     </div>
-    <div class="recrut">
+    <div class="slide-content"><div class="recrut">
       <div class="recrut-block">
         <h3>Postes recherchés</h3>
         <div class="postes">
           <div class="poste"><span class="poste-name">Co-Gérant·e</span><span class="poste-count">1</span></div>
-          <div class="poste"><span class="poste-name">Resp. Sécurité</span><span class="poste-count">1</span></div>
-          <div class="poste"><span class="poste-name">Videurs</span><span class="poste-count">3-4</span></div>
-          <div class="poste"><span class="poste-name">Barmen / Barmaids</span><span class="poste-count">3-4</span></div>
-          <div class="poste"><span class="poste-name">Serveurs / Serveuses</span><span class="poste-count">4-6</span></div>
+          <div class="poste"><span class="poste-name">Chef Sécurité</span><span class="poste-count">1</span></div>
+          <div class="poste"><span class="poste-name">Agents Sécurité</span><span class="poste-count">≤ 9</span></div>
+          <div class="poste"><span class="poste-name">Responsable Bar</span><span class="poste-count">1</span></div>
+          <div class="poste"><span class="poste-name">Barmen / Barmaids</span><span class="poste-count">≤ 4</span></div>
           <div class="poste"><span class="poste-name">DJ résident·e</span><span class="poste-count">1-2</span></div>
-          <div class="poste"><span class="poste-name">Hôtes / Hôtesses VIP</span><span class="poste-count">2-3</span></div>
           <div class="poste"><span class="poste-name">Resp. Évènementiel</span><span class="poste-count">1</span></div>
+          <div class="poste"><span class="poste-name">Danseurs / Danseuses</span><span class="poste-count">1-2</span></div>
         </div>
         <div class="valeurs">
           <h4>Esprit Club 77</h4>
           <div class="valeurs-list">
-            <span class="valeur-tag">Bienveillance</span>
-            <span class="valeur-tag">Professionnalisme</span>
-            <span class="valeur-tag">Esprit d'équipe</span>
-            <span class="valeur-tag">Sens du service</span>
-            <span class="valeur-tag">Réactivité</span>
-            <span class="valeur-tag">Respect du client</span>
+            <span class="valeur-tag">Bienveillance</span><span class="valeur-tag">Professionnalisme</span><span class="valeur-tag">Esprit d'équipe</span><span class="valeur-tag">Sens du service</span><span class="valeur-tag">Réactivité</span><span class="valeur-tag">Respect du client</span>
           </div>
         </div>
       </div>
       <div class="recrut-block">
         <h3>Méthode de recrutement</h3>
         <div class="methode">
-          <div class="methode-step">
-            <span class="methode-step-num">01</span>
-            <p class="methode-step-text"><strong>Annonce officielle</strong> sur Birdy et Life Invader avec descriptif de chaque poste et critères attendus.</p>
-          </div>
-          <div class="methode-step">
-            <span class="methode-step-num">02</span>
-            <p class="methode-step-text"><strong>Candidature par formulaire</strong> envoyé en MP : RP, motivation, disponibilités, expérience.</p>
-          </div>
-          <div class="methode-step">
-            <span class="methode-step-num">03</span>
-            <p class="methode-step-text"><strong>Entretien Discord</strong> ou en jeu avec la gérante pour valider l'investissement et le sérieux du profil.</p>
-          </div>
-          <div class="methode-step">
-            <span class="methode-step-num">04</span>
-            <p class="methode-step-text"><strong>Période d'essai</strong> sur 1-2 soirées avant signature du contrat de travail définitif.</p>
-          </div>
+          <div class="methode-step"><span class="methode-step-num">01</span><p class="methode-step-text"><strong>Annonce officielle</strong> sur Birdy et Life Invader avec descriptif de chaque poste et critères attendus.</p></div>
+          <div class="methode-step"><span class="methode-step-num">02</span><p class="methode-step-text"><strong>Candidature par formulaire</strong> envoyé en MP : RP, motivation, disponibilités, expérience.</p></div>
+          <div class="methode-step"><span class="methode-step-num">03</span><p class="methode-step-text"><strong>Entretien Discord</strong> ou en jeu avec la gérante pour valider l'investissement et le sérieux.</p></div>
+          <div class="methode-step"><span class="methode-step-num">04</span><p class="methode-step-text"><strong>Période d'essai</strong> sur 1-2 soirées avant signature du contrat de travail.</p></div>
         </div>
       </div>
-    </div>
+    </div></div>
   </section>
 
-  <!-- ============== 11 · COMPTABILITÉ (à venir) ============== -->
+  <!-- 17 · COMPTABILITÉ -->
   <section class="slide">
-    <svg class="waves bl" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/>
-      </g>
-    </svg>
+    <svg class="waves bl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/></g></svg>
     <div class="slide-header">
-      <h2 class="slide-title">Comptabilité <span class="accent">Prévisionnelle</span></h2>
-      <span class="slide-num">10</span>
+      <div><span class="slide-eyebrow">Finances · 14</span><h2 class="slide-title">Comptabilité <span class="accent">prévisionnelle</span></h2></div>
+      <span class="slide-num"><strong>14</strong> / PROJET</span>
     </div>
-    <div class="placeholder-wrap">
-      <div class="placeholder-card">
-        <div class="placeholder-icon">📊</div>
-        <h3 class="placeholder-title">À venir</h3>
-        <p class="placeholder-desc">Le détail comptable prévisionnel (CA cible, charges, masse salariale, marge nette) sera intégré dans une <strong style="color:var(--text)">version ultérieure du dossier</strong>, une fois les premières estimations consolidées avec l'équipe.</p>
-        <span class="placeholder-tag">À venir</span>
-      </div>
-    </div>
+    <div class="slide-content"><div class="placeholder-wrap"><div class="placeholder-card">
+      <div class="placeholder-icon">📊</div>
+      <h3 class="placeholder-title">À venir</h3>
+      <p class="placeholder-desc">Le détail comptable prévisionnel (CA cible, charges, masse salariale, marge nette) sera intégré dans une <strong>version ultérieure du dossier</strong>. La base existante du Club 77 sera <strong>conservée et reprise</strong> pour assurer une continuité, puis enrichie.</p>
+      <span class="placeholder-tag">À venir</span>
+    </div></div></div>
   </section>
 
-  <!-- ============== 12 · OBJECTIFS ============== -->
+  <!-- 18 · OBJECTIFS -->
   <section class="slide">
-    <svg class="waves tr" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/>
-      </g>
-    </svg>
+    <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/></g></svg>
     <div class="slide-header">
-      <h2 class="slide-title">Objectifs de <span class="accent">l'entreprise</span></h2>
-      <span class="slide-num">11</span>
+      <div><span class="slide-eyebrow">Roadmap · 15</span><h2 class="slide-title">Objectifs de <span class="accent">l'entreprise</span></h2></div>
+      <span class="slide-num"><strong>15</strong> / PROJET</span>
     </div>
-    <div class="objs">
+    <div class="slide-content"><div class="objs">
       <div class="obj-col">
         <div class="obj-head"><span class="obj-tag">Court terme</span></div>
         <h3 class="obj-title">1er mois</h3>
         <ul class="obj-list">
-          <li>Réouverture officielle du Club 77 avec soirée de lancement</li>
-          <li>Recrutement et formation de l'équipe complète</li>
-          <li>Lancement des comptes Birdy & Instapick</li>
-          <li>Activation des partenariats médias (Weazel, Life Invader)</li>
-          <li>Première soirée à thème pour marquer l'inauguration</li>
+          <li>Réouvrir le Club 77 rapidement avec une soirée de lancement</li>
+          <li>Recruter une équipe sérieuse (bar, sécurité, accueil)</li>
+          <li>Relancer la fréquentation du club</li>
+          <li>Mettre en place les premières soirées à thème</li>
+          <li>Améliorer l'image et l'organisation du club</li>
         </ul>
         <p class="obj-note">Propositions à valider avec la gérante.</p>
       </div>
@@ -1065,11 +819,11 @@
         <div class="obj-head"><span class="obj-tag">Moyen terme</span></div>
         <h3 class="obj-title">3 mois</h3>
         <ul class="obj-list">
-          <li>Rythme stable de 4-5 ouvertures par semaine</li>
-          <li>Programmation récurrente : karaoké hebdo, soirées VIP, concerts</li>
-          <li>Premiers évènements inter-entreprises</li>
-          <li>Atteinte d'un CA hebdomadaire régulier</li>
-          <li>Mise en place d'une carte cocktails signature</li>
+          <li>Fidéliser une clientèle régulière</li>
+          <li>Développer des partenariats avec des commerces</li>
+          <li>Organiser des événements spéciaux récurrents</li>
+          <li>Améliorer l'aménagement et l'ambiance du club</li>
+          <li>Renforcer la réputation du Club 77 dans la ville</li>
         </ul>
         <p class="obj-note">Propositions à valider avec la gérante.</p>
       </div>
@@ -1077,137 +831,110 @@
         <div class="obj-head"><span class="obj-tag">Long terme</span></div>
         <h3 class="obj-title">6 mois +</h3>
         <ul class="obj-list">
-          <li>Devenir LA référence de la vie nocturne de la ville</li>
-          <li>Programmation d'artistes invités (live & DJ guests)</li>
-          <li>Soirées caritatives au profit d'associations RP</li>
-          <li>Espace VIP privatisable pour clientèle d'affaires</li>
-          <li>Évènements signature reconnus à l'échelle de l'État</li>
+          <li>Établissement reconnu pour la qualité de ses soirées</li>
+          <li>Lieu incontournable de la vie nocturne de l'État</li>
+          <li>Expérience client unique et différenciante</li>
+          <li>Concept « Les Nuits du 7 » installé comme rendez-vous attendu</li>
+          <li>Évènements signature reconnus à l'échelle de San Andreas</li>
         </ul>
         <p class="obj-note">Propositions à valider avec la gérante.</p>
       </div>
-    </div>
+    </div></div>
   </section>
 
-  <!-- ============== 13 · FUTURS PROJETS ============== -->
+  <!-- 19 · FUTURS PROJETS -->
   <section class="slide">
-    <svg class="waves bl" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="180" ry="300" transform="rotate(-35 300 300)"/>
-      </g>
-    </svg>
+    <svg class="waves bl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/></g></svg>
     <div class="slide-header">
-      <h2 class="slide-title">Futurs <span class="accent">Projets</span></h2>
-      <span class="slide-num">12</span>
+      <div><span class="slide-eyebrow">Innovation · 16</span><h2 class="slide-title">Futurs <span class="accent">projets</span></h2></div>
+      <span class="slide-num"><strong>16</strong> / PROJET</span>
     </div>
-    <p class="futur-intro">Au-delà de la réouverture, la <strong>vision long terme</strong> du Club 77 vise à enrichir l'écosystème nocturne de la ville par des projets structurants, ambitieux et fédérateurs pour la communauté.</p>
-    <div class="projets">
-      <div class="projet">
-        <span class="projet-icon">💎</span>
-        <span class="projet-title">Espace VIP privatisable</span>
-        <span class="projet-desc">Carré privé réservable pour anniversaires, lancements et soirées d'affaires.</span>
-      </div>
-      <div class="projet">
-        <span class="projet-icon">🎤</span>
-        <span class="projet-title">Scène concerts mensuels</span>
-        <span class="projet-desc">Programmation régulière d'artistes RP du serveur en exclusivité.</span>
-      </div>
-      <div class="projet">
-        <span class="projet-icon">🍸</span>
-        <span class="projet-title">Carte cocktails signature</span>
-        <span class="projet-desc">Création de boissons exclusives et identité bar reconnaissable.</span>
-      </div>
-      <div class="projet">
-        <span class="projet-icon">🤝</span>
-        <span class="projet-title">Réseau d'entreprises</span>
-        <span class="projet-desc">Conventions avec LTD, Pawnshop et autres établissements partenaires.</span>
-      </div>
-      <div class="projet">
-        <span class="projet-icon">❤️</span>
-        <span class="projet-title">Soirées caritatives</span>
-        <span class="projet-desc">Évènements au profit d'associations RP, mécénat et engagement.</span>
-      </div>
-      <div class="projet">
-        <span class="projet-icon">🏆</span>
-        <span class="projet-title">Tournois & compétitions</span>
-        <span class="projet-desc">Karaoké d'or, battles DJ, concours cocktails pour fédérer la clientèle.</span>
+    <div class="slide-content">
+      <p class="futur-intro">Au-delà de la réouverture, la <strong>vision long terme</strong> du Club 77 vise à enrichir l'écosystème nocturne de la ville par des projets structurants, ambitieux et fédérateurs.</p>
+      <div class="projets">
+        <div class="projet"><span class="projet-icon">💎</span><span class="projet-title">Espace VIP privatisable</span><span class="projet-desc">Carré privé réservable pour anniversaires, lancements et soirées d'affaires.</span></div>
+        <div class="projet"><span class="projet-icon">🎤</span><span class="projet-title">Scène concerts mensuels</span><span class="projet-desc">Programmation régulière d'artistes RP du serveur en exclusivité.</span></div>
+        <div class="projet"><span class="projet-icon">🍸</span><span class="projet-title">Carte cocktails signature</span><span class="projet-desc">Création de boissons exclusives et identité bar reconnaissable.</span></div>
+        <div class="projet"><span class="projet-icon">🤝</span><span class="projet-title">Réseau d'entreprises</span><span class="projet-desc">Conventions avec LTD, Pawnshop et autres établissements partenaires.</span></div>
+        <div class="projet"><span class="projet-icon">❤️</span><span class="projet-title">Soirées caritatives</span><span class="projet-desc">Évènements au profit d'associations RP, mécénat et engagement.</span></div>
+        <div class="projet"><span class="projet-icon">🏆</span><span class="projet-title">Tournois & compétitions</span><span class="projet-desc">Karaoké d'or, battles DJ, concours cocktails pour fédérer la clientèle.</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============== 14 · CONCLUSION ============== -->
+  <!-- 20 · CONCLUSION -->
   <section class="slide conclusion">
-    <svg class="waves tr" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/>
-      </g>
-    </svg>
-    <svg class="waves bl" viewBox="0 0 600 600">
-      <g stroke="url(#waveGrad)">
-        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/>
-        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/>
-      </g>
-    </svg>
-    <div class="concl-logo">
-      <img src="_ressources/visuels/logo-club77-neon-transparent.png" alt="Logo Club 77">
-    </div>
-    <h2 class="concl-title">Merci.</h2>
-    <p class="concl-sub">Reprendre le <strong>Club 77</strong>, c'est s'engager à en faire un <strong>lieu culte</strong>, sécurisé et incontournable — une véritable institution de la nuit. Je suis prête à mettre toute mon énergie, mon sérieux et ma vision dans ce projet pour <strong>hisser le Club 77 au rang des meilleures adresses</strong> de l'État de San Andreas.</p>
-    <div class="concl-contact">
-      <div class="concl-contact-item">
-        <div>
-          <div class="concl-contact-label">📞 Téléphone</div>
-          <div class="concl-contact-value">160-9622</div>
-        </div>
+    <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/></g></svg>
+    <svg class="waves bl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/></g></svg>
+    <div class="concl-inner">
+      <div class="concl-logo"><img src="_ressources/visuels/logo-club77-neon-transparent.png" alt="Logo Club 77"></div>
+      <h2 class="concl-title">Merci.</h2>
+      <p class="concl-sub">Reprendre le <strong>Club 77</strong>, c'est s'engager à en faire un <strong>lieu culte</strong>, sécurisé et incontournable — une véritable institution de la nuit. Je suis prête à mettre toute mon énergie, mon sérieux et ma vision pour <strong>hisser le Club 77 au rang des meilleures adresses</strong> de l'État de San Andreas.</p>
+      <div class="concl-contact">
+        <div class="concl-contact-item"><div><div class="concl-contact-label">📞 Téléphone</div><div class="concl-contact-value">160-9622</div></div></div>
+        <div class="concl-contact-item"><div><div class="concl-contact-label">✉ Email</div><div class="concl-contact-value">hybiefaith@gmail.com</div></div></div>
       </div>
-      <div class="concl-contact-item">
-        <div>
-          <div class="concl-contact-label">✉ Email</div>
-          <div class="concl-contact-value">hybiefaith@gmail.com</div>
-        </div>
-      </div>
+      <div class="concl-signature">— Hybie FAITH, candidate gérante du Club 77</div>
     </div>
-    <div class="concl-signature">— Hybie FAITH, candidate gérante du Club 77</div>
   </section>
 
 </main>
 
-<nav class="controls" aria-label="Navigation des slides">
-  <button class="prev" aria-label="Précédent">‹</button>
-  <span class="counter"><strong id="cur">1</strong> / <span id="tot">16</span></span>
-  <button class="next" aria-label="Suivant">›</button>
+<nav class="nav-bar" aria-label="Navigation des slides">
+  <button type="button" class="nav-btn prev" aria-label="Slide précédente">‹</button>
+  <span class="counter"><span class="current" id="cur">01</span> / <span class="total" id="tot">20</span></span>
+  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+  <button type="button" class="nav-btn next" aria-label="Slide suivante">›</button>
+  <button type="button" class="nav-action" id="fs-btn">⛶ Plein écran</button>
+  <button type="button" class="nav-action" onclick="window.print()">⬇ Imprimer PDF</button>
 </nav>
+
+<div class="shortcuts"><kbd>←</kbd> <kbd>→</kbd> naviguer · <kbd>F</kbd> plein écran · <kbd>P</kbd> imprimer</div>
 
 <script>
   const slides = Array.from(document.querySelectorAll('.slide'));
   const cur = document.getElementById('cur');
   const tot = document.getElementById('tot');
-  const prev = document.querySelector('.prev');
-  const next = document.querySelector('.next');
+  const progress = document.getElementById('progress');
+  const prev = document.querySelector('.nav-btn.prev');
+  const next = document.querySelector('.nav-btn.next');
+  const fsBtn = document.getElementById('fs-btn');
   let idx = 0;
-  tot.textContent = slides.length;
+  tot.textContent = String(slides.length).padStart(2, '0');
 
   function show(i){
     idx = Math.max(0, Math.min(slides.length - 1, i));
-    slides.forEach((s, n) => s.classList.toggle('active', n === idx));
-    cur.textContent = idx + 1;
+    slides.forEach((s, n) => {
+      s.classList.remove('active', 'prev');
+      if (n === idx) s.classList.add('active');
+      else if (n < idx) s.classList.add('prev');
+    });
+    cur.textContent = String(idx + 1).padStart(2, '0');
+    progress.style.width = ((idx + 1) / slides.length * 100) + '%';
     prev.disabled = idx === 0;
     next.disabled = idx === slides.length - 1;
   }
-
   prev.addEventListener('click', () => show(idx - 1));
   next.addEventListener('click', () => show(idx + 1));
 
+  function toggleFullscreen(){
+    if (!document.fullscreenElement){
+      document.documentElement.requestFullscreen().then(() => document.body.classList.add('fullscreen')).catch(()=>{});
+    } else {
+      document.exitFullscreen().then(() => document.body.classList.remove('fullscreen')).catch(()=>{});
+    }
+  }
+  fsBtn.addEventListener('click', toggleFullscreen);
+  document.addEventListener('fullscreenchange', () => {
+    document.body.classList.toggle('fullscreen', !!document.fullscreenElement);
+  });
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); show(idx - 1); }
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); show(idx + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp')   { e.preventDefault(); show(idx - 1); }
+    if (e.key === 'ArrowRight'|| e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); show(idx + 1); }
     if (e.key === 'Home') { e.preventDefault(); show(0); }
     if (e.key === 'End')  { e.preventDefault(); show(slides.length - 1); }
+    if (e.key === 'f' || e.key === 'F') { e.preventDefault(); toggleFullscreen(); }
     if (e.key === 'p' || e.key === 'P') { e.preventDefault(); window.print(); }
   });
 
