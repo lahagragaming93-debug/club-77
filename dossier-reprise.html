@@ -259,6 +259,8 @@
   .org-node.has-photo{cursor:zoom-in}
   .org-node.has-photo:hover{box-shadow:0 0 22px rgba(251,191,36,.35)}
   .org-node-bubble img{width:100%;height:100%;object-fit:cover;object-position:center top}
+  .org-node-bubble.bubble-placeholder{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(192,132,252,.35),rgba(236,72,153,.22));border-color:var(--violet-bright)}
+  .org-node-bubble.bubble-placeholder span{font-family:'Anton',sans-serif;font-size:14px;color:#fff;letter-spacing:.04em;text-shadow:0 0 8px rgba(236,72,153,.6)}
   .org-node.lead{border-color:#FBBF24;background:linear-gradient(135deg,rgba(251,191,36,.15),rgba(236,72,153,.08));box-shadow:0 0 18px rgba(251,191,36,.35),inset 0 0 12px rgba(251,191,36,.1)}
   .org-node.lead strong{color:#fff}
   .org-node.lead span{color:#FBBF24;font-weight:700}
@@ -661,7 +663,7 @@
       <div class="toc-item"><span class="toc-num">02</span><span class="toc-label">Présentation de la gérante</span></div>
       <div class="toc-item"><span class="toc-num">03</span><span class="toc-label">Pourquoi moi</span></div>
       <div class="toc-item"><span class="toc-num">04</span><span class="toc-label">Présentation de la co-patronne</span></div>
-      <div class="toc-item"><span class="toc-num">05</span><span class="toc-label">Présentation de la comptable</span></div>
+      <div class="toc-item"><span class="toc-num">05</span><span class="toc-label">Présentation du manager &amp; comptable</span></div>
       <div class="toc-item"><span class="toc-num">06</span><span class="toc-label">Organigramme de l'entreprise</span></div>
       <div class="toc-item"><span class="toc-num">07</span><span class="toc-label">Postes & responsabilités</span></div>
       <div class="toc-item"><span class="toc-num">08</span><span class="toc-label">Localisation du club</span></div>
@@ -823,38 +825,42 @@
     </div></div>
   </section>
 
-  <!-- 08 · COMPTABLE (Eva) -->
+  <!-- 08 · MANAGER & COMPTABLE (Andrew BEAUCHAMP) -->
   <section class="slide">
     <svg class="waves bl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/></g></svg>
     <div class="slide-header">
-      <div><span class="slide-eyebrow">Présentation · 05</span><h2 class="slide-title">La <span class="accent">Comptable</span></h2></div>
+      <div><span class="slide-eyebrow">Présentation · 05</span><h2 class="slide-title">Le <span class="accent">Manager &amp; Comptable</span></h2></div>
       <span class="slide-num"><strong>05</strong> / ÉQUIPE</span>
     </div>
     <div class="slide-content"><div class="bio">
       <div>
         <div class="bio-meta">
-          <div class="bio-meta-item"><span class="bio-meta-label">Nom</span><span class="bio-meta-value">Eva</span></div>
-          <div class="bio-meta-item"><span class="bio-meta-label">Âge</span><span class="bio-meta-value">— à confirmer</span></div>
-          <div class="bio-meta-item"><span class="bio-meta-label">Parcours</span><span class="bio-meta-value">Ancienne agent IRS</span></div>
+          <div class="bio-meta-item"><span class="bio-meta-label">Nom</span><span class="bio-meta-value">Andrew BEAUCHAMP</span></div>
+          <div class="bio-meta-item"><span class="bio-meta-label">Origine</span><span class="bio-meta-value">Franco-Américain</span></div>
+          <div class="bio-meta-item"><span class="bio-meta-label">Parcours</span><span class="bio-meta-value">Ancien Adj. Économie</span></div>
         </div>
         <div class="bio-text">
-          <p>Je m'appelle <strong>Eva</strong>. Mon parcours m'a menée au cœur de l'administration fiscale de l'État de San Andreas, où j'ai exercé en tant <span class="hl">qu'agent IRS — Direction des Affaires Fiscales</span>.</p>
-          <p>Durant ces années au service de l'IRS, j'ai acquis une <strong>expertise pointue</strong> en gestion comptable, en contrôle d'entreprises et en conformité au Code TTE. Je connais le Code des Taxes, du Travail et des Entreprises sur le bout des doigts — ses obligations comme ses subtilités.</p>
-          <p>Au-delà de la rigueur technique, je suis quelqu'un d'<strong>investie et de loyale</strong>. J'aime construire dans la durée, dans un cadre clair, avec des partenaires de confiance. Le sérieux, la précision et la discrétion sont les fondamentaux de mon métier.</p>
-          <p>Aux côtés d'<span class="hl">Hybie et de Jenna</span>, je veux apporter la <strong>colonne vertébrale administrative</strong> qui sécurise l'aventure entrepreneuriale. Comptabilité irréprochable, paies versées dans les temps, déclarations fiscales toujours conformes — c'est ce que je m'engage à offrir au Club 77.</p>
+          <p>Je m'appelle <strong>Andrew BEAUCHAMP</strong>. Franco-Américain installé à Los Santos depuis plusieurs années, j'ai construit un parcours hybride entre <span class="hl">service public et entrepreneuriat</span> — d'abord comme ancien Adjoint à l'Économie au Cabinet du Gouverneur, puis comme dirigeant d'entreprise à Paleto Bay.</p>
+          <p>Au sein du gouvernement, j'ai contribué à la politique économique et fiscale de l'État. Cette expérience m'a donné une <strong>maîtrise complète du Code TTE</strong> — plafonds salariaux, règles de déductibilité, déclarations, mécanique comptable des entreprises. Aucune zone d'ombre.</p>
+          <p>En parallèle, je dirige plusieurs établissements et coordonne leur fonctionnement quotidien — gestion d'équipes, plannings, stocks, masse salariale, partenariats. La <span class="hl">pression d'une soirée à servir</span>, la coordination des services, la résolution des imprévus terrain : c'est mon quotidien.</p>
+          <p>Le Club 77 m'attire pour deux raisons : la <strong>qualité du projet porté par Hybie et Jenna</strong>, et l'opportunité d'occuper un poste hybride qui réunit ce que je fais de mieux — manager une équipe sur le terrain et tenir une comptabilité irréprochable.</p>
+          <p>Mon engagement : libérer la direction de la charge administrative pour qu'Hybie et Jenna se concentrent sur la stratégie et l'expérience client, tout en garantissant une gestion <strong>conforme, transparente et solide</strong>.</p>
         </div>
       </div>
       <div class="bio-aside">
-        <div class="bio-portrait" data-label="Eva · Comptable"><img src="_ressources/visuels/eva.png" alt="Eva"></div>
+        <div class="bio-portrait empty" data-label="Andrew BEAUCHAMP · Manager & Comptable">
+          <div class="empty-portrait-icon">AB</div>
+          <div class="empty-portrait-label"><strong>Andrew BEAUCHAMP</strong>Photo à venir</div>
+        </div>
         <div class="bio-qualities">
           <h4>Qualités clés</h4>
           <div class="qualities-tags">
-            <span class="quality-tag">Rigoureuse</span>
-            <span class="quality-tag">Précise</span>
-            <span class="quality-tag">Discrète</span>
+            <span class="quality-tag">Expérimenté</span>
+            <span class="quality-tag">Polyvalent</span>
+            <span class="quality-tag">Rigoureux</span>
             <span class="quality-tag">Stratégique</span>
-            <span class="quality-tag">Loyale</span>
             <span class="quality-tag">Méthodique</span>
+            <span class="quality-tag">Loyal</span>
           </div>
         </div>
       </div>
@@ -885,9 +891,8 @@
       <div class="org-level">
         <span class="org-level-tag">Niveau 2 · Encadrement administratif</span>
         <div class="org-nodes">
-          <div class="org-node"><strong>Manager</strong><span>encadrement soirées</span></div>
+          <div class="org-node lead"><div class="org-node-bubble bubble-placeholder"><span>AB</span></div><strong>Andrew BEAUCHAMP</strong><span>Manager &amp; Comptable</span></div>
           <div class="org-node"><strong>RH</strong><span>recrutement & plannings</span></div>
-          <div class="org-node lead"><div class="org-node-bubble"><img src="_ressources/visuels/portrait-eva.png" alt="Eva"></div><strong>Eva</strong><span>Comptable</span></div>
         </div>
       </div>
       <div class="org-level">
@@ -928,9 +933,8 @@
     <div class="slide-content"><div class="postes-grid">
       <div class="poste-full"><h4>Patron</h4><ul><li>Direction générale de l'établissement</li><li>Vision stratégique long terme</li><li>Gestion globale du personnel et de la masse salariale</li><li>Pilotage des partenariats et événements signature</li><li>Représentation officielle du Club 77</li></ul></div>
       <div class="poste-full"><h4>Co-Patron</h4><ul><li>Bras droit opérationnel de la patronne</li><li>Co-pilotage des décisions stratégiques</li><li>Communication et développement de l'image</li><li>Gestion en l'absence de la patronne</li><li>Suivi des projets transversaux</li></ul></div>
-      <div class="poste-full"><h4>Manager</h4><ul><li>Encadrement du personnel lors des ouvertures</li><li>Vérification du bon déroulement des soirées</li><li>Coordination entre les différentes équipes</li><li>Gestion immédiate des imprévus terrain</li><li>Remontée des informations à la direction</li></ul></div>
+      <div class="poste-full"><h4>Manager &amp; Comptable</h4><ul><li>Encadrement du personnel lors des ouvertures</li><li>Coordination entre les services et gestion des imprévus</li><li>Tenue de la comptabilité hebdomadaire</li><li>Préparation des fiches de paie et trésorerie</li><li>Reporting fiscal et conformité TTE</li></ul></div>
       <div class="poste-full"><h4>RH</h4><ul><li>Recrutement et sélection du personnel</li><li>Gestion des contrats et plannings</li><li>Suivi des présences et absences</li><li>Veille au climat et à la cohésion d'équipe</li><li>Médiation interne en cas de conflit</li></ul></div>
-      <div class="poste-full"><h4>Comptable</h4><ul><li>Tenue de la comptabilité hebdomadaire</li><li>Suivi du chiffre d'affaires et des dépenses</li><li>Gestion de la trésorerie</li><li>Préparation des fiches de paie</li><li>Reporting fiscal et conformité TTE</li></ul></div>
       <div class="poste-full"><h4>Responsable Bar</h4><ul><li>Gestion du bar et des stocks (alcools, softs, consommables)</li><li>Organisation du travail de la barmaid</li><li>Contrôle qualité du service</li><li>Création de la carte cocktails signature</li><li>Suivi des approvisionnements partenaires</li></ul></div>
       <div class="poste-full"><h4>Resp. Sécurité</h4><ul><li>Organisation et encadrement de l'équipe sécurité</li><li>Définition des protocoles d'accès</li><li>Contrôle de la sécurité clients et personnel</li><li>Intervention sur conflits graves</li><li>Liaison avec les autorités si nécessaire</li></ul></div>
       <div class="poste-full"><h4>Resp. Évènementiel &amp; DJ</h4><ul><li>Animation musicale du club tout au long de la soirée</li><li>Organisation des soirées à thème et événements spéciaux</li><li>Mise en place des concours et animations</li><li>Coordination avec artistes et partenaires</li><li>Adaptation du set musical à l'ambiance</li></ul></div>
@@ -1089,9 +1093,7 @@
         <h3>Postes recherchés</h3>
         <div class="postes">
           <div class="poste"><span class="poste-name">Co-Patron</span><span class="poste-count">1</span></div>
-          <div class="poste"><span class="poste-name">Manager</span><span class="poste-count">1</span></div>
           <div class="poste"><span class="poste-name">RH</span><span class="poste-count">1</span></div>
-          <div class="poste"><span class="poste-name">Comptable</span><span class="poste-count">1</span></div>
           <div class="poste"><span class="poste-name">Resp. Bar</span><span class="poste-count">1</span></div>
           <div class="poste"><span class="poste-name">Barmaid</span><span class="poste-count">1</span></div>
           <div class="poste"><span class="poste-name">Resp. Sécurité</span><span class="poste-count">1</span></div>
