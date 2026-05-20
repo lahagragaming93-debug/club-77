@@ -26,6 +26,8 @@ handoff-club-77/
 
 | Section | Statut |
 |---|---|
+| Notre vision (manifeste) | ✅ |
+| Triptyque Passion / Ambition / Identité | ✅ |
 | Présentation gérante (Hybie) | ✅ |
 | Co-patron | ⏳ En attente |
 | Organigramme | ⏳ En attente |

@@ -216,6 +216,77 @@
     text-transform:uppercase;
   }
 
+  /* ============== VISION (manifeste) ============== */
+  .vision-slide{
+    display:none;padding:0;text-align:center;
+    background:
+      radial-gradient(ellipse at 30% 40%,rgba(168,85,247,.22),transparent 55%),
+      radial-gradient(ellipse at 70% 60%,rgba(236,72,153,.18),transparent 55%),
+      var(--bg);
+  }
+  .vision-slide.active{display:flex;align-items:center;justify-content:center;flex-direction:column;padding:0 8vw}
+  .vision-eyebrow{
+    font-family:'Pacifico',cursive;font-size:clamp(1.3rem,1.8vw,1.8rem);
+    color:var(--pink);text-shadow:var(--glow-p);margin-bottom:2rem;
+    position:relative;z-index:2;
+  }
+  .vision-punchline{
+    font-family:'Anton',sans-serif;font-size:clamp(3rem,7vw,6.5rem);line-height:1.05;
+    text-transform:uppercase;letter-spacing:-.01em;margin-bottom:2rem;
+    position:relative;z-index:2;color:#fff;
+  }
+  .vision-punchline em{
+    font-family:'Inter',sans-serif;font-style:italic;font-weight:900;
+    font-size:.55em;text-transform:none;letter-spacing:.01em;
+    color:var(--text-soft);display:block;margin-top:.8rem;
+  }
+  .vision-punchline .accent{
+    background:linear-gradient(120deg,var(--violet-bright) 20%,var(--pink-bright) 80%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .vision-punchline .hl{
+    background:linear-gradient(120deg,#fff,var(--violet-bright));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .vision-sub{
+    font-size:clamp(1rem,1.3vw,1.3rem);color:var(--text-soft);
+    max-width:780px;line-height:1.6;font-weight:500;position:relative;z-index:2;
+  }
+  .vision-sub strong{color:var(--text);font-weight:700}
+
+  /* ============== TRIPTYQUE PASSION/AMBITION/IDENTITÉ ============== */
+  .triptyque{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;position:relative;z-index:2;flex:1;align-content:center}
+  .tri-card{
+    padding:2.2rem 1.8rem;border:1px solid var(--border-strong);border-radius:20px;
+    background:
+      radial-gradient(ellipse at top,rgba(168,85,247,.12),transparent 70%),
+      linear-gradient(160deg,var(--surface),var(--bg-2));
+    display:flex;flex-direction:column;gap:1.2rem;align-items:flex-start;
+    box-shadow:inset 0 0 40px rgba(168,85,247,.06);
+    transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+    position:relative;overflow:hidden;
+  }
+  .tri-card::before{
+    content:"";position:absolute;top:0;left:0;width:100%;height:4px;
+    background:linear-gradient(90deg,var(--violet),var(--pink));
+  }
+  .tri-card:nth-child(2)::before{background:linear-gradient(90deg,var(--pink),var(--violet-bright))}
+  .tri-card:nth-child(3)::before{background:linear-gradient(90deg,var(--violet-bright),var(--pink-bright))}
+  .tri-card:hover{transform:translateY(-6px);box-shadow:var(--glow-v),inset 0 0 40px rgba(168,85,247,.1);border-color:var(--violet)}
+  .tri-num{
+    font-family:'Anton',sans-serif;font-size:1.4rem;color:transparent;
+    -webkit-text-stroke:1px var(--violet);letter-spacing:.05em;
+  }
+  .tri-label{
+    font-family:'Anton',sans-serif;font-size:clamp(2.4rem,3.2vw,3rem);line-height:1;
+    text-transform:uppercase;letter-spacing:.03em;
+    background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .tri-card:nth-child(2) .tri-label{background:linear-gradient(135deg,var(--pink-bright),var(--violet-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tri-text{font-size:1rem;line-height:1.65;color:var(--text-soft)}
+  .tri-text strong{color:var(--text);font-weight:600}
+
   /* ============== AMBITIONS ============== */
   .ambitions-intro{font-size:1rem;line-height:1.7;color:var(--text-soft);max-width:1100px;margin-bottom:2.5rem;position:relative;z-index:2}
   .ambitions-intro strong{color:var(--text);font-weight:600}
@@ -528,22 +599,88 @@
       <h2 class="slide-title"><span class="accent">Sommaire</span></h2>
     </div>
     <div class="toc">
-      <div class="toc-item"><span class="toc-num">01</span><span class="toc-label">Présentation de la gérante</span></div>
-      <div class="toc-item"><span class="toc-num">02</span><span class="toc-label">Présentation du co-patron</span><span class="toc-badge">En attente</span></div>
-      <div class="toc-item"><span class="toc-num">03</span><span class="toc-label">Organigramme de l'entreprise</span><span class="toc-badge">En attente</span></div>
-      <div class="toc-item"><span class="toc-num">04</span><span class="toc-label">Ambitions et motivations</span></div>
-      <div class="toc-item"><span class="toc-num">05</span><span class="toc-label">Plan de communication</span></div>
-      <div class="toc-item"><span class="toc-num">06</span><span class="toc-label">Échanges commerciaux prévus</span></div>
-      <div class="toc-item"><span class="toc-num">07</span><span class="toc-label">Évènements organisés</span></div>
-      <div class="toc-item"><span class="toc-num">08</span><span class="toc-label">Recrutement & équipe</span></div>
-      <div class="toc-item"><span class="toc-num">09</span><span class="toc-label">Comptabilité prévisionnelle</span><span class="toc-badge">À venir</span></div>
-      <div class="toc-item"><span class="toc-num">10</span><span class="toc-label">Objectifs court / moyen / long terme</span></div>
-      <div class="toc-item"><span class="toc-num">11</span><span class="toc-label">Futurs projets de développement</span></div>
-      <div class="toc-item"><span class="toc-num">12</span><span class="toc-label">Conclusion & contact</span></div>
+      <div class="toc-item"><span class="toc-num">01</span><span class="toc-label">Notre vision</span></div>
+      <div class="toc-item"><span class="toc-num">02</span><span class="toc-label">Présentation de la gérante</span></div>
+      <div class="toc-item"><span class="toc-num">03</span><span class="toc-label">Présentation du co-patron</span><span class="toc-badge">En attente</span></div>
+      <div class="toc-item"><span class="toc-num">04</span><span class="toc-label">Organigramme de l'entreprise</span><span class="toc-badge">En attente</span></div>
+      <div class="toc-item"><span class="toc-num">05</span><span class="toc-label">Ambitions et motivations</span></div>
+      <div class="toc-item"><span class="toc-num">06</span><span class="toc-label">Plan de communication</span></div>
+      <div class="toc-item"><span class="toc-num">07</span><span class="toc-label">Échanges commerciaux prévus</span></div>
+      <div class="toc-item"><span class="toc-num">08</span><span class="toc-label">Évènements organisés</span></div>
+      <div class="toc-item"><span class="toc-num">09</span><span class="toc-label">Recrutement & équipe</span></div>
+      <div class="toc-item"><span class="toc-num">10</span><span class="toc-label">Comptabilité prévisionnelle</span><span class="toc-badge">À venir</span></div>
+      <div class="toc-item"><span class="toc-num">11</span><span class="toc-label">Objectifs court / moyen / long terme</span></div>
+      <div class="toc-item"><span class="toc-num">12</span><span class="toc-label">Futurs projets de développement</span></div>
+      <div class="toc-item"><span class="toc-num">13</span><span class="toc-label">Conclusion & contact</span></div>
     </div>
   </section>
 
-  <!-- ============== 03 · GÉRANTE ============== -->
+  <!-- ============== 03 · VISION (manifeste punchline) ============== -->
+  <section class="slide vision-slide">
+    <svg class="waves tr" viewBox="0 0 600 600">
+      <g stroke="url(#waveGrad)">
+        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
+        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/>
+        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/>
+        <ellipse cx="300" cy="300" rx="180" ry="300" transform="rotate(35 300 300)"/>
+      </g>
+    </svg>
+    <svg class="waves bl" viewBox="0 0 600 600">
+      <g stroke="url(#waveGrad)">
+        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/>
+        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/>
+        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/>
+      </g>
+    </svg>
+    <span class="vision-eyebrow">Notre vision</span>
+    <h2 class="vision-punchline">
+      Faire du <span class="hl">Club 77</span><br>
+      un <span class="accent">lieu culte</span>
+      <em>une adresse dont on parle, dont on veut faire partie.</em>
+    </h2>
+    <p class="vision-sub">Bien plus qu'une boîte de nuit — <strong>une institution de la vie nocturne</strong> de l'État de San Andreas. Hisser le Club 77 au rang des meilleures adresses de la nuit.</p>
+  </section>
+
+  <!-- ============== 04 · TRIPTYQUE PASSION / AMBITION / IDENTITÉ ============== -->
+  <section class="slide">
+    <svg class="waves tl" viewBox="0 0 600 600">
+      <g stroke="url(#waveGrad)">
+        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/>
+        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/>
+        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/>
+      </g>
+    </svg>
+    <svg class="waves br" viewBox="0 0 600 600">
+      <g stroke="url(#waveGrad)">
+        <ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/>
+        <ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/>
+        <ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/>
+      </g>
+    </svg>
+    <div class="slide-header">
+      <h2 class="slide-title">Notre vision en <span class="accent">3 mots</span></h2>
+      <span class="slide-num">01</span>
+    </div>
+    <div class="triptyque">
+      <div class="tri-card">
+        <span class="tri-num">01</span>
+        <span class="tri-label">Passion</span>
+        <p class="tri-text">Une gérante qui <strong>vit la nuit</strong>, comprend la culture du club et sait ce que les noctambules attendent d'une vraie expérience festive — chaleur, énergie, immersion totale.</p>
+      </div>
+      <div class="tri-card">
+        <span class="tri-num">02</span>
+        <span class="tri-label">Ambition</span>
+        <p class="tri-text">Faire du Club 77 <strong>la destination incontournable</strong> de la ville — un endroit que les citoyens choisissent par envie, jamais par défaut, et dont ils se souviennent.</p>
+      </div>
+      <div class="tri-card">
+        <span class="tri-num">03</span>
+        <span class="tri-label">Identité</span>
+        <p class="tri-text">Affirmer une <strong>identité chaleureuse, festive et fédératrice</strong>, qui réunit tous les profils dans un cadre sécurisé, qualitatif et fidèle à l'esprit Club 77.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== 05 · GÉRANTE ============== -->
   <section class="slide">
     <svg class="waves bl" viewBox="0 0 600 600">
       <g stroke="url(#waveGrad)">
@@ -555,7 +692,7 @@
     </svg>
     <div class="slide-header">
       <h2 class="slide-title"><span class="accent">Gérante</span></h2>
-      <span class="slide-num">01</span>
+      <span class="slide-num">02</span>
     </div>
     <div class="bio">
       <div>
@@ -602,7 +739,7 @@
     </svg>
     <div class="slide-header">
       <h2 class="slide-title"><span class="accent">Co-Patron</span></h2>
-      <span class="slide-num">02</span>
+      <span class="slide-num">03</span>
     </div>
     <div class="placeholder-wrap">
       <div class="placeholder-card">
@@ -625,7 +762,7 @@
     </svg>
     <div class="slide-header">
       <h2 class="slide-title">Organigramme de <span class="accent">l'entreprise</span></h2>
-      <span class="slide-num">03</span>
+      <span class="slide-num">04</span>
     </div>
     <div class="placeholder-wrap">
       <div class="placeholder-card">
@@ -649,11 +786,11 @@
     </svg>
     <div class="slide-header">
       <h2 class="slide-title">Ambitions & <span class="accent">Motivations</span></h2>
-      <span class="slide-num">04</span>
+      <span class="slide-num">05</span>
     </div>
     <p class="ambitions-intro">
-      Notre objectif est de créer une <strong>ambiance unique</strong> avec des soirées régulières, des événements variés et un lieu où les citoyens pourront se retrouver et profiter pleinement de leurs soirées dans un cadre sécurisé.<br><br>
-      Le <strong>Club 77</strong> représente pour nous un <span class="hl">véritable projet sérieux et durable</span>. Nous voulons développer une équipe solide, faire évoluer l'établissement afin qu'il devienne une <span class="hl">référence de la vie nocturne</span> en ville. Déterminée, active et investie, je suis prête à m'engager pleinement dans la gestion du club afin d'apporter du contenu de qualité et de dynamiser la ville.
+      Notre ambition : faire du Club 77 un <strong>haut lieu de la nightlife</strong> de la ville — une <span class="hl">institution festive</span> où l'on vient pour vivre des soirées dont on se souvient, dans un cadre <strong>sécurisé et qualitatif</strong>.<br><br>
+      Le <strong>Club 77</strong> représente pour nous un <span class="hl">véritable projet sérieux et durable</span>. Nous voulons construire une équipe solide, <strong>hisser l'établissement au rang des meilleures adresses de la nuit</strong> et en faire <span class="hl">la référence incontournable</span> de la vie nocturne. Déterminée, active et investie, je suis prête à m'engager pleinement pour apporter du contenu de qualité et dynamiser la ville.
     </p>
     <div class="pillars">
       <div class="pillar">
@@ -691,7 +828,7 @@
     </svg>
     <div class="slide-header">
       <h2 class="slide-title">Plan de <span class="accent">Communication</span></h2>
-      <span class="slide-num">05</span>
+      <span class="slide-num">06</span>
     </div>
     <div class="comm">
       <div class="comm-card">
@@ -723,7 +860,7 @@
     </svg>
     <div class="slide-header">
       <h2 class="slide-title">Échanges <span class="accent">Commerciaux</span></h2>
-      <span class="slide-num">06</span>
+      <span class="slide-num">07</span>
     </div>
     <div class="echanges">
       <div class="ech-card">
@@ -782,7 +919,7 @@
     </svg>
     <div class="slide-header">
       <h2 class="slide-title">Évènements <span class="accent">Organisés</span></h2>
-      <span class="slide-num">07</span>
+      <span class="slide-num">08</span>
     </div>
     <div class="evts">
       <div class="evt">
@@ -824,7 +961,7 @@
     </svg>
     <div class="slide-header">
       <h2 class="slide-title">Recrutement & <span class="accent">Équipe</span></h2>
-      <span class="slide-num">08</span>
+      <span class="slide-num">09</span>
     </div>
     <div class="recrut">
       <div class="recrut-block">
@@ -886,7 +1023,7 @@
     </svg>
     <div class="slide-header">
       <h2 class="slide-title">Comptabilité <span class="accent">Prévisionnelle</span></h2>
-      <span class="slide-num">09</span>
+      <span class="slide-num">10</span>
     </div>
     <div class="placeholder-wrap">
       <div class="placeholder-card">
@@ -909,7 +1046,7 @@
     </svg>
     <div class="slide-header">
       <h2 class="slide-title">Objectifs de <span class="accent">l'entreprise</span></h2>
-      <span class="slide-num">10</span>
+      <span class="slide-num">11</span>
     </div>
     <div class="objs">
       <div class="obj-col">
@@ -963,7 +1100,7 @@
     </svg>
     <div class="slide-header">
       <h2 class="slide-title">Futurs <span class="accent">Projets</span></h2>
-      <span class="slide-num">11</span>
+      <span class="slide-num">12</span>
     </div>
     <p class="futur-intro">Au-delà de la réouverture, la <strong>vision long terme</strong> du Club 77 vise à enrichir l'écosystème nocturne de la ville par des projets structurants, ambitieux et fédérateurs pour la communauté.</p>
     <div class="projets">
@@ -1020,7 +1157,7 @@
       <img src="_ressources/visuels/logo-club77-neon-transparent.png" alt="Logo Club 77">
     </div>
     <h2 class="concl-title">Merci.</h2>
-    <p class="concl-sub">Reprendre le <strong>Club 77</strong>, c'est s'engager à en faire un lieu vivant, sécurisé et incontournable. Je suis prête à mettre toute mon énergie, mon sérieux et ma vision dans ce projet pour qu'il devienne <strong>la référence de la vie nocturne</strong> de l'État de San Andreas.</p>
+    <p class="concl-sub">Reprendre le <strong>Club 77</strong>, c'est s'engager à en faire un <strong>lieu culte</strong>, sécurisé et incontournable — une véritable institution de la nuit. Je suis prête à mettre toute mon énergie, mon sérieux et ma vision dans ce projet pour <strong>hisser le Club 77 au rang des meilleures adresses</strong> de l'État de San Andreas.</p>
     <div class="concl-contact">
       <div class="concl-contact-item">
         <div>
@@ -1042,7 +1179,7 @@
 
 <nav class="controls" aria-label="Navigation des slides">
   <button class="prev" aria-label="Précédent">‹</button>
-  <span class="counter"><strong id="cur">1</strong> / <span id="tot">14</span></span>
+  <span class="counter"><strong id="cur">1</strong> / <span id="tot">16</span></span>
   <button class="next" aria-label="Suivant">›</button>
 </nav>
 
