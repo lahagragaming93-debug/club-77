@@ -119,7 +119,7 @@
   /* COUVERTURE */
   .slide.cover{
     padding:0;
-    background:linear-gradient(180deg,rgba(10,10,10,.45),rgba(10,10,10,.92)),url('_ressources/visuels/hybie 2.png') center/cover no-repeat;
+    background:linear-gradient(180deg,rgba(10,10,10,.55),rgba(10,10,10,.88)),url('_ressources/visuels/club77 photo.png') center/cover no-repeat;
   }
   .cover-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px}
   .cover-tag{
@@ -151,7 +151,7 @@
   .toc-badge{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:2px 7px;border-radius:4px;border:1px solid var(--pink);color:var(--pink-bright);background:rgba(236,72,153,.08)}
 
   /* VISION */
-  .slide.vision-slide{padding:0;text-align:center;background:radial-gradient(ellipse at 30% 40%,rgba(168,85,247,.22),transparent 55%),radial-gradient(ellipse at 70% 60%,rgba(236,72,153,.18),transparent 55%),var(--bg)}
+  .slide.vision-slide{padding:0;text-align:center;background:linear-gradient(rgba(10,10,10,.86),rgba(10,10,10,.92)),url('_ressources/visuels/piste de danse club 77.png') center/cover no-repeat,radial-gradient(ellipse at 30% 40%,rgba(168,85,247,.22),transparent 55%),radial-gradient(ellipse at 70% 60%,rgba(236,72,153,.18),transparent 55%),var(--bg)}
   .vision-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 80px;position:relative;z-index:2}
   .vision-eyebrow{font-family:'Pacifico',cursive;font-size:24px;color:var(--pink);text-shadow:var(--glow-p);margin-bottom:24px}
   .vision-punchline{font-family:'Anton',sans-serif;font-size:64px;line-height:1.05;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:24px;color:#fff}
@@ -249,12 +249,11 @@
   .poste-full li::before{content:'·';color:var(--violet-bright);font-weight:900;margin-top:-1px}
 
   /* LOCALISATION */
-  .locale{display:grid;grid-template-columns:1fr 1.2fr;gap:24px;flex:1;overflow:hidden}
-  .locale-map{border:1px solid var(--border-strong);border-radius:14px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:24px;position:relative;overflow:hidden;box-shadow:inset 0 0 30px rgba(168,85,247,.08)}
-  .locale-map::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(168,85,247,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,.05) 1px,transparent 1px);background-size:30px 30px;opacity:.5;pointer-events:none}
-  .locale-map-pin{font-size:54px;filter:drop-shadow(0 0 18px rgba(236,72,153,.7));position:relative;z-index:2;animation:pulseGlow 2.5s ease-in-out infinite}
-  .locale-map-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);text-align:center;position:relative;z-index:2;line-height:1.5}
-  .locale-map-label strong{color:var(--violet-bright);display:block;margin-bottom:4px;font-size:13px}
+  .locale{display:grid;grid-template-columns:1fr 1.1fr;gap:22px;flex:1;overflow:hidden}
+  .locale-photos{display:flex;flex-direction:column;gap:10px;min-height:0}
+  .locale-photo{flex:1;border-radius:14px;overflow:hidden;border:1px solid var(--border-strong);box-shadow:inset 0 0 24px rgba(168,85,247,.1),0 0 18px rgba(168,85,247,.12);position:relative;min-height:0;background:#000}
+  .locale-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.05)}
+  .locale-photo::after{content:attr(data-label);position:absolute;bottom:0;left:0;right:0;padding:18px 14px 10px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.88));font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text);font-weight:700;text-align:center}
   .locale-info{display:flex;flex-direction:column;gap:14px;justify-content:center}
   .locale-info p{font-size:14.5px;line-height:1.65;color:var(--text-soft)}
   .locale-info p strong{color:var(--text);font-weight:600}
@@ -369,7 +368,7 @@
   .projet-desc{font-size:11.5px;line-height:1.5;color:var(--text-dim)}
 
   /* CONCLUSION */
-  .slide.conclusion{padding:0;text-align:center;background:radial-gradient(ellipse at center,rgba(168,85,247,.18),transparent 60%),var(--bg)}
+  .slide.conclusion{padding:0;text-align:center;background:linear-gradient(rgba(10,10,10,.9),rgba(10,10,10,.94)),url('_ressources/visuels/piste de danse club 77.png') center/cover no-repeat,radial-gradient(ellipse at center,rgba(168,85,247,.18),transparent 60%),var(--bg)}
   .concl-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:36px;position:relative;z-index:2}
   .concl-logo img{width:140px;filter:drop-shadow(0 0 30px rgba(168,85,247,.55)) drop-shadow(0 0 50px rgba(236,72,153,.25));animation:logoFloat 6s ease-in-out infinite}
   .concl-title{font-family:'Anton',sans-serif;font-size:72px;line-height:1;background:linear-gradient(135deg,#fff,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent;text-transform:uppercase;letter-spacing:.02em}
@@ -624,9 +623,9 @@
       <span class="slide-num"><strong>07</strong> / LIEU</span>
     </div>
     <div class="slide-content"><div class="locale">
-      <div class="locale-map">
-        <div class="locale-map-pin">📍</div>
-        <div class="locale-map-label"><strong>Carte à insérer</strong>Capture de la map IG<br>avec marqueur Club 77</div>
+      <div class="locale-photos">
+        <div class="locale-photo" data-label="Devanture · entrée principale"><img src="_ressources/visuels/club77 photo.png" alt="Façade extérieure du Club 77"></div>
+        <div class="locale-photo" data-label="Piste de danse · ambiance néon"><img src="_ressources/visuels/phto dans le club 77.png" alt="Intérieur du Club 77"></div>
       </div>
       <div class="locale-info">
         <p>Le <strong>Club 77</strong> est idéalement implanté au cœur de la ville, dans une zone à forte affluence nocturne, à proximité directe des principaux axes de transit et des quartiers les plus animés de Los Santos.</p>
