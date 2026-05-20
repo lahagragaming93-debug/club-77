@@ -518,10 +518,42 @@
   .doc-chapter li::before{content:'·';color:#FBBF24;font-weight:900;flex-shrink:0}
   .doc-chapter li strong{color:var(--text);font-weight:600}
 
-  /* ANNEXES CAROUSEL — style in-game contrats (white paper) */
-  .slide.annexes-carousel{padding:22px 28px;background:radial-gradient(ellipse at center,rgba(168,85,247,.08),transparent 65%),var(--bg)}
-  .annexe-carousel-wrap{flex:1;display:flex;flex-direction:column;gap:12px;overflow:hidden}
-  .annexe-stage{flex:1;position:relative;display:flex;align-items:center;justify-content:center;perspective:1800px;overflow:hidden;min-height:0}
+  /* ANNEXES CAROUSEL — image-based, zoom from origin */
+  .slide.annexes-carousel{padding:24px 30px;background:radial-gradient(ellipse at center,rgba(168,85,247,.08),transparent 65%),var(--bg)}
+  .annexe-carousel-wrap{flex:1;display:flex;flex-direction:column;gap:14px;overflow:hidden;min-height:0}
+  .carousel-stage{flex:1;position:relative;display:flex;align-items:center;gap:14px;min-height:0;overflow:hidden}
+  .carousel-track-wrap{flex:1;overflow:hidden;position:relative;height:100%}
+  .carousel-track{display:flex;gap:20px;height:100%;align-items:center;transition:transform .5s cubic-bezier(.4,0,.2,1);will-change:transform}
+  .carousel-slide{flex:0 0 calc((100% - 40px) / 3);display:flex;flex-direction:column;gap:10px;align-items:center;height:100%;justify-content:center}
+  .doc-thumb{width:100%;max-height:calc(100% - 30px);aspect-ratio:5/7;background:#fafafa;border-radius:6px;overflow:hidden;position:relative;cursor:zoom-in;transition:transform .25s ease,box-shadow .25s ease;box-shadow:0 14px 28px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.06) inset}
+  .doc-thumb:hover{transform:scale(1.04) translateY(-3px);box-shadow:0 22px 38px rgba(0,0,0,.6),0 0 22px rgba(168,85,247,.35),0 0 0 1px rgba(0,0,0,.06) inset}
+  .doc-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;position:relative;z-index:2}
+  .doc-thumb.placeholder{background:linear-gradient(165deg,#1a1622 0%,#0c0a12 100%);border:1px dashed rgba(251,191,36,.35)}
+  .doc-thumb.placeholder img{display:none}
+  .doc-thumb.placeholder::before{content:attr(data-placeholder);position:absolute;left:0;right:0;top:55%;text-align:center;color:#FBBF24;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;font-weight:700;padding:0 18px;line-height:1.7;z-index:1;white-space:pre-line}
+  .doc-thumb.placeholder::after{content:'';position:absolute;top:18%;left:50%;transform:translateX(-50%);width:72px;height:72px;background:url('_ressources/visuels/logo-club77-neon-transparent.png') center/contain no-repeat;opacity:.45;z-index:1}
+  .doc-label{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-soft);text-align:center;font-weight:700;line-height:1.3}
+  .carousel-btn{width:44px;height:44px;border-radius:50%;background:var(--surface-2);color:var(--text);border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;transition:200ms;flex-shrink:0;z-index:2}
+  .carousel-btn:hover{background:#FBBF24;color:#000;border-color:#FBBF24;box-shadow:0 0 18px rgba(251,191,36,.55)}
+  .carousel-btn:disabled{opacity:.3;cursor:not-allowed}
+  .carousel-bottom{display:flex;align-items:center;justify-content:center;gap:20px;padding:4px 0;flex-shrink:0}
+  .carousel-counter{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;color:var(--text-soft)}
+  .carousel-counter strong{color:#FBBF24;font-weight:700}
+  .carousel-thumbs{display:flex;gap:6px}
+  .carousel-thumb-dot{width:26px;height:6px;border-radius:3px;background:rgba(168,85,247,.25);cursor:pointer;transition:200ms;border:none;padding:0}
+  .carousel-thumb-dot.active{background:#FBBF24;box-shadow:0 0 12px rgba(251,191,36,.65)}
+  .carousel-thumb-dot:hover{background:rgba(251,191,36,.6)}
+  .carousel-hint{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;color:var(--text-dim);text-transform:uppercase;pointer-events:none;opacity:.6}
+
+  /* ZOOM MODAL */
+  .annexes-overlay{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:998;transition:background .4s ease,backdrop-filter .4s ease;pointer-events:none;-webkit-backdrop-filter:blur(0px);backdrop-filter:blur(0px)}
+  .annexes-overlay.active{background:rgba(0,0,0,.85);pointer-events:all;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .doc-zoomed-wrapper{position:fixed;top:0;left:0;width:0;height:0;z-index:1000;background:#fff;border-radius:6px;overflow:auto;cursor:zoom-out;opacity:0;pointer-events:none;transition:top .45s cubic-bezier(.4,0,.2,1),left .45s cubic-bezier(.4,0,.2,1),width .45s cubic-bezier(.4,0,.2,1),height .45s cubic-bezier(.4,0,.2,1),opacity .25s ease;box-shadow:0 30px 80px rgba(0,0,0,.8),0 0 40px rgba(251,191,36,.3)}
+  .doc-zoomed-wrapper.active{opacity:1;pointer-events:all}
+  .doc-zoomed-img{width:100%;height:auto;display:block}
+  .doc-close-btn{position:fixed;top:18px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.8);color:#fff;border:1px solid rgba(251,191,36,.4);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;z-index:1001;opacity:0;pointer-events:none;transition:opacity .35s ease,background .2s ease,transform .2s ease}
+  .doc-close-btn.active{opacity:1;pointer-events:all}
+  .doc-close-btn:hover{background:#FBBF24;color:#000;border-color:#FBBF24;transform:scale(1.08)}
   .annexe-doc{
     position:absolute;width:530px;height:96%;
     background:#FFFFFF;color:#1a1a1a;border-radius:6px;
@@ -625,7 +657,7 @@
       <div class="toc-item"><span class="toc-num">01</span><span class="toc-label">Notre vision</span></div>
       <div class="toc-item"><span class="toc-num">02</span><span class="toc-label">Présentation de la gérante</span></div>
       <div class="toc-item"><span class="toc-num">03</span><span class="toc-label">Pourquoi moi</span></div>
-      <div class="toc-item"><span class="toc-num">04</span><span class="toc-label">Présentation du co-patron</span><span class="toc-badge">En attente</span></div>
+      <div class="toc-item"><span class="toc-num">04</span><span class="toc-label">Présentation de la co-patronne</span></div>
       <div class="toc-item"><span class="toc-num">05</span><span class="toc-label">Organigramme de l'entreprise</span></div>
       <div class="toc-item"><span class="toc-num">06</span><span class="toc-label">Postes & responsabilités</span></div>
       <div class="toc-item"><span class="toc-num">07</span><span class="toc-label">Localisation du club</span></div>
@@ -749,19 +781,42 @@
     </div></div>
   </section>
 
-  <!-- 07 · CO-PATRON -->
+  <!-- 07 · CO-PATRONNE (Jenna SUMMERS) -->
   <section class="slide">
     <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/></g></svg>
     <div class="slide-header">
-      <div><span class="slide-eyebrow">Présentation · 04</span><h2 class="slide-title">Le <span class="accent">Co-Patron</span></h2></div>
+      <div><span class="slide-eyebrow">Présentation · 04</span><h2 class="slide-title">La <span class="accent">Co-Patronne</span></h2></div>
       <span class="slide-num"><strong>04</strong> / ÉQUIPE</span>
     </div>
-    <div class="slide-content"><div class="placeholder-wrap"><div class="placeholder-card">
-      <div class="placeholder-icon">👥</div>
-      <h3 class="placeholder-title">Présentation à venir</h3>
-      <p class="placeholder-desc">Le poste de co-patron est <strong>actuellement vacant</strong>. La présentation sera intégrée dès qu'une personne de confiance aura été identifiée pour rejoindre la direction du Club 77.</p>
-      <span class="placeholder-tag">En attente</span>
-    </div></div></div>
+    <div class="slide-content"><div class="bio">
+      <div>
+        <div class="bio-meta">
+          <div class="bio-meta-item"><span class="bio-meta-label">Nom</span><span class="bio-meta-value">Jenna SUMMERS</span></div>
+          <div class="bio-meta-item"><span class="bio-meta-label">Âge</span><span class="bio-meta-value">24 ans</span></div>
+          <div class="bio-meta-item"><span class="bio-meta-label">Poste actuel</span><span class="bio-meta-value">Sans emploi</span></div>
+        </div>
+        <div class="bio-text">
+          <p>Je m'appelle <strong>Jenna SUMMERS</strong>, je suis <span class="hl">originaire des Barbades</span> — terre de feu, de musique et de nuits sans fin. C'est là-bas que j'ai grandi, au rythme des soirées caribéennes, et que j'ai compris très tôt ce qui fait <strong>vibrer une foule</strong>.</p>
+          <p>Arrivée à Los Santos pour vivre l'expérience américaine, je me suis naturellement orientée vers le <span class="hl">management d'établissements de la vie nocturne</span>. J'ai eu la chance de travailler dans plusieurs lieux emblématiques de la ville, où j'ai appris à diriger une équipe en pleine effervescence, à gérer les imprévus et à <strong>porter une ambiance de bout en bout</strong>.</p>
+          <p>Sociable, énergique et engagée, je sais ce qu'il faut pour faire d'un club une référence : une <span class="hl">équipe soudée</span>, un service irréprochable et une atmosphère qu'on a envie de revivre.</p>
+          <p>Aux côtés d'Hybie, dont je partage la vision et la détermination, je veux mettre toute mon <strong>expérience nightlife</strong> et mon savoir-faire de management au service du Club 77. Notre complémentarité — sa rigueur et mon expérience terrain — fera de ce projet une réussite durable.</p>
+        </div>
+      </div>
+      <div class="bio-aside">
+        <div class="bio-portrait" data-label="Jenna SUMMERS · Co-Patronne"><img src="_ressources/visuels/portrait-jenna.png" alt="Jenna SUMMERS"></div>
+        <div class="bio-qualities">
+          <h4>Qualités clés</h4>
+          <div class="qualities-tags">
+            <span class="quality-tag">Expérimentée</span>
+            <span class="quality-tag">Manageuse</span>
+            <span class="quality-tag">Sociable</span>
+            <span class="quality-tag">Énergique</span>
+            <span class="quality-tag">Engagée</span>
+            <span class="quality-tag">Diplomate</span>
+          </div>
+        </div>
+      </div>
+    </div></div>
   </section>
 
   <!-- 08 · ORGANIGRAMME -->
@@ -776,12 +831,12 @@
         <span class="org-level-tag">Niveau 1 · Direction</span>
         <div class="org-nodes">
           <div class="org-node lead">
-            <div class="org-node-bubble"><img src="_ressources/visuels/hybie 1.png" alt="Hybie FAITH"></div>
-            <strong>Hybie FAITH</strong><span>Patron · Gérante</span>
+            <div class="org-node-bubble"><img src="_ressources/visuels/portrait-hybie.png" alt="Hybie FAITH"></div>
+            <strong>Hybie FAITH</strong><span>Patronne · Gérante</span>
           </div>
-          <div class="org-node warn">
-            <div class="org-node-bubble"><img src="_ressources/visuels/hybie 1.png" alt="Co-Patron placeholder"></div>
-            <strong>Co-Patron</strong><span>photo · en attente</span>
+          <div class="org-node lead">
+            <div class="org-node-bubble"><img src="_ressources/visuels/portrait-jenna.png" alt="Jenna SUMMERS"></div>
+            <strong>Jenna SUMMERS</strong><span>Co-Patronne</span>
           </div>
         </div>
       </div>
@@ -1102,121 +1157,27 @@
     </div>
   </section>
 
-  <!-- 20 · ANNEXES (carrousel cliquable) -->
+  <!-- 20 · ANNEXES (carrousel image-based, zoom from origin) -->
   <section class="slide annexes-carousel">
     <div class="slide-header">
       <div><span class="slide-eyebrow">Annexes · 17</span><h2 class="slide-title">Documents <span class="accent">à signer</span></h2></div>
       <span class="slide-num"><strong>17</strong> / DOCS</span>
     </div>
     <div class="slide-content annexe-carousel-wrap">
-      <div class="annexe-stage">
-
-        <!-- DOC 1 : CONTRAT DE TRAVAIL TYPE -->
-        <div class="annexe-doc active" data-idx="0">
-          <h2 class="annexe-doc-title">Contrat de travail</h2>
-          <div class="annexe-doc-body">
-            <p><span class="obj">Objet :</span> Contrat de travail — Club 77, État de San Andreas</p>
-            <p>Entre l'établissement <strong>Club 77</strong>, représenté par <strong>Hybie FAITH</strong>, Gérante (l'Employeur), et l'employé(e) ci-dessous nommé(e), il est convenu ce qui suit, en application du Code TTE.</p>
-            <div class="annexe-doc-fields">
-              <div class="ff"><label>Nom & prénom</label><span class="blank"></span></div>
-              <div class="ff"><label>Date de naissance</label><span class="blank"></span></div>
-              <div class="ff"><label>Téléphone IG</label><span class="blank"></span></div>
-              <div class="ff"><label>Poste occupé</label><span class="blank"></span></div>
-              <div class="ff"><label>Salaire hebdomadaire</label><span class="blank"></span></div>
-              <div class="ff"><label>Date de signature</label><span class="blank"></span></div>
-            </div>
-            <ul class="annexe-doc-articles">
-              <li><strong>Engagement</strong> conforme au Code TTE Art. 2-3.1 (âge minimum 21 ans).</li>
-              <li><strong>Salaire</strong> versé chaque dimanche par virement (Art. 4-1.9, aucun liquide).</li>
-              <li><strong>Présence</strong> obligatoire selon les plannings et soirées de service.</li>
-              <li><strong>Règlement Intérieur</strong> (Art. 4-1.7) annexé et accepté.</li>
-              <li><strong>Rupture</strong> pour faute grave (Art. 2-4.4) : vol, violence, harcèlement.</li>
-            </ul>
-            <p class="signing-block"><strong>Fait à Los Santos.</strong> Lu, paraphé et approuvé par l'employé(e) et l'employeur.</p>
-          </div>
-          <div class="annexe-doc-sigs">
-            <div class="annexe-sig-box"><span class="sig-cursive">Hybie FAITH</span></div>
-            <div class="annexe-sig-box"></div>
-          </div>
-          <button type="button" class="annexe-doc-btn">Signer</button>
+      <div class="carousel-stage">
+        <button type="button" class="carousel-btn prev" id="carouselPrev" aria-label="Précédent">‹</button>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="carouselTrack"><!-- généré en JS --></div>
         </div>
-
-        <!-- DOC 2 : LETTRE DE RECOMMANDATION (Hybie) -->
-        <div class="annexe-doc next-doc" data-idx="1">
-          <h2 class="annexe-doc-title">Lettre de recommandation</h2>
-          <div class="annexe-doc-body">
-            <p><span class="obj">Objet :</span> Recommandation pour la reprise du Club 77 — Mlle Hybie FAITH</p>
-            <p>Madame, Monsieur,</p>
-            <p>Nous, soussignés <strong>Andrew BEAUCHAMP</strong>, ancien Adjoint à l'Économie au Cabinet du Gouverneur, et <strong>Eva</strong>, Agent IRS — Direction des Affaires Fiscales, souhaitons recommander officiellement Mlle Hybie FAITH pour la reprise de la gérance du Club 77.</p>
-            <p>Après ses <strong>loyaux services au gouvernement</strong>, où elle a occupé le poste <strong>d'agent à la Vie Civile</strong> durant ces quatre derniers mois, Mlle FAITH a fait la démonstration d'une rigueur, d'un sérieux et d'un sens des responsabilités hors du commun.</p>
-            <p>Elle a su mener à bien des dossiers délicats en toute autonomie, tout en maintenant une <strong>cohésion humaine exemplaire</strong> avec l'ensemble de ses collègues. Son engagement et sa capacité à fédérer en font, à nos yeux, une candidate de tout premier choix pour diriger un établissement aussi exigeant que le Club 77.</p>
-            <p>Nous sommes convaincus qu'elle portera ce projet avec l'énergie, le professionnalisme et la vision nécessaires pour faire du Club 77 une référence durable de la vie nocturne de notre État.</p>
-            <p class="signing-block"><strong>Andrew BEAUCHAMP</strong> — Ancien Adjoint à l'Économie<br><strong>Eva</strong> — Agent IRS</p>
-          </div>
-          <div class="annexe-doc-sigs">
-            <div class="annexe-sig-box"><span class="sig-cursive">Andrew Beauchamp</span></div>
-            <div class="annexe-sig-box"><span class="sig-cursive">Eva</span></div>
-          </div>
-          <button type="button" class="annexe-doc-btn">Signer</button>
-        </div>
-
-        <!-- DOC 3 : RÈGLEMENT INTÉRIEUR -->
-        <div class="annexe-doc prev-doc" data-idx="2">
-          <h2 class="annexe-doc-title">Règlement intérieur</h2>
-          <div class="annexe-doc-body">
-            <p style="text-align:center;font-style:italic"><strong>Club 77</strong> — conforme à l'article <strong>4-1.7 du Code TTE</strong>, État de San Andreas.</p>
-            <p>Le présent règlement s'applique à <strong>l'ensemble du personnel du Club 77</strong>, sans exception de grade ni de fonction. Il complète le contrat de travail individuel.</p>
-            <div class="annexe-doc-chapters">
-              <div class="annexe-doc-chapter">
-                <h6>Discipline générale</h6>
-                <ul>
-                  <li>Ponctualité absolue selon planning.</li>
-                  <li>Tenue adaptée, propre, pro.</li>
-                  <li>Aucun alcool/substance en service.</li>
-                </ul>
-              </div>
-              <div class="annexe-doc-chapter">
-                <h6>Comportement</h6>
-                <ul>
-                  <li>Respect mutuel & confidentialité.</li>
-                  <li>Représentation digne du Club 77.</li>
-                  <li>Coopération entre services.</li>
-                </ul>
-              </div>
-              <div class="annexe-doc-chapter">
-                <h6>Sécurité & hygiène</h6>
-                <ul>
-                  <li>Protocoles d'évacuation maîtrisés.</li>
-                  <li>Signalement immédiat tout incident.</li>
-                  <li>Hygiène stricte du bar & salle.</li>
-                </ul>
-              </div>
-              <div class="annexe-doc-chapter">
-                <h6>Sanctions</h6>
-                <ul>
-                  <li>Avertissement — manquement mineur.</li>
-                  <li>Suspension — récidive / faute moyenne.</li>
-                  <li>Licenciement — faute grave (Art. 2-4.4).</li>
-                </ul>
-              </div>
-            </div>
-            <p class="signing-block">Entrée en vigueur à la signature du contrat. Affichage permanent au sein de l'établissement.</p>
-          </div>
-          <div class="annexe-doc-sigs">
-            <div class="annexe-sig-box"><span class="sig-cursive">Hybie FAITH</span></div>
-            <div class="annexe-sig-box"></div>
-          </div>
-          <button type="button" class="annexe-doc-btn">Signer</button>
-        </div>
-
+        <button type="button" class="carousel-btn next" id="carouselNext" aria-label="Suivant">›</button>
       </div>
-      <div class="annexe-nav">
-        <button type="button" class="annexe-nav-btn" data-action="prev">‹</button>
-        <span class="annexe-nav-counter"><strong id="annexe-counter">01</strong> / 03<span class="label">Cliquez ou utilisez les flèches</span></span>
-        <button type="button" class="annexe-nav-btn" data-action="next">›</button>
+      <div class="carousel-bottom">
+        <span class="carousel-counter"><strong id="carouselCurrent">01</strong> / <span id="carouselTotal">05</span></span>
+        <div class="carousel-thumbs" id="carouselThumbs"><!-- généré en JS --></div>
       </div>
     </div>
   </section>
+
 
   <!-- 21 · CONCLUSION -->
   <section class="slide conclusion">
@@ -1234,9 +1195,14 @@
     </div>
   </section>
 
-
-
 </main>
+
+<!-- Modal zoom doc (overlay + image zoom + bouton fermer) -->
+<div class="annexes-overlay" id="annexesOverlay"></div>
+<div class="doc-zoomed-wrapper" id="docZoomedWrapper">
+  <img class="doc-zoomed-img" id="docZoomedImg" src="" alt="">
+</div>
+<button type="button" class="doc-close-btn" id="docCloseBtn" aria-label="Fermer">✕</button>
 
 <nav class="nav-bar" aria-label="Navigation des slides">
   <button type="button" class="nav-btn prev" aria-label="Slide précédente">‹</button>
@@ -1286,50 +1252,155 @@
     if (slides[idx].classList.contains('annexes-carousel')) showAnnexeDoc(0);
   }
 
-  // ---------- ANNEXES CAROUSEL ----------
-  const annexeDocs = Array.from(document.querySelectorAll('.annexe-doc'));
-  const annexeTotal = annexeDocs.length;
-  let annexeIdx = 0;
-  const annexeCounter = document.getElementById('annexe-counter');
+  // ---------- ANNEXES CAROUSEL (image-based, zoom from origin) ----------
+  const ANNEXE_SLIDES = [
+    { label: 'Contrat de travail',           src: '_ressources/visuels/doc-contrat.png' },
+    { label: 'Recommandation · Patronne',    src: '_ressources/visuels/doc-lettre-hybie.png' },
+    { label: 'Recommandation · Co-Patronne', src: '_ressources/visuels/doc-lettre-jenna.png' },
+    { label: 'Recommandation · Resp. Sécu',  src: '_ressources/visuels/doc-lettre-secu.png' },
+    { label: 'Règlement intérieur',          src: '_ressources/visuels/doc-reglement.png' }
+  ];
+  const carouselTrack = document.getElementById('carouselTrack');
+  const carouselThumbs = document.getElementById('carouselThumbs');
+  const carouselCurrent = document.getElementById('carouselCurrent');
+  const carouselTotal = document.getElementById('carouselTotal');
+  const carouselPrev = document.getElementById('carouselPrev');
+  const carouselNext = document.getElementById('carouselNext');
+  const annexesOverlay = document.getElementById('annexesOverlay');
+  const docZoomedWrapper = document.getElementById('docZoomedWrapper');
+  const docZoomedImg = document.getElementById('docZoomedImg');
+  const docCloseBtn = document.getElementById('docCloseBtn');
+  let carouselIdx = 0;
+  const CAROUSEL_VISIBLE = 3;
 
-  function showAnnexeDoc(i){
-    if (annexeTotal === 0) return;
-    annexeIdx = ((i % annexeTotal) + annexeTotal) % annexeTotal;
-    annexeDocs.forEach((d, n) => {
-      d.classList.remove('active','prev-doc','next-doc','far-prev','far-next');
-      const diff = (n - annexeIdx + annexeTotal) % annexeTotal;
-      if (diff === 0) d.classList.add('active');
-      else if (diff === 1) d.classList.add(annexeTotal > 3 && diff === Math.floor(annexeTotal/2)+1 ? 'far-next' : 'next-doc');
-      else if (diff === annexeTotal - 1) d.classList.add('prev-doc');
-      else if (diff === annexeTotal - 2) d.classList.add('far-prev');
-      else d.classList.add('far-next');
+  function buildCarousel(){
+    if (!carouselTrack) return;
+    carouselTotal.textContent = String(ANNEXE_SLIDES.length).padStart(2,'0');
+    carouselTrack.innerHTML = '';
+    carouselThumbs.innerHTML = '';
+    ANNEXE_SLIDES.forEach((s, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      slide.dataset.idx = i;
+      const thumb = document.createElement('div');
+      thumb.className = 'doc-thumb placeholder';
+      thumb.dataset.placeholder = s.label + '\nà venir';
+      const img = document.createElement('img');
+      img.alt = s.label;
+      img.loading = 'lazy';
+      img.onload = () => thumb.classList.remove('placeholder');
+      img.onerror = () => { /* keep placeholder */ };
+      img.src = s.src;
+      thumb.appendChild(img);
+      slide.appendChild(thumb);
+      const label = document.createElement('span');
+      label.className = 'doc-label';
+      label.textContent = s.label;
+      slide.appendChild(label);
+      thumb.addEventListener('click', () => zoomDoc(i, thumb));
+      carouselTrack.appendChild(slide);
+
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'carousel-thumb-dot';
+      dot.dataset.idx = i;
+      dot.setAttribute('aria-label', 'Aller au document ' + (i+1));
+      dot.addEventListener('click', () => slideTo(i));
+      carouselThumbs.appendChild(dot);
     });
-    if (annexeCounter) annexeCounter.textContent = String(annexeIdx + 1).padStart(2,'0');
+    slideTo(0);
   }
 
-  annexeDocs.forEach((doc, n) => {
-    doc.addEventListener('click', (e) => {
-      if (e.target.closest('.annexe-doc-btn')) return;
-      if (!doc.classList.contains('active')) showAnnexeDoc(n);
+  function slideTo(i){
+    const max = ANNEXE_SLIDES.length - 1;
+    const lastStart = Math.max(0, max - (CAROUSEL_VISIBLE - 1));
+    carouselIdx = Math.max(0, Math.min(lastStart, i));
+    const first = carouselTrack.children[0];
+    if (!first) return;
+    const rect = first.getBoundingClientRect();
+    const gap = 20;
+    const slideW = rect.width + gap;
+    carouselTrack.style.transform = `translateX(${-carouselIdx * slideW}px)`;
+    carouselCurrent.textContent = String(carouselIdx + 1).padStart(2,'0');
+    carouselThumbs.querySelectorAll('.carousel-thumb-dot').forEach((d, n) => {
+      d.classList.toggle('active', n === carouselIdx);
     });
-  });
+    carouselPrev.disabled = carouselIdx === 0;
+    carouselNext.disabled = carouselIdx >= lastStart;
+  }
 
-  document.querySelectorAll('.annexe-nav-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (btn.dataset.action === 'prev') showAnnexeDoc(annexeIdx - 1);
-      else showAnnexeDoc(annexeIdx + 1);
+  if (carouselPrev) carouselPrev.addEventListener('click', (e) => { e.stopPropagation(); slideTo(carouselIdx - 1); });
+  if (carouselNext) carouselNext.addEventListener('click', (e) => { e.stopPropagation(); slideTo(carouselIdx + 1); });
+
+  // Zoom from origin
+  let zoomActive = false;
+  let zoomOrigin = null;
+
+  function zoomDoc(i, thumbEl){
+    if (zoomActive) return;
+    const img = thumbEl.querySelector('img');
+    if (!img || !img.naturalWidth) return; // placeholder, ignore
+    const rect = thumbEl.getBoundingClientRect();
+    zoomOrigin = { top: rect.top, left: rect.left, width: rect.width, height: rect.height, thumb: thumbEl };
+    docZoomedImg.src = img.src;
+    docZoomedImg.alt = img.alt;
+    docZoomedWrapper.style.top = rect.top + 'px';
+    docZoomedWrapper.style.left = rect.left + 'px';
+    docZoomedWrapper.style.width = rect.width + 'px';
+    docZoomedWrapper.style.height = rect.height + 'px';
+    docZoomedWrapper.style.opacity = '0';
+    docZoomedWrapper.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        annexesOverlay.classList.add('active');
+        docCloseBtn.classList.add('active');
+        docZoomedWrapper.style.opacity = '1';
+        docZoomedWrapper.style.top = '5vh';
+        docZoomedWrapper.style.left = '5vw';
+        docZoomedWrapper.style.width = '90vw';
+        docZoomedWrapper.style.height = '90vh';
+      });
     });
-  });
+    zoomActive = true;
+  }
+
+  function unzoomDoc(){
+    if (!zoomActive || !zoomOrigin) return;
+    // Re-acquire rect in case of resize
+    const rect = zoomOrigin.thumb.getBoundingClientRect();
+    docZoomedWrapper.style.top = rect.top + 'px';
+    docZoomedWrapper.style.left = rect.left + 'px';
+    docZoomedWrapper.style.width = rect.width + 'px';
+    docZoomedWrapper.style.height = rect.height + 'px';
+    docZoomedWrapper.style.opacity = '0';
+    annexesOverlay.classList.remove('active');
+    docCloseBtn.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      docZoomedWrapper.classList.remove('active');
+      zoomActive = false;
+      zoomOrigin = null;
+    }, 450);
+  }
+
+  if (annexesOverlay) annexesOverlay.addEventListener('click', unzoomDoc);
+  if (docCloseBtn) docCloseBtn.addEventListener('click', unzoomDoc);
+  if (docZoomedWrapper) docZoomedWrapper.addEventListener('click', unzoomDoc);
+
+  buildCarousel();
 
   function isOnAnnexes(){ return slides[idx].classList.contains('annexes-carousel'); }
 
   function navPrev(){
-    if (isOnAnnexes() && annexeIdx > 0){ showAnnexeDoc(annexeIdx - 1); return; }
+    if (zoomActive){ unzoomDoc(); return; }
+    if (isOnAnnexes() && carouselIdx > 0){ slideTo(carouselIdx - 1); return; }
     show(idx - 1);
   }
   function navNext(){
-    if (isOnAnnexes() && annexeIdx < annexeTotal - 1){ showAnnexeDoc(annexeIdx + 1); return; }
+    if (zoomActive){ unzoomDoc(); return; }
+    const lastStart = Math.max(0, ANNEXE_SLIDES.length - CAROUSEL_VISIBLE);
+    if (isOnAnnexes() && carouselIdx < lastStart){ slideTo(carouselIdx + 1); return; }
     show(idx + 1);
   }
 
