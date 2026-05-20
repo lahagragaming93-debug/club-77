@@ -119,29 +119,31 @@
   /* COUVERTURE */
   .slide.cover{
     padding:0;
-    background:linear-gradient(180deg,rgba(10,10,10,.62),rgba(10,10,10,.88)),url('_ressources/visuels/phto dans le club 77.png') center/cover no-repeat;
+    background:linear-gradient(180deg,rgba(10,10,10,.74),rgba(10,10,10,.92)),url('_ressources/visuels/phto dans le club 77.png') center/cover no-repeat;
   }
   .cover-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px}
   .cover-tag{
-    font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;
-    color:var(--pink-bright);padding:8px 18px;border:1px solid var(--pink);border-radius:999px;
-    background:rgba(236,72,153,.08);box-shadow:inset 0 0 18px rgba(236,72,153,.18),0 0 18px rgba(236,72,153,.22);
-    margin-bottom:34px;
+    font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--pink-bright);padding:12px 24px;border:1.5px solid var(--pink);border-radius:999px;
+    background:rgba(20,15,24,.78);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    box-shadow:inset 0 0 22px rgba(236,72,153,.22),0 0 24px rgba(236,72,153,.32);
+    margin-bottom:40px;font-weight:700;
   }
   .cover-logo-img{
-    width:230px;height:auto;margin-bottom:18px;
-    filter:drop-shadow(0 0 30px rgba(168,85,247,.55)) drop-shadow(0 0 50px rgba(236,72,153,.25));
+    width:360px;height:auto;margin-bottom:22px;
+    filter:drop-shadow(0 0 38px rgba(168,85,247,.65)) drop-shadow(0 0 60px rgba(236,72,153,.35));
     animation:logoFloat 6s ease-in-out infinite;
   }
   @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-  .cover-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--text-soft);margin-top:8px;max-width:680px;line-height:1.45}
+  .cover-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:30px;color:var(--text-soft);margin-top:10px;max-width:900px;line-height:1.45}
   .cover-quote strong{color:#fff;font-weight:500}
-  .cover-divider{display:inline-flex;gap:8px;margin:22px 0 24px}
-  .cover-divider span{display:inline-block;width:36px;height:3px;border-radius:2px;background:var(--violet)}
-  .cover-divider span:nth-child(2){background:#fff;width:14px}
-  .cover-divider span:nth-child(3){background:var(--pink)}
-  .cover-meta{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-dim);text-align:center;line-height:1.9}
-  .cover-meta strong{color:var(--text);font-weight:700}
+  .cover-divider{display:inline-flex;gap:10px;margin:30px 0 32px}
+  .cover-divider span{display:inline-block;width:46px;height:4px;border-radius:2px;background:var(--violet);box-shadow:0 0 10px var(--violet)}
+  .cover-divider span:nth-child(2){background:#fff;width:18px;box-shadow:0 0 10px #fff}
+  .cover-divider span:nth-child(3){background:var(--pink);box-shadow:0 0 10px var(--pink)}
+  .cover-meta{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--text-soft);text-align:center;line-height:2.1}
+  .cover-meta strong{color:var(--text);font-weight:700;font-size:15px}
 
   /* SOMMAIRE */
   .toc{display:grid;grid-template-columns:1fr 1fr;gap:.55rem 3rem;position:relative;z-index:2}
@@ -152,31 +154,45 @@
 
   /* VISION */
   .slide.vision-slide{padding:0;text-align:center;background:linear-gradient(rgba(10,10,10,.86),rgba(10,10,10,.92)),url('_ressources/visuels/piste de danse club 77.png') center/cover no-repeat,radial-gradient(ellipse at 30% 40%,rgba(168,85,247,.22),transparent 55%),radial-gradient(ellipse at 70% 60%,rgba(236,72,153,.18),transparent 55%),var(--bg)}
-  .vision-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 80px;position:relative;z-index:2}
-  .vision-eyebrow{font-family:'Pacifico',cursive;font-size:24px;color:var(--pink);text-shadow:var(--glow-p);margin-bottom:24px}
-  .vision-punchline{font-family:'Anton',sans-serif;font-size:78px;line-height:1.05;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:24px;color:#fff}
-  .vision-punchline em{font-family:'Inter',sans-serif;font-style:italic;font-weight:900;font-size:30px;text-transform:none;letter-spacing:.01em;color:var(--text-soft);display:block;margin-top:14px}
+  .vision-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 60px;position:relative;z-index:2;gap:6px}
+  .vision-eyebrow{font-family:'Pacifico',cursive;font-size:32px;color:var(--pink);text-shadow:var(--glow-p);margin-bottom:14px}
+  .vision-punchline{font-family:'Anton',sans-serif;font-size:104px;line-height:1.02;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:18px;color:#fff}
+  .vision-punchline em{font-family:'Inter',sans-serif;font-style:italic;font-weight:900;font-size:36px;text-transform:none;letter-spacing:.01em;color:var(--text-soft);display:block;margin-top:18px}
   .vision-punchline .accent{background:linear-gradient(120deg,var(--violet-bright) 20%,var(--pink-bright) 80%);-webkit-background-clip:text;background-clip:text;color:transparent}
   .vision-punchline .hl{background:linear-gradient(120deg,#fff,var(--violet-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .vision-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--text-soft);max-width:760px;line-height:1.55}
+  .vision-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--text-soft);max-width:900px;line-height:1.55;margin-bottom:18px}
   .vision-sub strong{color:var(--text);font-weight:500}
+  .vision-divider{display:inline-flex;gap:10px;margin:6px 0 18px}
+  .vision-divider span{display:inline-block;width:46px;height:4px;border-radius:2px;background:var(--violet);box-shadow:0 0 12px var(--violet)}
+  .vision-divider span:nth-child(2){background:#fff;width:18px;box-shadow:0 0 10px #fff}
+  .vision-divider span:nth-child(3){background:var(--pink);box-shadow:0 0 12px var(--pink)}
+  .vision-signature{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+  .vision-signature strong{color:var(--text)}
 
   /* TRIPTYQUE */
-  .triptyque{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1;align-content:center}
-  .tri-card{padding:28px 24px;border:1px solid var(--border-strong);border-radius:16px;background:radial-gradient(ellipse at top,rgba(168,85,247,.12),transparent 70%),linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:14px;box-shadow:inset 0 0 40px rgba(168,85,247,.06);position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+  .triptyque-intro{font-size:16px;line-height:1.65;color:var(--text-soft);max-width:1200px;margin:0 auto 22px;text-align:center;position:relative;z-index:2}
+  .triptyque-intro strong{color:var(--text);font-weight:600}
+  .triptyque-intro .hl{color:var(--pink-bright);font-weight:600}
+  .triptyque{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1;align-content:stretch}
+  .tri-card{padding:24px 22px;border:1px solid var(--border-strong);border-radius:16px;background:radial-gradient(ellipse at top,rgba(168,85,247,.12),transparent 70%),linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:11px;box-shadow:inset 0 0 40px rgba(168,85,247,.06);position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
   .tri-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--violet),var(--pink))}
   .tri-card:nth-child(2)::before{background:linear-gradient(90deg,var(--pink),var(--violet-bright))}
   .tri-card:nth-child(3)::before{background:linear-gradient(90deg,var(--violet-bright),var(--pink-bright))}
   .tri-card:hover{transform:translateY(-4px);box-shadow:var(--glow-v)}
+  .tri-icon{font-size:34px;line-height:1;filter:drop-shadow(0 0 14px rgba(168,85,247,.55));margin-bottom:2px}
   .tri-num{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--text-dim)}
-  .tri-label{font-family:'Anton',sans-serif;font-size:46px;line-height:1;letter-spacing:.04em;text-transform:uppercase;background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tri-label{font-family:'Anton',sans-serif;font-size:50px;line-height:1;letter-spacing:.04em;text-transform:uppercase;background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
   .tri-card:nth-child(2) .tri-label{background:linear-gradient(135deg,var(--pink-bright),var(--violet-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .tri-text{font-size:16px;line-height:1.6;color:var(--text-soft)}
+  .tri-text{font-size:15.5px;line-height:1.6;color:var(--text-soft)}
   .tri-text strong{color:var(--text);font-weight:600}
+  .tri-tag{margin-top:auto;padding-top:12px;border-top:1px solid var(--border);font-family:'Playfair Display',serif;font-style:italic;font-size:14px;color:var(--violet-bright)}
+  .tri-card:nth-child(2) .tri-tag{color:var(--pink-bright)}
+  .triptyque-footer{margin-top:18px;font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:var(--text-dim);text-align:center;line-height:1.55;max-width:1100px;margin-left:auto;margin-right:auto}
+  .triptyque-footer strong{color:var(--text);font-weight:500}
 
   /* BIO / GÉRANTE */
-  .bio{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;flex:1;overflow:hidden}
-  .bio-text{display:flex;flex-direction:column;gap:11px;font-size:15px;line-height:1.6;color:var(--text-soft);overflow:hidden}
+  .bio{display:grid;grid-template-columns:1.35fr 1fr;gap:24px;flex:1;overflow:hidden}
+  .bio-text{display:flex;flex-direction:column;gap:10px;font-size:15.5px;line-height:1.6;color:var(--text-soft);overflow:hidden}
   .bio-text strong{color:var(--text);font-weight:600}
   .bio-text .hl{color:var(--pink-bright);font-weight:600}
   .bio-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;padding:12px 16px;border:1px solid var(--border-strong);border-radius:12px;background:linear-gradient(135deg,rgba(168,85,247,.08),rgba(236,72,153,.04))}
@@ -184,9 +200,16 @@
   .bio-meta-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
   .bio-meta-value{font-size:13.5px;color:var(--text);font-weight:700}
   .bio-aside{display:flex;flex-direction:column;gap:12px;min-height:0}
-  .bio-portrait{border:2px solid var(--border-strong);border-radius:14px;overflow:hidden;background:#000;box-shadow:inset 0 0 40px rgba(168,85,247,.18),0 0 24px rgba(168,85,247,.18);position:relative;flex:1;min-height:0}
-  .bio-portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(.9) contrast(1.05)}
-  .bio-portrait::after{content:"Hybie FAITH";position:absolute;left:0;right:0;bottom:0;padding:18px 16px 12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text);font-weight:700;text-align:center}
+  .bio-portrait{
+    border-radius:14px;overflow:hidden;background:#000;
+    position:relative;flex:1;min-height:0;
+    border:3px solid transparent;
+    background-image:linear-gradient(#0a0a0a,#0a0a0a),linear-gradient(135deg,#FBBF24 0%,#FDE68A 30%,#F59E0B 55%,#FBBF24 100%);
+    background-origin:border-box;background-clip:padding-box,border-box;
+    box-shadow:0 0 28px rgba(251,191,36,.55),inset 0 0 30px rgba(251,191,36,.12),0 0 60px rgba(251,191,36,.25);
+  }
+  .bio-portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(.95) contrast(1.06)}
+  .bio-portrait::after{content:"Hybie FAITH · Gérante";position:absolute;left:0;right:0;bottom:0;padding:18px 16px 12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.92));font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#FBBF24;font-weight:700;text-align:center;text-shadow:0 0 10px rgba(251,191,36,.6)}
   .bio-qualities{padding:11px 14px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(160deg,var(--surface),var(--bg-2))}
   .bio-qualities h4{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--violet-bright);margin-bottom:7px}
   .qualities-tags{display:flex;flex-wrap:wrap;gap:5px}
@@ -194,17 +217,18 @@
 
   /* POURQUOI MOI */
   .pourquoi{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;flex:1;overflow:hidden}
-  .pourquoi-intro{display:flex;flex-direction:column;justify-content:center;gap:14px}
-  .pourquoi-intro p{font-size:16px;line-height:1.65;color:var(--text-soft)}
+  .pourquoi-intro{display:flex;flex-direction:column;justify-content:center;gap:16px}
+  .pourquoi-intro p{font-size:16.5px;line-height:1.7;color:var(--text-soft)}
   .pourquoi-intro p strong{color:var(--text);font-weight:600}
   .pourquoi-intro .hl{color:var(--pink-bright);font-weight:600}
-  .pourquoi-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--violet-bright);line-height:1.4;padding-left:14px;border-left:3px solid var(--violet);margin-top:8px}
-  .pourquoi-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:center}
-  .pourquoi-card{padding:16px 16px;border:1px solid var(--border-strong);border-radius:12px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:8px;transition:transform .3s var(--ease)}
+  .pourquoi-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--violet-bright);line-height:1.4;padding-left:16px;border-left:4px solid var(--violet);margin-top:10px;text-shadow:0 0 14px rgba(168,85,247,.3)}
+  .pourquoi-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:stretch}
+  .pourquoi-card{padding:18px 18px;border:1px solid var(--border-strong);border-radius:12px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:10px;transition:transform .3s var(--ease)}
   .pourquoi-card:hover{transform:translateY(-3px);box-shadow:var(--glow-v)}
-  .pourquoi-card .pc-icon{font-size:22px;line-height:1;filter:drop-shadow(0 0 10px rgba(168,85,247,.5))}
-  .pourquoi-card h4{font-size:13px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.04em}
-  .pourquoi-card p{font-size:12px;line-height:1.5;color:var(--text-soft)}
+  .pourquoi-card .pc-icon{font-size:28px;line-height:1;filter:drop-shadow(0 0 12px rgba(168,85,247,.55))}
+  .pourquoi-card h4{font-size:14.5px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.04em}
+  .pourquoi-card p{font-size:13.5px;line-height:1.55;color:var(--text-soft)}
+  .pourquoi-card p strong{color:var(--pink-bright);font-weight:600}
 
   /* PLACEHOLDER */
   .placeholder-wrap{flex:1;display:flex;align-items:center;justify-content:center;position:relative;z-index:2}
@@ -222,13 +246,18 @@
   .org-level-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--violet-bright);display:flex;align-items:center;gap:10px}
   .org-level-tag::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-strong),transparent)}
   .org-nodes{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .org-node{padding:9px 14px;border:1px solid var(--border-strong);border-radius:10px;background:linear-gradient(135deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;align-items:center;gap:2px;min-width:130px}
-  .org-node strong{font-size:12px;color:var(--text);font-weight:700;text-align:center}
+  .org-node{padding:9px 14px;border:1px solid var(--border-strong);border-radius:10px;background:linear-gradient(135deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;align-items:center;gap:4px;min-width:140px}
+  .org-node strong{font-size:12.5px;color:var(--text);font-weight:700;text-align:center}
   .org-node span{font-size:10px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;letter-spacing:.05em}
-  .org-node.lead{border-color:var(--pink);background:linear-gradient(135deg,rgba(236,72,153,.18),rgba(168,85,247,.08));box-shadow:var(--glow-p)}
+  .org-node-bubble{width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid var(--pink);box-shadow:0 0 12px rgba(236,72,153,.45);margin-bottom:2px;background:#000;flex-shrink:0}
+  .org-node-bubble img{width:100%;height:100%;object-fit:cover;object-position:center top}
+  .org-node.lead{border-color:#FBBF24;background:linear-gradient(135deg,rgba(251,191,36,.15),rgba(236,72,153,.08));box-shadow:0 0 18px rgba(251,191,36,.35),inset 0 0 12px rgba(251,191,36,.1)}
   .org-node.lead strong{color:#fff}
-  .org-node.lead span{color:var(--pink-bright)}
+  .org-node.lead span{color:#FBBF24;font-weight:700}
+  .org-node.lead .org-node-bubble{border-color:#FBBF24;box-shadow:0 0 16px rgba(251,191,36,.6)}
   .org-node.warn{border-color:var(--violet);background:linear-gradient(135deg,rgba(168,85,247,.14),rgba(168,85,247,.04));border-style:dashed}
+  .org-node.warn .org-node-bubble{border-color:var(--violet);filter:grayscale(.4) opacity(.7)}
+  .org-node.warn span{color:var(--violet-bright)}
   .org-effectif{
     margin-top:auto;padding:10px 14px;border:1px solid var(--border-pink);border-radius:10px;
     background:linear-gradient(135deg,rgba(236,72,153,.06),rgba(168,85,247,.04));
@@ -239,14 +268,14 @@
   .org-effectif-item small{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
 
   /* POSTES & RESPONSABILITÉS */
-  .postes-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:10px;flex:1;overflow:hidden}
-  .poste-full{padding:11px 13px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:5px;border-top:2px solid var(--violet)}
+  .postes-grid{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(2,1fr);gap:11px;flex:1;overflow:hidden}
+  .poste-full{padding:13px 14px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:7px;border-top:3px solid var(--violet)}
   .poste-full:nth-child(even){border-top-color:var(--pink)}
   .poste-full h4{font-size:12.5px;font-weight:800;color:var(--pink-bright);text-transform:uppercase;letter-spacing:.08em;font-family:'JetBrains Mono',monospace}
   .poste-full:nth-child(even) h4{color:var(--violet-bright)}
-  .poste-full ul{list-style:none;display:flex;flex-direction:column;gap:4px;margin:0;padding:0}
-  .poste-full li{font-size:12px;line-height:1.45;color:var(--text-soft);display:flex;gap:5px}
-  .poste-full li::before{content:'·';color:var(--violet-bright);font-weight:900;margin-top:-1px}
+  .poste-full ul{list-style:none;display:flex;flex-direction:column;gap:5px;margin:0;padding:0}
+  .poste-full li{font-size:11.5px;line-height:1.45;color:var(--text-soft);display:flex;gap:5px}
+  .poste-full li::before{content:'·';color:var(--violet-bright);font-weight:900;margin-top:-1px;flex-shrink:0}
 
   /* LOCALISATION */
   .locale{display:grid;grid-template-columns:1fr 1.1fr;gap:22px;flex:1;overflow:hidden}
@@ -254,14 +283,21 @@
   .locale-photo{flex:1;border-radius:14px;overflow:hidden;border:1px solid var(--border-strong);box-shadow:inset 0 0 24px rgba(168,85,247,.1),0 0 18px rgba(168,85,247,.12);position:relative;min-height:0;background:#000}
   .locale-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.05)}
   .locale-photo::after{content:attr(data-label);position:absolute;bottom:0;left:0;right:0;padding:18px 14px 10px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.88));font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text);font-weight:700;text-align:center}
-  .locale-info{display:flex;flex-direction:column;gap:14px;justify-content:center}
-  .locale-info p{font-size:14.5px;line-height:1.65;color:var(--text-soft)}
+  .locale-info{display:flex;flex-direction:column;gap:12px;justify-content:center;min-height:0}
+  .locale-info p{font-size:15.5px;line-height:1.65;color:var(--text-soft)}
   .locale-info p strong{color:var(--text);font-weight:600}
   .locale-info .hl{color:var(--pink-bright);font-weight:600}
-  .locale-points{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-  .locale-point{padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:linear-gradient(135deg,var(--surface),var(--bg-2))}
-  .locale-point h5{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);font-weight:700;margin-bottom:3px}
-  .locale-point p{font-size:12px;color:var(--text);font-weight:600;line-height:1.3}
+  .locale-map{flex:1;min-height:140px;border-radius:14px;overflow:hidden;border:1px solid var(--border-strong);box-shadow:inset 0 0 24px rgba(168,85,247,.1),0 0 18px rgba(168,85,247,.12);position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:18px;background:radial-gradient(ellipse at center,rgba(168,85,247,.08),transparent 70%),linear-gradient(160deg,var(--surface),var(--bg-2))}
+  .locale-map::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(168,85,247,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,.05) 1px,transparent 1px);background-size:24px 24px;opacity:.5;pointer-events:none}
+  .locale-map img{width:100%;height:100%;object-fit:contain;display:block;position:relative;z-index:2}
+  .locale-map.empty .map-pin{font-size:42px;filter:drop-shadow(0 0 16px rgba(236,72,153,.7));position:relative;z-index:2;animation:pulseGlow 2.5s ease-in-out infinite}
+  .locale-map.empty .map-text{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);text-align:center;position:relative;z-index:2;line-height:1.55}
+  .locale-map.empty .map-text strong{color:var(--violet-bright);display:block;font-size:12px;margin-bottom:3px}
+  .locale-points{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .locale-point{padding:11px 14px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,var(--surface),var(--bg-2));border-left:3px solid var(--pink)}
+  .locale-point:nth-child(2){border-left-color:var(--violet)}
+  .locale-point h5{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);font-weight:700;margin-bottom:4px}
+  .locale-point p{font-size:13px;color:var(--text);font-weight:700;line-height:1.3}
 
   /* AMBITIONS */
   .ambitions-intro{font-size:16px;line-height:1.65;color:var(--text-soft);max-width:1200px;margin-bottom:22px;position:relative;z-index:2}
@@ -454,6 +490,8 @@
       <span class="vision-eyebrow">Notre vision</span>
       <h2 class="vision-punchline">Faire du <span class="hl">Club 77</span><br>un <span class="accent">lieu culte</span><em>— une adresse dont on parle, dont on veut faire partie.</em></h2>
       <p class="vision-sub">Bien plus qu'une boîte de nuit — <strong>une institution de la vie nocturne</strong> de l'État de San Andreas. Hisser le Club 77 au rang des meilleures adresses de la nuit.</p>
+      <div class="vision-divider"><span></span><span></span><span></span></div>
+      <p class="vision-signature">Hybie FAITH · <strong>Candidate gérante</strong> du Club 77</p>
     </div>
   </section>
 
@@ -465,11 +503,33 @@
       <div><span class="slide-eyebrow">Vision · 01</span><h2 class="slide-title">Notre vision en <span class="accent">3 mots</span></h2></div>
       <span class="slide-num"><strong>01</strong> / VISION</span>
     </div>
-    <div class="slide-content"><div class="triptyque">
-      <div class="tri-card"><span class="tri-num">01</span><span class="tri-label">Passion</span><p class="tri-text">Une gérante qui <strong>vit la nuit</strong>, comprend la culture du club et sait ce que les noctambules attendent — chaleur, énergie, immersion totale.</p></div>
-      <div class="tri-card"><span class="tri-num">02</span><span class="tri-label">Ambition</span><p class="tri-text">Faire du Club 77 <strong>la destination incontournable</strong> de la ville — un endroit que les citoyens choisissent par envie, jamais par défaut.</p></div>
-      <div class="tri-card"><span class="tri-num">03</span><span class="tri-label">Identité</span><p class="tri-text">Affirmer une <strong>identité chaleureuse, festive et fédératrice</strong>, qui réunit tous les profils dans un cadre sécurisé et qualitatif.</p></div>
-    </div></div>
+    <div class="slide-content">
+      <p class="triptyque-intro">Trois mots qui résument <strong>notre engagement</strong> pour le Club 77 — trois piliers indissociables qui guident <span class="hl">chaque décision</span> et façonnent l'âme du projet.</p>
+      <div class="triptyque">
+        <div class="tri-card">
+          <span class="tri-icon">🔥</span>
+          <span class="tri-num">01 · Le moteur</span>
+          <span class="tri-label">Passion</span>
+          <p class="tri-text">Une gérante qui <strong>vit la nuit</strong>, comprend la culture du club et sait ce que les noctambules attendent. Chaleur, énergie, immersion totale — l'amour du métier avant tout, parce qu'on ne porte bien que ce que l'on aime vraiment.</p>
+          <span class="tri-tag">— L'âme du projet</span>
+        </div>
+        <div class="tri-card">
+          <span class="tri-icon">🎯</span>
+          <span class="tri-num">02 · Le cap</span>
+          <span class="tri-label">Ambition</span>
+          <p class="tri-text">Faire du Club 77 <strong>la destination incontournable</strong> de la ville — un endroit que les citoyens choisissent par envie, jamais par défaut, et dont ils repartent en parlant de leur soirée pendant des semaines.</p>
+          <span class="tri-tag">— La direction claire</span>
+        </div>
+        <div class="tri-card">
+          <span class="tri-icon">✨</span>
+          <span class="tri-num">03 · La signature</span>
+          <span class="tri-label">Identité</span>
+          <p class="tri-text">Affirmer une <strong>identité chaleureuse, festive et fédératrice</strong>, qui réunit tous les profils dans un cadre sécurisé et qualitatif. Une atmosphère reconnaissable entre mille — l'ADN visible du Club 77.</p>
+          <span class="tri-tag">— L'empreinte unique</span>
+        </div>
+      </div>
+      <p class="triptyque-footer">Ces trois piliers ne se choisissent pas — <strong>ils se conjuguent</strong>. Sans passion, pas d'ambition réelle. Sans ambition, pas d'identité forte. Sans identité, pas de Club 77.</p>
+    </div>
   </section>
 
   <!-- 05 · GÉRANTE -->
@@ -487,10 +547,11 @@
           <div class="bio-meta-item"><span class="bio-meta-label">Poste actuel</span><span class="bio-meta-value">Gouvernement</span></div>
         </div>
         <div class="bio-text">
-          <p>Je m'appelle <strong>Hybie</strong>, je suis <span class="hl">originaire du Congo</span>. Mon passé n'a pas toujours été facile, mais il m'a permis de devenir une personne forte, déterminée et ambitieuse.</p>
-          <p>Après avoir quitté mon pays avec ma sœur pour reconstruire notre vie aux États-Unis, j'ai appris à <span class="hl">toujours avancer malgré les difficultés</span> et à ne jamais abandonner mes objectifs.</p>
-          <p>Aujourd'hui, depuis <strong>4 mois</strong>, je travaille au sein du gouvernement, ce qui m'a permis de développer un grand <span class="hl">sens des responsabilités</span>, de la <span class="hl">gestion</span> et du <span class="hl">travail en équipe</span>.</p>
-          <p>Je suis quelqu'un de très <strong>sociable</strong>, j'aime énormément le contact avec les personnes et surtout m'investir à fond dans tout ce que j'entreprends.</p>
+          <p>Je m'appelle <strong>Hybie</strong>, je suis <span class="hl">originaire du Congo</span>. Mon passé n'a pas toujours été facile, mais il m'a forgé une personnalité <strong>forte, déterminée et profondément ambitieuse</strong>.</p>
+          <p>Après avoir quitté mon pays avec ma sœur pour reconstruire notre vie aux États-Unis, j'ai appris très tôt à <span class="hl">tout encaisser et à toujours avancer</span> — la débrouille, le travail, la patience. Aucune marche du quotidien ne m'a été offerte, je les ai toutes gravies une à une.</p>
+          <p>Depuis maintenant <strong>4 mois</strong>, je travaille au sein du gouvernement, où j'ai développé un solide <span class="hl">sens des responsabilités</span>, une vraie rigueur de <span class="hl">gestion</span> et un goût prononcé pour le <span class="hl">travail en équipe</span> et la coordination humaine.</p>
+          <p>Très <strong>sociable</strong>, j'adore le contact, créer du lien, mettre les gens à l'aise. La vie nocturne de la ville m'a toujours fascinée — c'est un univers <span class="hl">vibrant, exigeant et profondément humain</span>, où une bonne ambiance se construit avec rigueur et passion.</p>
+          <p>Reprendre le <strong>Club 77</strong>, c'est mon projet de cœur. Je veux y mettre toute mon énergie, mon sérieux et ma vision pour en faire <span class="hl">un lieu culte</span>, fédérateur, où l'on vient pour vivre des soirées dont on se souvient longtemps.</p>
         </div>
       </div>
       <div class="bio-aside">
@@ -519,10 +580,10 @@
         <p class="pourquoi-quote">« Reprendre le Club 77, ce n'est pas hériter d'un nom — c'est s'engager à en faire une légende. »</p>
       </div>
       <div class="pourquoi-cards">
-        <div class="pourquoi-card"><span class="pc-icon">⚡</span><h4>Sérieux & engagement</h4><p>4 mois au gouvernement, sens aigu des responsabilités, rigueur dans la gestion d'équipe et le suivi des dossiers.</p></div>
-        <div class="pourquoi-card"><span class="pc-icon">🔥</span><h4>Énergie & disponibilité</h4><p>Investissement total dans tout ce que j'entreprends, présence régulière en jeu et réactivité continue.</p></div>
-        <div class="pourquoi-card"><span class="pc-icon">🤝</span><h4>Sens du contact</h4><p>Sociable, j'aime profondément le contact humain, créer du lien, fédérer une équipe et accueillir une clientèle.</p></div>
-        <div class="pourquoi-card"><span class="pc-icon">🎯</span><h4>Vision long terme</h4><p>Un projet sérieux et durable, structuré, avec une feuille de route claire à 1, 3 et 6 mois — pas un coup d'éclat.</p></div>
+        <div class="pourquoi-card"><span class="pc-icon">⚡</span><h4>Sérieux & engagement</h4><p>4 mois au sein du <strong>gouvernement</strong>, sens aigu des responsabilités, rigueur dans la gestion d'équipe, suivi de dossiers complexes — la fiabilité avant tout.</p></div>
+        <div class="pourquoi-card"><span class="pc-icon">🔥</span><h4>Énergie & disponibilité</h4><p>Investissement <strong>total</strong> dans tout ce que j'entreprends, présence régulière en jeu, réactivité continue. Une gérante qu'on trouve sur le terrain, pas derrière un bureau.</p></div>
+        <div class="pourquoi-card"><span class="pc-icon">🤝</span><h4>Sens du contact</h4><p>Sociable et chaleureuse, je sais <strong>fédérer une équipe</strong>, accueillir une clientèle, désamorcer les tensions et créer une vraie cohésion humaine.</p></div>
+        <div class="pourquoi-card"><span class="pc-icon">🎯</span><h4>Vision long terme</h4><p>Un projet <strong>sérieux et durable</strong>, structuré, avec une feuille de route claire à 1, 3 et 6 mois. Pas un coup d'éclat — une trajectoire de fond.</p></div>
       </div>
     </div></div>
   </section>
@@ -553,41 +614,48 @@
       <div class="org-level">
         <span class="org-level-tag">Niveau 1 · Direction</span>
         <div class="org-nodes">
-          <div class="org-node lead"><strong>Hybie FAITH</strong><span>Gérante</span></div>
-          <div class="org-node warn"><strong>Co-Patron</strong><span>en attente</span></div>
+          <div class="org-node lead">
+            <div class="org-node-bubble"><img src="_ressources/visuels/hybie 1.png" alt="Hybie FAITH"></div>
+            <strong>Hybie FAITH</strong><span>Patron · Gérante</span>
+          </div>
+          <div class="org-node warn">
+            <div class="org-node-bubble"><img src="_ressources/visuels/hybie 1.png" alt="Co-Patron placeholder"></div>
+            <strong>Co-Patron</strong><span>photo · en attente</span>
+          </div>
         </div>
       </div>
       <div class="org-level">
-        <span class="org-level-tag">Niveau 2 · Encadrement</span>
+        <span class="org-level-tag">Niveau 2 · Encadrement administratif</span>
         <div class="org-nodes">
           <div class="org-node"><strong>Manager</strong><span>encadrement soirées</span></div>
-          <div class="org-node"><strong>Responsable</strong><span>supervision globale</span></div>
-          <div class="org-node"><strong>DRH</strong><span>RH & plannings</span></div>
+          <div class="org-node"><strong>RH</strong><span>recrutement & plannings</span></div>
+          <div class="org-node"><strong>Comptable</strong><span>compta & trésorerie</span></div>
         </div>
       </div>
       <div class="org-level">
-        <span class="org-level-tag">Niveau 3 · Cellules opérationnelles</span>
+        <span class="org-level-tag">Niveau 3 · Encadrement opérationnel</span>
         <div class="org-nodes">
           <div class="org-node"><strong>Responsable Bar</strong><span>bar & stocks</span></div>
-          <div class="org-node"><strong>Chef Sécurité</strong><span>équipe sécu</span></div>
-          <div class="org-node"><strong>Responsable Événementiel</strong><span>soirées & artistes</span></div>
+          <div class="org-node warn">
+            <div class="org-node-bubble"><img src="_ressources/visuels/hybie 1.png" alt="Resp Sécurité placeholder"></div>
+            <strong>Responsable Sécurité</strong><span>photo · en attente</span>
+          </div>
+          <div class="org-node"><strong>Resp. Évènementiel & DJ</strong><span>soirées & animation</span></div>
         </div>
       </div>
       <div class="org-level">
         <span class="org-level-tag">Niveau 4 · Équipe terrain</span>
         <div class="org-nodes">
-          <div class="org-node"><strong>Barmen</strong><span>service & accueil</span></div>
-          <div class="org-node"><strong>Agents Sécurité</strong><span>contrôle & ordre</span></div>
-          <div class="org-node"><strong>DJ résident·e</strong><span>animation musicale</span></div>
-          <div class="org-node"><strong>Danseurs / Danseuses</strong><span>animation scène</span></div>
+          <div class="org-node"><strong>Barmaid</strong><span>service & accueil bar</span></div>
+          <div class="org-node"><strong>Agents Sécurité</strong><span>contrôle entrées & salle</span></div>
         </div>
       </div>
       <div class="org-effectif">
-        <div class="org-effectif-item"><span>≤ 9</span><small>Agents sécurité</small></div>
-        <div class="org-effectif-item"><span>≤ 4</span><small>Barmen</small></div>
-        <div class="org-effectif-item"><span>1-2</span><small>DJ résidents</small></div>
-        <div class="org-effectif-item"><span>1-2</span><small>Danseuses</small></div>
-        <div class="org-effectif-item"><span>~15</span><small>Effectif total cible</small></div>
+        <div class="org-effectif-item"><span>2</span><small>Direction</small></div>
+        <div class="org-effectif-item"><span>3</span><small>Encadrement admin</small></div>
+        <div class="org-effectif-item"><span>3</span><small>Resp. opérationnels</small></div>
+        <div class="org-effectif-item"><span>5</span><small>Équipe terrain (1+4)</small></div>
+        <div class="org-effectif-item"><span>13</span><small>Effectif total cible</small></div>
       </div>
     </div></div>
   </section>
@@ -600,18 +668,16 @@
       <span class="slide-num"><strong>06</strong> / ÉQUIPE</span>
     </div>
     <div class="slide-content"><div class="postes-grid">
-      <div class="poste-full"><h4>Patron</h4><ul><li>Gestion générale de l'établissement</li><li>Organisation du personnel</li><li>Mise en place des événements & partenariats</li></ul></div>
-      <div class="poste-full"><h4>Co-Patron</h4><ul><li>Épauler la gérante au quotidien</li><li>Communication & développement de l'image</li><li>Suivi des projets stratégiques</li></ul></div>
-      <div class="poste-full"><h4>Responsable</h4><ul><li>Supervision du bon fonctionnement</li><li>Coordination entre services</li><li>Gestion des imprévus</li></ul></div>
-      <div class="poste-full"><h4>Manager</h4><ul><li>Encadrement du personnel en soirée</li><li>Vérification du bon déroulement</li><li>Remontée des informations à la direction</li></ul></div>
-      <div class="poste-full"><h4>DRH</h4><ul><li>Recrutement du personnel</li><li>Gestion des plannings & présences</li><li>Veille au climat de travail</li></ul></div>
-      <div class="poste-full"><h4>Chef Sécurité</h4><ul><li>Organisation de l'équipe sécurité</li><li>Contrôle de la sécurité clients & personnel</li><li>Intervention en cas de conflit</li></ul></div>
-      <div class="poste-full"><h4>Responsable Bar</h4><ul><li>Gestion du bar & des stocks</li><li>Organisation du travail des barmen</li><li>Contrôle qualité du service</li></ul></div>
-      <div class="poste-full"><h4>Responsable Évènementiel</h4><ul><li>Organisation des soirées à thème</li><li>Mise en place des concours</li><li>Coordination avec artistes & partenaires</li></ul></div>
-      <div class="poste-full"><h4>DJ</h4><ul><li>Animation musicale du club</li><li>Adaptation à l'ambiance de la soirée</li><li>Participation aux événements spéciaux</li></ul></div>
-      <div class="poste-full"><h4>Barman / Barmaid</h4><ul><li>Préparation & service des boissons</li><li>Accueil & interaction clients</li><li>Maintien de la propreté du bar</li></ul></div>
-      <div class="poste-full"><h4>Agent de Sécurité</h4><ul><li>Contrôle des entrées & accès</li><li>Surveillance & prévention</li><li>Intervention en cas de trouble</li></ul></div>
-      <div class="poste-full"><h4>Danseur / Danseuse</h4><ul><li>Animation visuelle de la piste</li><li>Performances chorégraphiées</li><li>Présence sur scènes thématiques</li></ul></div>
+      <div class="poste-full"><h4>Patron</h4><ul><li>Direction générale de l'établissement</li><li>Vision stratégique long terme</li><li>Gestion globale du personnel et de la masse salariale</li><li>Pilotage des partenariats et événements signature</li><li>Représentation officielle du Club 77</li></ul></div>
+      <div class="poste-full"><h4>Co-Patron</h4><ul><li>Bras droit opérationnel de la patronne</li><li>Co-pilotage des décisions stratégiques</li><li>Communication et développement de l'image</li><li>Gestion en l'absence de la patronne</li><li>Suivi des projets transversaux</li></ul></div>
+      <div class="poste-full"><h4>Manager</h4><ul><li>Encadrement du personnel lors des ouvertures</li><li>Vérification du bon déroulement des soirées</li><li>Coordination entre les différentes équipes</li><li>Gestion immédiate des imprévus terrain</li><li>Remontée des informations à la direction</li></ul></div>
+      <div class="poste-full"><h4>RH</h4><ul><li>Recrutement et sélection du personnel</li><li>Gestion des contrats et plannings</li><li>Suivi des présences et absences</li><li>Veille au climat et à la cohésion d'équipe</li><li>Médiation interne en cas de conflit</li></ul></div>
+      <div class="poste-full"><h4>Comptable</h4><ul><li>Tenue de la comptabilité hebdomadaire</li><li>Suivi du chiffre d'affaires et des dépenses</li><li>Gestion de la trésorerie</li><li>Préparation des fiches de paie</li><li>Reporting fiscal et conformité TTE</li></ul></div>
+      <div class="poste-full"><h4>Responsable Bar</h4><ul><li>Gestion du bar et des stocks (alcools, softs, consommables)</li><li>Organisation du travail de la barmaid</li><li>Contrôle qualité du service</li><li>Création de la carte cocktails signature</li><li>Suivi des approvisionnements partenaires</li></ul></div>
+      <div class="poste-full"><h4>Resp. Sécurité</h4><ul><li>Organisation et encadrement de l'équipe sécurité</li><li>Définition des protocoles d'accès</li><li>Contrôle de la sécurité clients et personnel</li><li>Intervention sur conflits graves</li><li>Liaison avec les autorités si nécessaire</li></ul></div>
+      <div class="poste-full"><h4>Resp. Évènementiel &amp; DJ</h4><ul><li>Animation musicale du club tout au long de la soirée</li><li>Organisation des soirées à thème et événements spéciaux</li><li>Mise en place des concours et animations</li><li>Coordination avec artistes et partenaires</li><li>Adaptation du set musical à l'ambiance</li></ul></div>
+      <div class="poste-full"><h4>Barmaid</h4><ul><li>Préparation et service des boissons</li><li>Accueil et interaction avec les clients</li><li>Maintien de la propreté et de l'organisation du bar</li><li>Gestion des commandes en période de rush</li><li>Promotion de la carte cocktails</li></ul></div>
+      <div class="poste-full"><h4>Agent de Sécurité</h4><ul><li>Contrôle des entrées et accès (VIP, file)</li><li>Surveillance de la salle et prévention</li><li>Intervention en cas de trouble ou conflit</li><li>Veille au respect du règlement intérieur</li><li>Accompagnement des clients en difficulté</li></ul></div>
     </div></div>
   </section>
 
@@ -628,12 +694,14 @@
         <div class="locale-photo" data-label="Piste de danse · ambiance néon"><img src="_ressources/visuels/phto dans le club 77.png" alt="Intérieur du Club 77"></div>
       </div>
       <div class="locale-info">
-        <p>Le <strong>Club 77</strong> est idéalement implanté au cœur de la ville, dans une zone à forte affluence nocturne, à proximité directe des principaux axes de transit et des quartiers les plus animés de Los Santos.</p>
-        <p>Cette localisation <span class="hl">stratégique</span> en fait un point de passage naturel pour la clientèle noctambule : visibilité maximale, accessibilité optimale, et environnement déjà rodé à la vie nocturne.</p>
+        <p>Le <strong>Club 77</strong> est idéalement implanté au cœur de la ville, dans une zone à forte affluence nocturne et à proximité directe des principaux axes de transit et des quartiers les plus animés de Los Santos.</p>
+        <p>Cette localisation <span class="hl">stratégique</span> en fait un point de passage naturel pour la clientèle noctambule : visibilité maximale, accessibilité optimale, environnement déjà rodé à la vie nocturne.</p>
+        <div class="locale-map empty">
+          <div class="map-pin">📍</div>
+          <div class="map-text"><strong>Carte GTA à insérer</strong>Visuel du Club 77 sur la map<br>de l'État de San Andreas</div>
+        </div>
         <div class="locale-points">
-          <div class="locale-point"><h5>Adresse IG</h5><p>À confirmer</p></div>
           <div class="locale-point"><h5>Type d'établissement</h5><p>Boîte de nuit · Nightclub</p></div>
-          <div class="locale-point"><h5>Capacité</h5><p>À confirmer</p></div>
           <div class="locale-point"><h5>Accès</h5><p>Façade + parking proche</p></div>
         </div>
       </div>
@@ -751,14 +819,15 @@
       <div class="recrut-block">
         <h3>Postes recherchés</h3>
         <div class="postes">
-          <div class="poste"><span class="poste-name">Co-Gérant·e</span><span class="poste-count">1</span></div>
-          <div class="poste"><span class="poste-name">Chef Sécurité</span><span class="poste-count">1</span></div>
-          <div class="poste"><span class="poste-name">Agents Sécurité</span><span class="poste-count">≤ 9</span></div>
-          <div class="poste"><span class="poste-name">Responsable Bar</span><span class="poste-count">1</span></div>
-          <div class="poste"><span class="poste-name">Barmen / Barmaids</span><span class="poste-count">≤ 4</span></div>
-          <div class="poste"><span class="poste-name">DJ résident·e</span><span class="poste-count">1-2</span></div>
-          <div class="poste"><span class="poste-name">Resp. Évènementiel</span><span class="poste-count">1</span></div>
-          <div class="poste"><span class="poste-name">Danseurs / Danseuses</span><span class="poste-count">1-2</span></div>
+          <div class="poste"><span class="poste-name">Co-Patron</span><span class="poste-count">1</span></div>
+          <div class="poste"><span class="poste-name">Manager</span><span class="poste-count">1</span></div>
+          <div class="poste"><span class="poste-name">RH</span><span class="poste-count">1</span></div>
+          <div class="poste"><span class="poste-name">Comptable</span><span class="poste-count">1</span></div>
+          <div class="poste"><span class="poste-name">Resp. Bar</span><span class="poste-count">1</span></div>
+          <div class="poste"><span class="poste-name">Barmaid</span><span class="poste-count">1</span></div>
+          <div class="poste"><span class="poste-name">Resp. Sécurité</span><span class="poste-count">1</span></div>
+          <div class="poste"><span class="poste-name">Agents Sécurité</span><span class="poste-count">4</span></div>
+          <div class="poste"><span class="poste-name">Resp. Évènementiel &amp; DJ</span><span class="poste-count">1</span></div>
         </div>
         <div class="valeurs">
           <h4>Esprit Club 77</h4>
