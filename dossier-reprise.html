@@ -209,7 +209,12 @@
     box-shadow:0 0 28px rgba(251,191,36,.55),inset 0 0 30px rgba(251,191,36,.12),0 0 60px rgba(251,191,36,.25);
   }
   .bio-portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(.95) contrast(1.06)}
-  .bio-portrait::after{content:"Hybie FAITH · Gérante";position:absolute;left:0;right:0;bottom:0;padding:18px 16px 12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.92));font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#FBBF24;font-weight:700;text-align:center;text-shadow:0 0 10px rgba(251,191,36,.6)}
+  .bio-portrait::after{content:attr(data-label);position:absolute;left:0;right:0;bottom:0;padding:18px 16px 12px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.92));font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#FBBF24;font-weight:700;text-align:center;text-shadow:0 0 10px rgba(251,191,36,.6)}
+  .bio-portrait.empty{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:20px}
+  .bio-portrait.empty .empty-portrait-icon{font-size:90px;line-height:1;background:linear-gradient(135deg,#FBBF24,#FDE68A);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(251,191,36,.5));font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:.02em}
+  .bio-portrait.empty .empty-portrait-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-soft);text-align:center;line-height:1.7;position:relative;z-index:2}
+  .bio-portrait.empty .empty-portrait-label strong{color:#FBBF24;display:block;font-size:13px;letter-spacing:.2em;font-weight:700;margin-bottom:4px}
+  .bio-portrait.empty::after{display:none}
   .bio-qualities{padding:11px 14px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(160deg,var(--surface),var(--bg-2))}
   .bio-qualities h4{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--violet-bright);margin-bottom:7px}
   .qualities-tags{display:flex;flex-wrap:wrap;gap:5px}
@@ -303,7 +308,7 @@
   .ambitions-intro{font-size:16px;line-height:1.65;color:var(--text-soft);max-width:1200px;margin-bottom:22px;position:relative;z-index:2}
   .ambitions-intro strong{color:var(--text);font-weight:600}
   .ambitions-intro .hl{color:var(--pink-bright);font-weight:600}
-  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;flex:1;align-content:start}
+  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;flex:1;align-content:center}
   .pillar{padding:16px;border:1px solid var(--border-strong);border-radius:12px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:8px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
   .pillar:hover{transform:translateY(-4px);box-shadow:var(--glow-v)}
   .pillar-num{font-family:'Anton',sans-serif;font-size:38px;line-height:1;background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -311,7 +316,7 @@
   .pillar-desc{font-size:13.5px;color:var(--text-dim);line-height:1.5}
 
   /* COMMUNICATION */
-  .comm{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;flex:1;align-content:start}
+  .comm{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1;align-content:center}
   .comm-card{padding:20px;border:1px solid var(--border);border-radius:14px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:10px;border-top:3px solid var(--violet);transition:transform .3s var(--ease)}
   .comm-card:nth-child(2){border-top-color:var(--pink)}
   .comm-card:nth-child(3){border-top-color:var(--violet-bright)}
@@ -322,22 +327,49 @@
   .comm-desc strong{color:var(--violet-bright);font-weight:600}
 
   /* PARTENARIATS & CONTREPARTIES */
-  .partenariats{display:grid;grid-template-columns:1.2fr 1fr;gap:22px;flex:1;overflow:hidden}
-  .part-block h3{font-family:'Anton',sans-serif;font-size:18px;letter-spacing:.04em;color:var(--violet-bright);margin-bottom:12px;text-transform:uppercase}
+  .partenariats{display:grid;grid-template-columns:1.35fr 1fr;gap:20px;overflow:hidden}
+  .part-block h3{font-family:'Anton',sans-serif;font-size:20px;letter-spacing:.04em;color:var(--violet-bright);margin-bottom:12px;text-transform:uppercase}
   .part-block:nth-child(2) h3{color:var(--pink-bright)}
-  .part-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .part-card{padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:3px;border-left:3px solid var(--violet)}
+  .part-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .part-card{padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:5px;border-left:3px solid var(--violet);transition:transform .25s var(--ease)}
+  .part-card:hover{transform:translateY(-2px)}
   .part-card:nth-child(even){border-left-color:var(--pink)}
-  .part-card h4{font-size:12px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.04em}
-  .part-card p{font-size:11px;line-height:1.4;color:var(--text-soft)}
+  .part-card-head{display:flex;align-items:center;gap:8px}
+  .part-icon{font-size:20px;filter:drop-shadow(0 0 8px rgba(168,85,247,.5))}
+  .part-card h4{font-size:13px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.04em}
+  .part-card p{font-size:12px;line-height:1.5;color:var(--text-soft)}
+  .part-card p strong{color:var(--pink-bright);font-weight:600}
   .contreparties-list{display:flex;flex-direction:column;gap:9px;padding:14px;border:1px solid var(--border-pink);border-radius:12px;background:linear-gradient(135deg,rgba(236,72,153,.06),rgba(168,85,247,.04))}
   .contreparties-list li{list-style:none;display:flex;gap:10px;font-size:13px;line-height:1.5;color:var(--text-soft);align-items:flex-start}
   .contreparties-list li strong{color:var(--text);font-weight:600}
   .contreparties-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--pink);box-shadow:0 0 8px var(--pink);margin-top:7px;flex-shrink:0}
-  .contre-footer{margin-top:auto;padding-top:8px;font-size:11.5px;font-style:italic;color:var(--text-dim);line-height:1.5}
+  .contre-footer{padding-top:10px;font-size:12px;font-style:italic;color:var(--text-dim);line-height:1.55}
+  .contre-footer strong{color:var(--violet-bright);font-style:normal;font-weight:600}
+  .part-method{margin-top:18px;padding:18px 22px;border:1px solid var(--border-strong);border-radius:14px;background:linear-gradient(135deg,rgba(168,85,247,.05),rgba(236,72,153,.04));position:relative;overflow:hidden}
+  .part-method::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--violet),var(--pink),var(--violet-bright))}
+  .part-method-title{font-family:'Anton',sans-serif;font-size:16px;letter-spacing:.04em;text-transform:uppercase;background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+  .part-method-title::before{content:'';width:24px;height:2px;background:var(--pink);border-radius:1px;box-shadow:0 0 8px var(--pink)}
+  .method-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .method-card{padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:linear-gradient(135deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:5px}
+  .method-card .mc-num{font-family:'Anton',sans-serif;font-size:22px;line-height:1;background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .method-card h5{font-size:11px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.05em}
+  .method-card p{font-size:11px;line-height:1.45;color:var(--text-soft)}
 
   /* ÉVÈNEMENTS */
-  .evts{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;flex:1;align-content:start}
+  .evts-wrap{display:flex;flex-direction:column;gap:18px;flex:1;justify-content:center}
+  .evts{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .evts-calendar{padding:14px 20px;border:1px solid var(--border-strong);border-radius:14px;background:linear-gradient(135deg,rgba(168,85,247,.05),rgba(236,72,153,.04));position:relative;overflow:hidden}
+  .evts-calendar::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--violet),var(--pink),var(--violet-bright))}
+  .evts-calendar-title{font-family:'Anton',sans-serif;font-size:16px;letter-spacing:.04em;text-transform:uppercase;background:linear-gradient(135deg,var(--violet-bright),var(--pink-bright));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+  .evts-calendar-title::before{content:'';width:24px;height:2px;background:var(--pink);border-radius:1px;box-shadow:0 0 8px var(--pink)}
+  .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+  .day-card{padding:9px 8px;border:1px solid var(--border);border-radius:8px;background:linear-gradient(135deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:4px;text-align:center}
+  .day-card.closed{opacity:.45;border-style:dashed}
+  .day-card.peak{border-color:var(--pink);background:linear-gradient(135deg,rgba(236,72,153,.12),rgba(168,85,247,.06));box-shadow:0 0 12px rgba(236,72,153,.18)}
+  .day-name{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+  .day-card.peak .day-name{color:var(--pink-bright)}
+  .day-event{font-size:11px;color:var(--text);font-weight:600;line-height:1.3}
+  .day-card.closed .day-event{color:var(--text-dim);font-style:italic}
   .evt{padding:14px 12px;border:1px solid var(--border-strong);border-radius:12px;background:linear-gradient(180deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:7px;transition:transform .3s var(--ease),box-shadow .3s var(--ease);position:relative;overflow:hidden}
   .evt::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--violet),var(--pink))}
   .evt:hover{transform:translateY(-4px);box-shadow:var(--glow-v)}
@@ -380,7 +412,7 @@
   .methode-step-text strong{color:var(--text);font-weight:600}
 
   /* OBJECTIFS */
-  .objs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1;align-content:start}
+  .objs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1;align-content:center}
   .obj-col{padding:18px;border:1px solid var(--border-strong);border-radius:14px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:13px}
   .obj-head{display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--border-strong)}
   .obj-tag{padding:4px 10px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(168,85,247,.15);color:var(--violet-bright);border:1px solid var(--violet)}
@@ -396,7 +428,7 @@
   /* FUTURS PROJETS */
   .futur-intro{font-size:16px;line-height:1.65;color:var(--text-soft);max-width:1200px;margin-bottom:20px;position:relative;z-index:2}
   .futur-intro strong{color:var(--text);font-weight:600}
-  .projets{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;flex:1;align-content:start}
+  .projets{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;flex:1;align-content:center}
   .projet{padding:16px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:7px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
   .projet:hover{transform:translateY(-4px);box-shadow:var(--glow-p)}
   .projet-icon{font-size:22px;filter:drop-shadow(0 0 10px rgba(236,72,153,.5))}
@@ -486,6 +518,64 @@
   .doc-chapter li::before{content:'·';color:#FBBF24;font-weight:900;flex-shrink:0}
   .doc-chapter li strong{color:var(--text);font-weight:600}
 
+  /* ANNEXES CAROUSEL — style in-game contrats (white paper) */
+  .slide.annexes-carousel{padding:22px 28px;background:radial-gradient(ellipse at center,rgba(168,85,247,.08),transparent 65%),var(--bg)}
+  .annexe-carousel-wrap{flex:1;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+  .annexe-stage{flex:1;position:relative;display:flex;align-items:center;justify-content:center;perspective:1800px;overflow:hidden;min-height:0}
+  .annexe-doc{
+    position:absolute;width:530px;height:96%;
+    background:#FFFFFF;color:#1a1a1a;border-radius:6px;
+    padding:30px 40px 22px;display:flex;flex-direction:column;gap:11px;
+    box-shadow:0 25px 60px rgba(0,0,0,.65),0 0 0 1px rgba(0,0,0,.05) inset;
+    transition:transform .55s var(--ease),opacity .55s var(--ease),box-shadow .35s var(--ease);
+    font-family:'Inter',sans-serif;overflow:hidden;cursor:pointer;
+  }
+  .annexe-doc.active{transform:scale(1) translateX(0) rotate(0);z-index:5;opacity:1;cursor:default;box-shadow:0 30px 70px rgba(0,0,0,.7),0 0 28px rgba(168,85,247,.25),0 0 0 1px rgba(0,0,0,.05) inset}
+  .annexe-doc.prev-doc{transform:scale(.84) translateX(-320px) rotate(-3.5deg);z-index:3;opacity:.55;filter:brightness(.9)}
+  .annexe-doc.next-doc{transform:scale(.84) translateX(320px) rotate(3.5deg);z-index:3;opacity:.55;filter:brightness(.9)}
+  .annexe-doc.far-prev{transform:scale(.72) translateX(-460px) rotate(-6deg);z-index:1;opacity:.3;filter:brightness(.78)}
+  .annexe-doc.far-next{transform:scale(.72) translateX(460px) rotate(6deg);z-index:1;opacity:.3;filter:brightness(.78)}
+  .annexe-doc-title{font-family:'Inter',sans-serif;font-size:30px;font-weight:300;color:#1a1a1a;text-align:center;line-height:1.15;letter-spacing:-.005em;padding-bottom:14px;position:relative;flex-shrink:0}
+  .annexe-doc-title::after{content:'';display:block;width:230px;height:1px;background:#1a1a1a;margin:14px auto 0}
+  .annexe-doc-body{flex:1;overflow:hidden;display:flex;flex-direction:column;gap:9px;font-size:13px;line-height:1.55;color:#1f1f1f;text-align:left}
+  .annexe-doc-body p{font-size:12.5px;line-height:1.55;color:#1f1f1f;margin:0}
+  .annexe-doc-body p strong{color:#0a0a0a;font-weight:600}
+  .annexe-doc-body p .obj{font-weight:600;color:#0a0a0a}
+  .annexe-doc-body .signing-block{font-size:12.5px;line-height:1.5;color:#1f1f1f;margin-top:4px}
+  .annexe-doc-body .signing-block strong{color:#0a0a0a;font-weight:600}
+  .annexe-doc-fields{padding:11px 14px 9px;border:1px solid rgba(62,110,94,.25);border-left:3px solid #3e6e5e;border-radius:4px;background:rgba(62,110,94,.04);display:grid;grid-template-columns:1fr 1fr;gap:7px 18px;margin-top:2px}
+  .annexe-doc-fields .ff{display:flex;flex-direction:column;gap:1px}
+  .annexe-doc-fields .ff label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#3e6e5e;font-weight:700}
+  .annexe-doc-fields .ff .blank{border-bottom:1px dotted rgba(0,0,0,.45);height:14px;display:block}
+  .annexe-doc-articles{display:flex;flex-direction:column;gap:7px;margin-top:4px;counter-reset:art;list-style:none;padding:0}
+  .annexe-doc-articles li{font-size:12px;line-height:1.5;color:#1f1f1f;padding-left:30px;position:relative;list-style:none}
+  .annexe-doc-articles li::before{counter-increment:art;content:counter(art,decimal-leading-zero);position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#3e6e5e,#52867c);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.02em;box-shadow:0 2px 5px rgba(62,110,94,.4)}
+  .annexe-doc-articles li strong{color:#0a0a0a;font-weight:600}
+  .annexe-doc-chapters{display:grid;grid-template-columns:1fr 1fr;gap:9px 16px;counter-reset:chap}
+  .annexe-doc-chapter{padding-left:0}
+  .annexe-doc-chapter h6{font-size:11px;font-weight:700;color:#0a0a0a;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;display:flex;align-items:center;gap:7px}
+  .annexe-doc-chapter h6::before{counter-increment:chap;content:counter(chap,upper-roman);width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#3e6e5e,#52867c);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;letter-spacing:.02em;box-shadow:0 2px 5px rgba(62,110,94,.35);font-family:'Inter',sans-serif}
+  .annexe-doc-chapter ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:3px}
+  .annexe-doc-chapter li{font-size:10.5px;line-height:1.45;color:#1f1f1f;padding-left:11px;position:relative}
+  .annexe-doc-chapter li::before{content:'';position:absolute;left:2px;top:7px;width:4px;height:4px;border-radius:50%;background:#3e6e5e}
+  .annexe-doc-chapter li strong{color:#0a0a0a;font-weight:600}
+  .annexe-doc-body p .obj{font-weight:700;color:#fff;background:#3e6e5e;padding:2px 8px;border-radius:3px;font-size:11px;letter-spacing:.04em;margin-right:4px;display:inline-block}
+  .annexe-doc-sigs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:auto;padding-top:8px}
+  .annexe-sig-box{background:#3e6e5e;height:60px;border-radius:5px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(62,110,94,.25)}
+  .annexe-sig-box .sig-cursive{font-family:'Pacifico',cursive;color:#fff;font-size:21px;letter-spacing:.02em;line-height:1}
+  .annexe-doc-btn{align-self:center;margin-top:2px;padding:8px 36px;background:#3e6e5e;color:#fff;border:none;border-radius:4px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;letter-spacing:.02em;cursor:pointer;box-shadow:0 4px 10px rgba(62,110,94,.3);transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s var(--ease)}
+  .annexe-doc-btn:hover{transform:translateY(-1px);background:#345e50;box-shadow:0 6px 14px rgba(62,110,94,.45)}
+  .annexe-nav{display:flex;align-items:center;justify-content:center;gap:14px;padding:6px 0 0;position:relative;z-index:5;flex-shrink:0}
+  .annexe-nav-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:200ms}
+  .annexe-nav-btn:hover{background:#FBBF24;color:#000;border-color:#FBBF24;box-shadow:0 0 16px rgba(251,191,36,.5)}
+  .annexe-nav-counter{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--text-soft);min-width:140px;text-align:center}
+  .annexe-nav-counter strong{color:#FBBF24;font-weight:700}
+  .annexe-nav-counter .label{display:block;font-size:9px;letter-spacing:.22em;color:var(--text-dim);text-transform:uppercase;margin-top:2px}
+
+  /* DECK LOGO (overlay top-right) */
+  .deck-logo{position:absolute;top:14px;right:18px;width:42px;height:auto;z-index:6;opacity:.85;filter:drop-shadow(0 0 14px rgba(168,85,247,.55)) drop-shadow(0 0 22px rgba(236,72,153,.25));pointer-events:none;transition:opacity .35s var(--ease)}
+  .deck.hide-logo .deck-logo{opacity:0}
+
   /* FULLSCREEN */
   body.fullscreen .deck{width:100vw;height:100vh;max-width:100vw;max-height:100vh;border-radius:0;border:none;box-shadow:none}
   body.fullscreen .nav-bar,body.fullscreen .shortcuts{display:none}
@@ -511,6 +601,7 @@
 </defs></svg>
 
 <main class="deck">
+<img class="deck-logo" src="_ressources/visuels/logo-club77-neon-transparent.png" alt="Club 77">
 
   <!-- 01 · COVER -->
   <section class="slide cover active">
@@ -547,8 +638,8 @@
       <div class="toc-item"><span class="toc-num">14</span><span class="toc-label">Comptabilité prévisionnelle</span><span class="toc-badge">À venir</span></div>
       <div class="toc-item"><span class="toc-num">15</span><span class="toc-label">Objectifs court / moyen / long terme</span></div>
       <div class="toc-item"><span class="toc-num">16</span><span class="toc-label">Futurs projets de développement</span></div>
-      <div class="toc-item"><span class="toc-num">17</span><span class="toc-label">Conclusion & contact</span></div>
-      <div class="toc-item"><span class="toc-num">18</span><span class="toc-label">Annexes · documents officiels</span></div>
+      <div class="toc-item"><span class="toc-num">17</span><span class="toc-label">Annexes · documents à signer</span></div>
+      <div class="toc-item"><span class="toc-num">18</span><span class="toc-label">Conclusion & contact</span></div>
     </div></div>
   </section>
 
@@ -625,7 +716,7 @@
         </div>
       </div>
       <div class="bio-aside">
-        <div class="bio-portrait"><img src="_ressources/visuels/hybie 1.png" alt="Hybie FAITH"></div>
+        <div class="bio-portrait" data-label="Hybie FAITH · Gérante"><img src="_ressources/visuels/hybie 1.png" alt="Hybie FAITH"></div>
         <div class="bio-qualities">
           <h4>Qualités clés</h4>
           <div class="qualities-tags">
@@ -817,30 +908,41 @@
       <div><span class="slide-eyebrow">Business · 10</span><h2 class="slide-title">Partenariats & <span class="accent">contreparties</span></h2></div>
       <span class="slide-num"><strong>10</strong> / PROJET</span>
     </div>
-    <div class="slide-content"><div class="partenariats">
-      <div class="part-block">
-        <h3>Partenaires envisagés</h3>
-        <div class="part-list">
-          <div class="part-card"><h4>LS Motorcycles</h4><p>Concours pour gagner une moto ou des accessoires lors de soirées spéciales.</p></div>
-          <div class="part-card"><h4>PDM</h4><p>Exposition de véhicules devant le club ou concours avec récompenses automobiles.</p></div>
-          <div class="part-card"><h4>LD Organic</h4><p>Événements promotionnels et mise en avant de leurs produits dans le club.</p></div>
-          <div class="part-card"><h4>Esthétique de Paleto</h4><p>Salon partenaire proposant offres spéciales et participations aux événements.</p></div>
-          <div class="part-card"><h4>Label musical local</h4><p>Soirées showcases avec artistes du label en exclusivité.</p></div>
-          <div class="part-card"><h4>Weazel News & Life Invader</h4><p>Couvertures médiatiques de la réouverture et des temps forts du club.</p></div>
+    <div class="slide-content">
+      <div class="partenariats">
+        <div class="part-block">
+          <h3>Partenaires envisagés</h3>
+          <div class="part-list">
+            <div class="part-card"><div class="part-card-head"><span class="part-icon">🏍</span><h4>LS Motorcycles</h4></div><p>Concours pour gagner une moto ou des accessoires lors de soirées spéciales. <strong>Mise en avant des nouveaux modèles</strong> et animations communes.</p></div>
+            <div class="part-card"><div class="part-card-head"><span class="part-icon">🚗</span><h4>PDM</h4></div><p>Exposition de véhicules devant le club, concours avec <strong>récompenses automobiles</strong>. Soirées thématiques liées à la performance.</p></div>
+            <div class="part-card"><div class="part-card-head"><span class="part-icon">🌿</span><h4>LD Organic</h4></div><p>Événements promotionnels, mise en avant de leurs produits, <strong>intégration dans la carte cocktails signature</strong>.</p></div>
+            <div class="part-card"><div class="part-card-head"><span class="part-icon">💄</span><h4>Esthétique de Paleto</h4></div><p>Offres spéciales, <strong>make-up artists présents</strong> pour les soirées thématiques (glow party, masquée, gala).</p></div>
+            <div class="part-card"><div class="part-card-head"><span class="part-icon">🎵</span><h4>Label musical local</h4></div><p>Soirées <strong>showcases avec artistes du label</strong>, DJ sets exclusifs, lancements d'albums dans nos murs.</p></div>
+            <div class="part-card"><div class="part-card-head"><span class="part-icon">📰</span><h4>Weazel News & Life Invader</h4></div><p>Couvertures médiatiques de la réouverture, <strong>interviews et articles dédiés</strong>, mises en avant sur les réseaux officiels.</p></div>
+          </div>
+        </div>
+        <div class="part-block">
+          <h3>Ce que nous offrons</h3>
+          <ul class="contreparties-list">
+            <li><span><strong>Visibilité aux événements</strong> — bannières et mentions lors des soirées.</span></li>
+            <li><span><strong>Publicité dans le club</strong> — signalétique sur les supports internes.</span></li>
+            <li><span><strong>Soirées sponsorisées</strong> — événements co-brandés avec le partenaire.</span></li>
+            <li><span><strong>Mise en avant produits</strong> — dégustations, distributions, démos.</span></li>
+            <li><span><strong>Co-branding réseaux</strong> — mentions sur Birdy & Instapick.</span></li>
+          </ul>
+          <p class="contre-footer">Ces collaborations créent une <strong>dynamique positive</strong> entre les entreprises locales et le Club 77.</p>
         </div>
       </div>
-      <div class="part-block">
-        <h3>Ce que nous offrons</h3>
-        <ul class="contreparties-list">
-          <li><span><strong>Visibilité aux événements</strong> — bannières et mentions lors des soirées.</span></li>
-          <li><span><strong>Publicité dans le club</strong> — signalétique sur les supports internes.</span></li>
-          <li><span><strong>Soirées sponsorisées</strong> — événements co-brandés avec le partenaire.</span></li>
-          <li><span><strong>Mise en avant produits</strong> — dégustations, distributions, démos.</span></li>
-          <li><span><strong>Co-branding réseaux</strong> — mentions sur Birdy & Instapick.</span></li>
-        </ul>
-        <p class="contre-footer">Ces collaborations créent une <strong style="color:var(--text)">dynamique positive</strong> entre les entreprises locales et le Club 77.</p>
+      <div class="part-method">
+        <h3 class="part-method-title">Notre approche partenariale</h3>
+        <div class="method-grid">
+          <div class="method-card"><span class="mc-num">01</span><h5>Contrats clairs</h5><p>Durée définie, contreparties précises, pas de flou. Un cadre RP propre, lisible et durable.</p></div>
+          <div class="method-card"><span class="mc-num">02</span><h5>Co-création</h5><p>Pas un logo posé sur un flyer. Chaque événement co-créé entre nos équipes pour un vrai impact.</p></div>
+          <div class="method-card"><span class="mc-num">03</span><h5>Reporting</h5><p>Retour mensuel sur la fréquentation, l'engagement et les retombées concrètes pour chaque partenaire.</p></div>
+          <div class="method-card"><span class="mc-num">04</span><h5>Évolution continue</h5><p>Les partenariats s'enrichissent avec le temps : nouveaux formats, exclusivités, montée en gamme.</p></div>
+        </div>
       </div>
-    </div></div>
+    </div>
   </section>
 
   <!-- 14 · ÉVÈNEMENTS -->
@@ -1000,7 +1102,123 @@
     </div>
   </section>
 
-  <!-- 20 · CONCLUSION -->
+  <!-- 20 · ANNEXES (carrousel cliquable) -->
+  <section class="slide annexes-carousel">
+    <div class="slide-header">
+      <div><span class="slide-eyebrow">Annexes · 17</span><h2 class="slide-title">Documents <span class="accent">à signer</span></h2></div>
+      <span class="slide-num"><strong>17</strong> / DOCS</span>
+    </div>
+    <div class="slide-content annexe-carousel-wrap">
+      <div class="annexe-stage">
+
+        <!-- DOC 1 : CONTRAT DE TRAVAIL TYPE -->
+        <div class="annexe-doc active" data-idx="0">
+          <h2 class="annexe-doc-title">Contrat de travail</h2>
+          <div class="annexe-doc-body">
+            <p><span class="obj">Objet :</span> Contrat de travail — Club 77, État de San Andreas</p>
+            <p>Entre l'établissement <strong>Club 77</strong>, représenté par <strong>Hybie FAITH</strong>, Gérante (l'Employeur), et l'employé(e) ci-dessous nommé(e), il est convenu ce qui suit, en application du Code TTE.</p>
+            <div class="annexe-doc-fields">
+              <div class="ff"><label>Nom & prénom</label><span class="blank"></span></div>
+              <div class="ff"><label>Date de naissance</label><span class="blank"></span></div>
+              <div class="ff"><label>Téléphone IG</label><span class="blank"></span></div>
+              <div class="ff"><label>Poste occupé</label><span class="blank"></span></div>
+              <div class="ff"><label>Salaire hebdomadaire</label><span class="blank"></span></div>
+              <div class="ff"><label>Date de signature</label><span class="blank"></span></div>
+            </div>
+            <ul class="annexe-doc-articles">
+              <li><strong>Engagement</strong> conforme au Code TTE Art. 2-3.1 (âge minimum 21 ans).</li>
+              <li><strong>Salaire</strong> versé chaque dimanche par virement (Art. 4-1.9, aucun liquide).</li>
+              <li><strong>Présence</strong> obligatoire selon les plannings et soirées de service.</li>
+              <li><strong>Règlement Intérieur</strong> (Art. 4-1.7) annexé et accepté.</li>
+              <li><strong>Rupture</strong> pour faute grave (Art. 2-4.4) : vol, violence, harcèlement.</li>
+            </ul>
+            <p class="signing-block"><strong>Fait à Los Santos.</strong> Lu, paraphé et approuvé par l'employé(e) et l'employeur.</p>
+          </div>
+          <div class="annexe-doc-sigs">
+            <div class="annexe-sig-box"><span class="sig-cursive">Hybie FAITH</span></div>
+            <div class="annexe-sig-box"></div>
+          </div>
+          <button type="button" class="annexe-doc-btn">Signer</button>
+        </div>
+
+        <!-- DOC 2 : LETTRE DE RECOMMANDATION (Hybie) -->
+        <div class="annexe-doc next-doc" data-idx="1">
+          <h2 class="annexe-doc-title">Lettre de recommandation</h2>
+          <div class="annexe-doc-body">
+            <p><span class="obj">Objet :</span> Recommandation pour la reprise du Club 77 — Mlle Hybie FAITH</p>
+            <p>Madame, Monsieur,</p>
+            <p>Nous, soussignés <strong>Andrew BEAUCHAMP</strong>, ancien Adjoint à l'Économie au Cabinet du Gouverneur, et <strong>Eva</strong>, Agent IRS — Direction des Affaires Fiscales, souhaitons recommander officiellement Mlle Hybie FAITH pour la reprise de la gérance du Club 77.</p>
+            <p>Après ses <strong>loyaux services au gouvernement</strong>, où elle a occupé le poste <strong>d'agent à la Vie Civile</strong> durant ces quatre derniers mois, Mlle FAITH a fait la démonstration d'une rigueur, d'un sérieux et d'un sens des responsabilités hors du commun.</p>
+            <p>Elle a su mener à bien des dossiers délicats en toute autonomie, tout en maintenant une <strong>cohésion humaine exemplaire</strong> avec l'ensemble de ses collègues. Son engagement et sa capacité à fédérer en font, à nos yeux, une candidate de tout premier choix pour diriger un établissement aussi exigeant que le Club 77.</p>
+            <p>Nous sommes convaincus qu'elle portera ce projet avec l'énergie, le professionnalisme et la vision nécessaires pour faire du Club 77 une référence durable de la vie nocturne de notre État.</p>
+            <p class="signing-block"><strong>Andrew BEAUCHAMP</strong> — Ancien Adjoint à l'Économie<br><strong>Eva</strong> — Agent IRS</p>
+          </div>
+          <div class="annexe-doc-sigs">
+            <div class="annexe-sig-box"><span class="sig-cursive">Andrew Beauchamp</span></div>
+            <div class="annexe-sig-box"><span class="sig-cursive">Eva</span></div>
+          </div>
+          <button type="button" class="annexe-doc-btn">Signer</button>
+        </div>
+
+        <!-- DOC 3 : RÈGLEMENT INTÉRIEUR -->
+        <div class="annexe-doc prev-doc" data-idx="2">
+          <h2 class="annexe-doc-title">Règlement intérieur</h2>
+          <div class="annexe-doc-body">
+            <p style="text-align:center;font-style:italic"><strong>Club 77</strong> — conforme à l'article <strong>4-1.7 du Code TTE</strong>, État de San Andreas.</p>
+            <p>Le présent règlement s'applique à <strong>l'ensemble du personnel du Club 77</strong>, sans exception de grade ni de fonction. Il complète le contrat de travail individuel.</p>
+            <div class="annexe-doc-chapters">
+              <div class="annexe-doc-chapter">
+                <h6>Discipline générale</h6>
+                <ul>
+                  <li>Ponctualité absolue selon planning.</li>
+                  <li>Tenue adaptée, propre, pro.</li>
+                  <li>Aucun alcool/substance en service.</li>
+                </ul>
+              </div>
+              <div class="annexe-doc-chapter">
+                <h6>Comportement</h6>
+                <ul>
+                  <li>Respect mutuel & confidentialité.</li>
+                  <li>Représentation digne du Club 77.</li>
+                  <li>Coopération entre services.</li>
+                </ul>
+              </div>
+              <div class="annexe-doc-chapter">
+                <h6>Sécurité & hygiène</h6>
+                <ul>
+                  <li>Protocoles d'évacuation maîtrisés.</li>
+                  <li>Signalement immédiat tout incident.</li>
+                  <li>Hygiène stricte du bar & salle.</li>
+                </ul>
+              </div>
+              <div class="annexe-doc-chapter">
+                <h6>Sanctions</h6>
+                <ul>
+                  <li>Avertissement — manquement mineur.</li>
+                  <li>Suspension — récidive / faute moyenne.</li>
+                  <li>Licenciement — faute grave (Art. 2-4.4).</li>
+                </ul>
+              </div>
+            </div>
+            <p class="signing-block">Entrée en vigueur à la signature du contrat. Affichage permanent au sein de l'établissement.</p>
+          </div>
+          <div class="annexe-doc-sigs">
+            <div class="annexe-sig-box"><span class="sig-cursive">Hybie FAITH</span></div>
+            <div class="annexe-sig-box"></div>
+          </div>
+          <button type="button" class="annexe-doc-btn">Signer</button>
+        </div>
+
+      </div>
+      <div class="annexe-nav">
+        <button type="button" class="annexe-nav-btn" data-action="prev">‹</button>
+        <span class="annexe-nav-counter"><strong id="annexe-counter">01</strong> / 03<span class="label">Cliquez ou utilisez les flèches</span></span>
+        <button type="button" class="annexe-nav-btn" data-action="next">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21 · CONCLUSION -->
   <section class="slide conclusion">
     <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/></g></svg>
     <svg class="waves bl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(-35 300 300)"/></g></svg>
@@ -1016,187 +1234,13 @@
     </div>
   </section>
 
-  <!-- 21 · ANNEXES INTRO -->
-  <section class="slide annexes-intro">
-    <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/></g></svg>
-    <svg class="waves bl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/></g></svg>
-    <div class="annexes-intro-inner">
-      <span class="annexes-eyebrow">Annexes</span>
-      <h2 class="annexes-mega-title">Documents officiels</h2>
-      <p class="annexes-sub">Trois documents <strong style="color:#fff">prêts à remplir et signer</strong>, élaborés en conformité avec le <strong style="color:#FBBF24">Code TTE</strong> de l'État de San Andreas — la base administrative complète pour la reprise du Club 77.</p>
-      <div class="annexes-cards">
-        <div class="annexe-card">
-          <span class="annexe-card-num">Annexe 01</span>
-          <h3 class="annexe-card-title">Contrat de travail type</h3>
-          <p class="annexe-card-desc">Modèle générique prêt à compléter pour chaque embauche — articles conformes au Code TTE, mention du règlement intérieur, blocs signatures.</p>
-        </div>
-        <div class="annexe-card">
-          <span class="annexe-card-num">Annexe 02</span>
-          <h3 class="annexe-card-title">Lettre de recommandation</h3>
-          <p class="annexe-card-desc">Recommandation officielle émise par le Cabinet du Gouverneur, attestant du sérieux et de l'engagement de la candidate.</p>
-        </div>
-        <div class="annexe-card">
-          <span class="annexe-card-num">Annexe 03</span>
-          <h3 class="annexe-card-title">Règlement intérieur</h3>
-          <p class="annexe-card-desc">Règlement complet en 5 chapitres, conforme à l'article <strong style="color:#FBBF24">4-1.7 du Code TTE</strong>, applicable à l'ensemble du personnel.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- 22 · ANNEXE 01 — CONTRAT DE TRAVAIL TYPE -->
-  <section class="slide annexe">
-    <div class="slide-content"><div class="doc-wrap"><div class="doc-paper">
-      <div class="doc-stamp"><div class="ds-club">Club</div><div class="ds-77">77</div><div class="ds-tag">Officiel</div></div>
-      <div class="doc-header">
-        <div class="doc-eyebrow">Annexe 01 · Document officiel</div>
-        <h2 class="doc-title">Contrat de travail · Club 77</h2>
-        <div class="doc-sub">Conforme au Code TTE · État de San Andreas</div>
-      </div>
-      <div class="doc-body">
-        <div class="doc-cols">
-          <div class="doc-block">
-            <span class="doc-block-label">Employeur</span>
-            <p class="doc-block-content"><strong>Club 77</strong> — boîte de nuit, État de San Andreas<br>Représenté par <strong>Hybie FAITH</strong>, Gérante</p>
-          </div>
-          <div class="doc-block">
-            <span class="doc-block-label">Date de signature</span>
-            <p class="doc-block-content">Le ____ / ____ / 20____ &nbsp;&nbsp; à Los Santos</p>
-          </div>
-        </div>
-        <div class="doc-fields">
-          <div class="doc-field"><label>Nom de l'employé(e)</label><span class="blank"></span></div>
-          <div class="doc-field"><label>Prénom</label><span class="blank"></span></div>
-          <div class="doc-field"><label>Date de naissance</label><span class="blank"></span></div>
-          <div class="doc-field"><label>Téléphone IG</label><span class="blank"></span></div>
-          <div class="doc-field"><label>Poste occupé</label><span class="blank"></span></div>
-          <div class="doc-field"><label>Salaire hebdomadaire</label><span class="blank"></span></div>
-        </div>
-        <div class="doc-articles">
-          <div class="doc-article"><h5>Art. 1 · Engagement</h5><p>L'employé(e) est engagé(e) au poste indiqué ci-dessus en application du <span class="gold">Code TTE Art. 2-3.1</span>. Âge minimum requis : 21 ans (Art. 2-3.3).</p></div>
-          <div class="doc-article"><h5>Art. 2 · Rémunération</h5><p>Versement <strong>chaque dimanche par virement bancaire</strong>. Aucun paiement en liquide autorisé (Art. 4-1.9).</p></div>
-          <div class="doc-article"><h5>Art. 3 · Horaires & présence</h5><p>L'employé(e) s'engage à respecter les plannings et être présent(e) lors des soirées de service.</p></div>
-          <div class="doc-article"><h5>Art. 4 · Règlement intérieur</h5><p>L'employé(e) reconnaît avoir pris connaissance du <span class="gold">Règlement Intérieur du Club 77</span> (annexé) et s'engage à le respecter intégralement.</p></div>
-          <div class="doc-article"><h5>Art. 5 · Devoirs</h5><p>Loyauté, discrétion, respect des collègues et clients, port de la tenue adaptée, ponctualité absolue lors du service.</p></div>
-          <div class="doc-article"><h5>Art. 6 · Rupture</h5><p>Préavis 7 jours sauf faute grave (<span class="gold">Art. 2-4.4</span> : vol, violence, harcèlement, détournement, usurpation).</p></div>
-        </div>
-      </div>
-      <div class="doc-signatures">
-        <div class="doc-sig"><span class="doc-sig-role">L'employé(e)</span><span class="doc-sig-name">Lu et approuvé</span><div class="doc-sig-line"></div></div>
-        <div class="doc-sig"><span class="doc-sig-role">L'employeur</span><span class="doc-sig-name">Hybie FAITH · Gérante</span><div class="doc-sig-line"></div></div>
-      </div>
-    </div></div></div>
-  </section>
-
-  <!-- 23 · ANNEXE 02 — LETTRE DE RECOMMANDATION -->
-  <section class="slide annexe">
-    <div class="slide-content"><div class="doc-wrap"><div class="doc-paper">
-      <div class="doc-stamp"><div class="ds-club">Cabinet</div><div class="ds-77">Gouv.</div><div class="ds-tag">S. Andreas</div></div>
-      <div class="doc-header">
-        <div class="doc-eyebrow">Annexe 02 · Cabinet du Gouverneur</div>
-        <h2 class="doc-title">Lettre de recommandation</h2>
-        <div class="doc-sub">État de San Andreas · à l'attention de la direction du Club 77</div>
-      </div>
-      <div class="doc-body">
-        <div class="doc-cols">
-          <div class="doc-block">
-            <span class="doc-block-label">Émetteur</span>
-            <p class="doc-block-content">Cabinet du Gouverneur<br>État de San Andreas</p>
-          </div>
-          <div class="doc-block">
-            <span class="doc-block-label">Objet</span>
-            <p class="doc-block-content">Recommandation officielle pour la reprise de gérance — <strong>Mlle Hybie FAITH</strong></p>
-          </div>
-        </div>
-        <p>Madame, Monsieur,</p>
-        <p>J'ai l'honneur de recommander <strong>Mlle Hybie FAITH</strong>, agent au sein de notre administration depuis quatre mois, pour la reprise de la gérance du Club 77.</p>
-        <p>Durant cette période, Mlle FAITH a fait preuve d'un <span class="gold">sérieux, d'une rigueur et d'un engagement remarquables</span>. Elle s'est rapidement imposée comme un membre fiable et apprécié de l'équipe, capable de gérer en autonomie des dossiers sensibles tout en maintenant une parfaite cohésion humaine avec ses collègues.</p>
-        <p>Son <strong>sens des responsabilités</strong>, sa capacité naturelle à <strong>fédérer une équipe</strong> et sa volonté constante d'aller au bout des projets en font, à mes yeux, une candidate de premier choix pour reprendre la direction d'un établissement aussi exigeant que le Club 77.</p>
-        <p>Nous sommes convaincus que Mlle FAITH portera ce projet avec l'<span class="gold">énergie, le professionnalisme et la vision</span> nécessaires pour faire du Club 77 une référence durable de la vie nocturne de notre État.</p>
-        <p>Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.</p>
-      </div>
-      <div class="doc-signatures">
-        <div class="doc-sig"><span class="doc-sig-role">Pour le Cabinet du Gouverneur</span><span class="doc-sig-name">_______________________</span><div class="doc-sig-line"></div></div>
-        <div class="doc-sig"><span class="doc-sig-role">Fonction & date</span><span class="doc-sig-name">Le ____ / ____ / 20____</span><div class="doc-sig-line"></div></div>
-      </div>
-    </div></div></div>
-  </section>
-
-  <!-- 24 · ANNEXE 03 — RÈGLEMENT INTÉRIEUR -->
-  <section class="slide annexe">
-    <div class="slide-content"><div class="doc-wrap"><div class="doc-paper">
-      <div class="doc-stamp"><div class="ds-club">Club</div><div class="ds-77">77</div><div class="ds-tag">Règlement</div></div>
-      <div class="doc-header">
-        <div class="doc-eyebrow">Annexe 03 · Règlement officiel</div>
-        <h2 class="doc-title">Règlement intérieur · Club 77</h2>
-        <div class="doc-sub">Conforme à l'article 4-1.7 du Code TTE · État de San Andreas</div>
-      </div>
-      <div class="doc-body">
-        <p style="text-align:center;font-style:italic">Le présent règlement s'applique à <strong>l'ensemble du personnel du Club 77</strong>, sans exception de grade ou de fonction. Il complète le contrat de travail individuel et précise les droits et devoirs de chacun.</p>
-        <div class="doc-chapters">
-          <div class="doc-chapter">
-            <h6>Chapitre I · Discipline générale</h6>
-            <ul>
-              <li><strong>Art. 1.1</strong> Ponctualité absolue selon le planning établi.</li>
-              <li><strong>Art. 1.2</strong> Tenue adaptée, propre, professionnelle.</li>
-              <li><strong>Art. 1.3</strong> Aucune consommation d'alcool ou substance en service.</li>
-              <li><strong>Art. 1.4</strong> Téléphone personnel utilisé avec discrétion uniquement.</li>
-            </ul>
-          </div>
-          <div class="doc-chapter">
-            <h6>Chapitre II · Comportement & relations</h6>
-            <ul>
-              <li><strong>Art. 2.1</strong> Respect mutuel entre collègues et envers la clientèle.</li>
-              <li><strong>Art. 2.2</strong> Confidentialité stricte sur les informations internes.</li>
-              <li><strong>Art. 2.3</strong> Représentation digne du Club 77, même hors service.</li>
-            </ul>
-          </div>
-          <div class="doc-chapter">
-            <h6>Chapitre III · Sécurité</h6>
-            <ul>
-              <li><strong>Art. 3.1</strong> Maîtrise des protocoles d'évacuation et de conflit.</li>
-              <li><strong>Art. 3.2</strong> Signalement immédiat de tout incident à la direction.</li>
-              <li><strong>Art. 3.3</strong> Coopération sans réserve avec les agents de sécurité.</li>
-            </ul>
-          </div>
-          <div class="doc-chapter">
-            <h6>Chapitre IV · Hygiène & propreté</h6>
-            <ul>
-              <li><strong>Art. 4.1</strong> Hygiène du bar : lavage des mains, nettoyage continu.</li>
-              <li><strong>Art. 4.2</strong> Maintien permanent de la propreté des espaces communs.</li>
-              <li><strong>Art. 4.3</strong> Gestion rigoureuse des déchets et des stocks périssables.</li>
-            </ul>
-          </div>
-          <div class="doc-chapter">
-            <h6>Chapitre V · Sanctions</h6>
-            <ul>
-              <li><strong>Art. 5.1</strong> Avertissement pour manquement mineur.</li>
-              <li><strong>Art. 5.2</strong> Suspension pour récidive ou faute moyenne.</li>
-              <li><strong>Art. 5.3</strong> Licenciement immédiat pour faute grave (TTE Art. 2-4.4).</li>
-            </ul>
-          </div>
-          <div class="doc-chapter">
-            <h6>Chapitre VI · Application</h6>
-            <ul>
-              <li><strong>Art. 6.1</strong> Affichage permanent au sein de l'établissement (Art. 4-1.7).</li>
-              <li><strong>Art. 6.2</strong> Signature obligatoire à l'embauche, annexé au contrat.</li>
-              <li><strong>Art. 6.3</strong> Modifications soumises à information du personnel.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="doc-signatures">
-        <div class="doc-sig"><span class="doc-sig-role">Direction du Club 77</span><span class="doc-sig-name">Hybie FAITH · Gérante</span><div class="doc-sig-line"></div></div>
-        <div class="doc-sig"><span class="doc-sig-role">Date d'application</span><span class="doc-sig-name">Le ____ / ____ / 20____</span><div class="doc-sig-line"></div></div>
-      </div>
-    </div></div></div>
-  </section>
 
 </main>
 
 <nav class="nav-bar" aria-label="Navigation des slides">
   <button type="button" class="nav-btn prev" aria-label="Slide précédente">‹</button>
-  <span class="counter"><span class="current" id="cur">01</span> / <span class="total" id="tot">24</span></span>
+  <span class="counter"><span class="current" id="cur">01</span> / <span class="total" id="tot">21</span></span>
   <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
   <button type="button" class="nav-btn next" aria-label="Slide suivante">›</button>
   <button type="button" class="nav-action" id="fs-btn">⛶ Plein écran</button>
@@ -1206,6 +1250,7 @@
 <div class="shortcuts"><kbd>←</kbd> <kbd>→</kbd> naviguer · <kbd>F</kbd> plein écran · <kbd>P</kbd> imprimer</div>
 
 <script>
+  const deck = document.querySelector('.deck');
   const slides = Array.from(document.querySelectorAll('.slide'));
   const cur = document.getElementById('cur');
   const tot = document.getElementById('tot');
@@ -1215,6 +1260,15 @@
   const fsBtn = document.getElementById('fs-btn');
   let idx = 0;
   tot.textContent = String(slides.length).padStart(2, '0');
+
+  // Slides où le logo top-right est masqué (déjà un logo central ou design plein écran)
+  const HIDE_LOGO_CLASSES = ['cover','vision-slide','conclusion','annexes-carousel'];
+
+  function updateLogoVisibility(){
+    const s = slides[idx];
+    const hide = HIDE_LOGO_CLASSES.some(c => s.classList.contains(c));
+    deck.classList.toggle('hide-logo', hide);
+  }
 
   function show(i){
     idx = Math.max(0, Math.min(slides.length - 1, i));
@@ -1227,9 +1281,60 @@
     progress.style.width = ((idx + 1) / slides.length * 100) + '%';
     prev.disabled = idx === 0;
     next.disabled = idx === slides.length - 1;
+    updateLogoVisibility();
+    // Reset carrousel annexes au changement de slide
+    if (slides[idx].classList.contains('annexes-carousel')) showAnnexeDoc(0);
   }
-  prev.addEventListener('click', () => show(idx - 1));
-  next.addEventListener('click', () => show(idx + 1));
+
+  // ---------- ANNEXES CAROUSEL ----------
+  const annexeDocs = Array.from(document.querySelectorAll('.annexe-doc'));
+  const annexeTotal = annexeDocs.length;
+  let annexeIdx = 0;
+  const annexeCounter = document.getElementById('annexe-counter');
+
+  function showAnnexeDoc(i){
+    if (annexeTotal === 0) return;
+    annexeIdx = ((i % annexeTotal) + annexeTotal) % annexeTotal;
+    annexeDocs.forEach((d, n) => {
+      d.classList.remove('active','prev-doc','next-doc','far-prev','far-next');
+      const diff = (n - annexeIdx + annexeTotal) % annexeTotal;
+      if (diff === 0) d.classList.add('active');
+      else if (diff === 1) d.classList.add(annexeTotal > 3 && diff === Math.floor(annexeTotal/2)+1 ? 'far-next' : 'next-doc');
+      else if (diff === annexeTotal - 1) d.classList.add('prev-doc');
+      else if (diff === annexeTotal - 2) d.classList.add('far-prev');
+      else d.classList.add('far-next');
+    });
+    if (annexeCounter) annexeCounter.textContent = String(annexeIdx + 1).padStart(2,'0');
+  }
+
+  annexeDocs.forEach((doc, n) => {
+    doc.addEventListener('click', (e) => {
+      if (e.target.closest('.annexe-doc-btn')) return;
+      if (!doc.classList.contains('active')) showAnnexeDoc(n);
+    });
+  });
+
+  document.querySelectorAll('.annexe-nav-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (btn.dataset.action === 'prev') showAnnexeDoc(annexeIdx - 1);
+      else showAnnexeDoc(annexeIdx + 1);
+    });
+  });
+
+  function isOnAnnexes(){ return slides[idx].classList.contains('annexes-carousel'); }
+
+  function navPrev(){
+    if (isOnAnnexes() && annexeIdx > 0){ showAnnexeDoc(annexeIdx - 1); return; }
+    show(idx - 1);
+  }
+  function navNext(){
+    if (isOnAnnexes() && annexeIdx < annexeTotal - 1){ showAnnexeDoc(annexeIdx + 1); return; }
+    show(idx + 1);
+  }
+
+  prev.addEventListener('click', navPrev);
+  next.addEventListener('click', navNext);
 
   function toggleFullscreen(){
     if (!document.fullscreenElement){
@@ -1244,8 +1349,8 @@
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp')   { e.preventDefault(); show(idx - 1); }
-    if (e.key === 'ArrowRight'|| e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); show(idx + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp')   { e.preventDefault(); navPrev(); }
+    if (e.key === 'ArrowRight'|| e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); navNext(); }
     if (e.key === 'Home') { e.preventDefault(); show(0); }
     if (e.key === 'End')  { e.preventDefault(); show(slides.length - 1); }
     if (e.key === 'f' || e.key === 'F') { e.preventDefault(); toggleFullscreen(); }
