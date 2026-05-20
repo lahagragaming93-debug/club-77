@@ -417,6 +417,75 @@
   .concl-contact-value{font-size:13.5px;font-weight:700;color:var(--text)}
   .concl-signature{margin-top:12px;font-family:'Pacifico',cursive;font-size:17px;color:var(--pink);text-shadow:var(--glow-p)}
 
+  /* ANNEXES */
+  .slide.annexes-intro{padding:0;text-align:center;background:radial-gradient(ellipse at center,rgba(251,191,36,.12),transparent 60%),var(--bg)}
+  .annexes-intro-inner{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:42px 60px;gap:18px;position:relative;z-index:2}
+  .annexes-eyebrow{font-family:'Pacifico',cursive;font-size:24px;color:#FBBF24;text-shadow:0 0 18px rgba(251,191,36,.55);margin-bottom:6px}
+  .annexes-mega-title{font-family:'Anton',sans-serif;font-size:84px;line-height:1;text-transform:uppercase;letter-spacing:.02em;background:linear-gradient(135deg,#fff 0%,#FDE68A 45%,#FBBF24 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 30px rgba(251,191,36,.18)}
+  .annexes-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--text-soft);max-width:780px;line-height:1.55}
+  .annexes-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;max-width:1100px;margin-top:18px}
+  .annexe-card{padding:22px 20px;border:1px solid rgba(251,191,36,.35);border-radius:14px;background:linear-gradient(160deg,var(--surface),var(--bg-2));display:flex;flex-direction:column;gap:10px;text-align:left;transition:transform .3s var(--ease),box-shadow .3s var(--ease);box-shadow:inset 0 0 20px rgba(251,191,36,.05),0 0 18px rgba(251,191,36,.1)}
+  .annexe-card:hover{transform:translateY(-4px);box-shadow:inset 0 0 24px rgba(251,191,36,.1),0 0 28px rgba(251,191,36,.25)}
+  .annexe-card-num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#FBBF24;font-weight:700}
+  .annexe-card-title{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:#fff;line-height:1.2;font-weight:600}
+  .annexe-card-desc{font-size:13px;line-height:1.55;color:var(--text-soft)}
+
+  /* DOCUMENT PAPER */
+  .slide.annexe{padding:30px 40px;background:radial-gradient(ellipse at top,rgba(251,191,36,.06),transparent 70%),var(--bg)}
+  .doc-wrap{flex:1;display:flex;align-items:stretch;justify-content:center;overflow:hidden;position:relative;z-index:2}
+  .doc-paper{
+    width:100%;max-width:1100px;
+    background:linear-gradient(165deg,#1a1622 0%,#0c0a12 100%);
+    border:2px solid transparent;border-radius:8px;
+    background-image:linear-gradient(165deg,#1a1622 0%,#0c0a12 100%),linear-gradient(135deg,#FBBF24 0%,#FDE68A 25%,#F59E0B 55%,#FBBF24 80%,#F59E0B 100%);
+    background-origin:border-box;background-clip:padding-box,border-box;
+    box-shadow:0 20px 60px rgba(0,0,0,.65),0 0 30px rgba(251,191,36,.18),inset 0 0 50px rgba(251,191,36,.04);
+    padding:28px 42px;display:flex;flex-direction:column;gap:14px;
+    overflow:hidden;position:relative;
+  }
+  .doc-paper::before{content:'';position:absolute;top:14px;left:14px;right:14px;bottom:14px;border:1px solid rgba(251,191,36,.12);border-radius:4px;pointer-events:none}
+  .doc-header{text-align:center;padding-bottom:14px;border-bottom:1px solid rgba(251,191,36,.28);position:relative;z-index:2}
+  .doc-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#FBBF24;font-weight:700;margin-bottom:8px}
+  .doc-title{font-family:'Playfair Display',serif;font-size:32px;line-height:1.05;font-style:italic;color:#fff;font-weight:600;letter-spacing:.005em;margin-bottom:4px}
+  .doc-sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);margin-top:6px}
+  .doc-body{flex:1;display:flex;flex-direction:column;gap:9px;color:var(--text-soft);font-size:12.5px;line-height:1.55;overflow:hidden;position:relative;z-index:2}
+  .doc-body p{font-size:12.5px;line-height:1.6;color:var(--text-soft)}
+  .doc-body strong{color:var(--text);font-weight:600}
+  .doc-body .gold{color:#FBBF24;font-weight:600}
+  .doc-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px 22px}
+  .doc-block{display:flex;flex-direction:column;gap:5px}
+  .doc-block-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#FBBF24;font-weight:700}
+  .doc-block-content{font-size:12.5px;line-height:1.5;color:var(--text-soft)}
+  .doc-block-content strong{color:var(--text)}
+  .doc-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px 22px;padding:12px 14px;border:1px dashed rgba(251,191,36,.3);border-radius:6px;background:rgba(0,0,0,.35);margin:4px 0}
+  .doc-field{display:flex;flex-direction:column;gap:2px}
+  .doc-field label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);font-weight:700}
+  .doc-field .blank{border-bottom:1px dotted rgba(255,255,255,.32);height:16px;display:block}
+  .doc-article{display:flex;flex-direction:column;gap:3px}
+  .doc-article h5{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#FBBF24;font-weight:700}
+  .doc-article p{font-size:12px;line-height:1.5;color:var(--text-soft)}
+  .doc-articles{display:grid;grid-template-columns:1fr 1fr;gap:9px 20px}
+  .doc-articles.cols-1{grid-template-columns:1fr}
+  .doc-signatures{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:auto;padding-top:14px;border-top:1px solid rgba(251,191,36,.22);position:relative;z-index:2}
+  .doc-sig{display:flex;flex-direction:column;gap:4px}
+  .doc-sig-role{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#FBBF24;font-weight:700}
+  .doc-sig-name{font-size:13px;color:var(--text);font-weight:600;font-family:'Playfair Display',serif;font-style:italic}
+  .doc-sig-line{height:34px;border-bottom:1.5px dashed rgba(251,191,36,.45);margin-top:6px;position:relative}
+  .doc-sig-line::after{content:'Signature';position:absolute;bottom:-14px;right:2px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim)}
+  .doc-stamp{position:absolute;top:30px;right:38px;width:78px;height:78px;border:2px solid rgba(251,191,36,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:'Playfair Display',serif;color:#FBBF24;transform:rotate(-10deg);z-index:3;background:rgba(10,10,10,.35);text-align:center;line-height:1}
+  .doc-stamp .ds-club{font-size:14px;font-weight:700;font-style:italic;letter-spacing:.04em}
+  .doc-stamp .ds-77{font-size:18px;font-weight:800;font-style:italic;margin-top:2px;color:rgba(251,191,36,.85)}
+  .doc-stamp .ds-tag{font-family:'JetBrains Mono',monospace;font-size:6px;letter-spacing:.14em;text-transform:uppercase;color:rgba(251,191,36,.6);margin-top:3px}
+  .doc-footer{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);text-align:center;margin-top:4px;position:relative;z-index:2}
+  .doc-footer .gold{color:#FBBF24;font-weight:700}
+  .doc-chapters{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;flex:1;align-content:start}
+  .doc-chapter{display:flex;flex-direction:column;gap:5px;padding:10px 12px;border:1px solid rgba(251,191,36,.18);border-radius:6px;background:rgba(0,0,0,.25)}
+  .doc-chapter h6{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:#FBBF24;font-weight:600}
+  .doc-chapter ul{list-style:none;display:flex;flex-direction:column;gap:3px;margin:0;padding:0}
+  .doc-chapter li{font-size:11px;line-height:1.45;color:var(--text-soft);display:flex;gap:5px}
+  .doc-chapter li::before{content:'·';color:#FBBF24;font-weight:900;flex-shrink:0}
+  .doc-chapter li strong{color:var(--text);font-weight:600}
+
   /* FULLSCREEN */
   body.fullscreen .deck{width:100vw;height:100vh;max-width:100vw;max-height:100vh;border-radius:0;border:none;box-shadow:none}
   body.fullscreen .nav-bar,body.fullscreen .shortcuts{display:none}
@@ -479,6 +548,7 @@
       <div class="toc-item"><span class="toc-num">15</span><span class="toc-label">Objectifs court / moyen / long terme</span></div>
       <div class="toc-item"><span class="toc-num">16</span><span class="toc-label">Futurs projets de développement</span></div>
       <div class="toc-item"><span class="toc-num">17</span><span class="toc-label">Conclusion & contact</span></div>
+      <div class="toc-item"><span class="toc-num">18</span><span class="toc-label">Annexes · documents officiels</span></div>
     </div></div>
   </section>
 
@@ -946,11 +1016,187 @@
     </div>
   </section>
 
+  <!-- 21 · ANNEXES INTRO -->
+  <section class="slide annexes-intro">
+    <svg class="waves tr" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(35 300 300)"/><ellipse cx="300" cy="300" rx="140" ry="260" transform="rotate(35 300 300)"/></g></svg>
+    <svg class="waves bl" viewBox="0 0 600 600"><g stroke="url(#waveGrad)"><ellipse cx="300" cy="300" rx="60" ry="180" transform="rotate(-35 300 300)"/><ellipse cx="300" cy="300" rx="100" ry="220" transform="rotate(-35 300 300)"/></g></svg>
+    <div class="annexes-intro-inner">
+      <span class="annexes-eyebrow">Annexes</span>
+      <h2 class="annexes-mega-title">Documents officiels</h2>
+      <p class="annexes-sub">Trois documents <strong style="color:#fff">prêts à remplir et signer</strong>, élaborés en conformité avec le <strong style="color:#FBBF24">Code TTE</strong> de l'État de San Andreas — la base administrative complète pour la reprise du Club 77.</p>
+      <div class="annexes-cards">
+        <div class="annexe-card">
+          <span class="annexe-card-num">Annexe 01</span>
+          <h3 class="annexe-card-title">Contrat de travail type</h3>
+          <p class="annexe-card-desc">Modèle générique prêt à compléter pour chaque embauche — articles conformes au Code TTE, mention du règlement intérieur, blocs signatures.</p>
+        </div>
+        <div class="annexe-card">
+          <span class="annexe-card-num">Annexe 02</span>
+          <h3 class="annexe-card-title">Lettre de recommandation</h3>
+          <p class="annexe-card-desc">Recommandation officielle émise par le Cabinet du Gouverneur, attestant du sérieux et de l'engagement de la candidate.</p>
+        </div>
+        <div class="annexe-card">
+          <span class="annexe-card-num">Annexe 03</span>
+          <h3 class="annexe-card-title">Règlement intérieur</h3>
+          <p class="annexe-card-desc">Règlement complet en 5 chapitres, conforme à l'article <strong style="color:#FBBF24">4-1.7 du Code TTE</strong>, applicable à l'ensemble du personnel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 22 · ANNEXE 01 — CONTRAT DE TRAVAIL TYPE -->
+  <section class="slide annexe">
+    <div class="slide-content"><div class="doc-wrap"><div class="doc-paper">
+      <div class="doc-stamp"><div class="ds-club">Club</div><div class="ds-77">77</div><div class="ds-tag">Officiel</div></div>
+      <div class="doc-header">
+        <div class="doc-eyebrow">Annexe 01 · Document officiel</div>
+        <h2 class="doc-title">Contrat de travail · Club 77</h2>
+        <div class="doc-sub">Conforme au Code TTE · État de San Andreas</div>
+      </div>
+      <div class="doc-body">
+        <div class="doc-cols">
+          <div class="doc-block">
+            <span class="doc-block-label">Employeur</span>
+            <p class="doc-block-content"><strong>Club 77</strong> — boîte de nuit, État de San Andreas<br>Représenté par <strong>Hybie FAITH</strong>, Gérante</p>
+          </div>
+          <div class="doc-block">
+            <span class="doc-block-label">Date de signature</span>
+            <p class="doc-block-content">Le ____ / ____ / 20____ &nbsp;&nbsp; à Los Santos</p>
+          </div>
+        </div>
+        <div class="doc-fields">
+          <div class="doc-field"><label>Nom de l'employé(e)</label><span class="blank"></span></div>
+          <div class="doc-field"><label>Prénom</label><span class="blank"></span></div>
+          <div class="doc-field"><label>Date de naissance</label><span class="blank"></span></div>
+          <div class="doc-field"><label>Téléphone IG</label><span class="blank"></span></div>
+          <div class="doc-field"><label>Poste occupé</label><span class="blank"></span></div>
+          <div class="doc-field"><label>Salaire hebdomadaire</label><span class="blank"></span></div>
+        </div>
+        <div class="doc-articles">
+          <div class="doc-article"><h5>Art. 1 · Engagement</h5><p>L'employé(e) est engagé(e) au poste indiqué ci-dessus en application du <span class="gold">Code TTE Art. 2-3.1</span>. Âge minimum requis : 21 ans (Art. 2-3.3).</p></div>
+          <div class="doc-article"><h5>Art. 2 · Rémunération</h5><p>Versement <strong>chaque dimanche par virement bancaire</strong>. Aucun paiement en liquide autorisé (Art. 4-1.9).</p></div>
+          <div class="doc-article"><h5>Art. 3 · Horaires & présence</h5><p>L'employé(e) s'engage à respecter les plannings et être présent(e) lors des soirées de service.</p></div>
+          <div class="doc-article"><h5>Art. 4 · Règlement intérieur</h5><p>L'employé(e) reconnaît avoir pris connaissance du <span class="gold">Règlement Intérieur du Club 77</span> (annexé) et s'engage à le respecter intégralement.</p></div>
+          <div class="doc-article"><h5>Art. 5 · Devoirs</h5><p>Loyauté, discrétion, respect des collègues et clients, port de la tenue adaptée, ponctualité absolue lors du service.</p></div>
+          <div class="doc-article"><h5>Art. 6 · Rupture</h5><p>Préavis 7 jours sauf faute grave (<span class="gold">Art. 2-4.4</span> : vol, violence, harcèlement, détournement, usurpation).</p></div>
+        </div>
+      </div>
+      <div class="doc-signatures">
+        <div class="doc-sig"><span class="doc-sig-role">L'employé(e)</span><span class="doc-sig-name">Lu et approuvé</span><div class="doc-sig-line"></div></div>
+        <div class="doc-sig"><span class="doc-sig-role">L'employeur</span><span class="doc-sig-name">Hybie FAITH · Gérante</span><div class="doc-sig-line"></div></div>
+      </div>
+    </div></div></div>
+  </section>
+
+  <!-- 23 · ANNEXE 02 — LETTRE DE RECOMMANDATION -->
+  <section class="slide annexe">
+    <div class="slide-content"><div class="doc-wrap"><div class="doc-paper">
+      <div class="doc-stamp"><div class="ds-club">Cabinet</div><div class="ds-77">Gouv.</div><div class="ds-tag">S. Andreas</div></div>
+      <div class="doc-header">
+        <div class="doc-eyebrow">Annexe 02 · Cabinet du Gouverneur</div>
+        <h2 class="doc-title">Lettre de recommandation</h2>
+        <div class="doc-sub">État de San Andreas · à l'attention de la direction du Club 77</div>
+      </div>
+      <div class="doc-body">
+        <div class="doc-cols">
+          <div class="doc-block">
+            <span class="doc-block-label">Émetteur</span>
+            <p class="doc-block-content">Cabinet du Gouverneur<br>État de San Andreas</p>
+          </div>
+          <div class="doc-block">
+            <span class="doc-block-label">Objet</span>
+            <p class="doc-block-content">Recommandation officielle pour la reprise de gérance — <strong>Mlle Hybie FAITH</strong></p>
+          </div>
+        </div>
+        <p>Madame, Monsieur,</p>
+        <p>J'ai l'honneur de recommander <strong>Mlle Hybie FAITH</strong>, agent au sein de notre administration depuis quatre mois, pour la reprise de la gérance du Club 77.</p>
+        <p>Durant cette période, Mlle FAITH a fait preuve d'un <span class="gold">sérieux, d'une rigueur et d'un engagement remarquables</span>. Elle s'est rapidement imposée comme un membre fiable et apprécié de l'équipe, capable de gérer en autonomie des dossiers sensibles tout en maintenant une parfaite cohésion humaine avec ses collègues.</p>
+        <p>Son <strong>sens des responsabilités</strong>, sa capacité naturelle à <strong>fédérer une équipe</strong> et sa volonté constante d'aller au bout des projets en font, à mes yeux, une candidate de premier choix pour reprendre la direction d'un établissement aussi exigeant que le Club 77.</p>
+        <p>Nous sommes convaincus que Mlle FAITH portera ce projet avec l'<span class="gold">énergie, le professionnalisme et la vision</span> nécessaires pour faire du Club 77 une référence durable de la vie nocturne de notre État.</p>
+        <p>Je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.</p>
+      </div>
+      <div class="doc-signatures">
+        <div class="doc-sig"><span class="doc-sig-role">Pour le Cabinet du Gouverneur</span><span class="doc-sig-name">_______________________</span><div class="doc-sig-line"></div></div>
+        <div class="doc-sig"><span class="doc-sig-role">Fonction & date</span><span class="doc-sig-name">Le ____ / ____ / 20____</span><div class="doc-sig-line"></div></div>
+      </div>
+    </div></div></div>
+  </section>
+
+  <!-- 24 · ANNEXE 03 — RÈGLEMENT INTÉRIEUR -->
+  <section class="slide annexe">
+    <div class="slide-content"><div class="doc-wrap"><div class="doc-paper">
+      <div class="doc-stamp"><div class="ds-club">Club</div><div class="ds-77">77</div><div class="ds-tag">Règlement</div></div>
+      <div class="doc-header">
+        <div class="doc-eyebrow">Annexe 03 · Règlement officiel</div>
+        <h2 class="doc-title">Règlement intérieur · Club 77</h2>
+        <div class="doc-sub">Conforme à l'article 4-1.7 du Code TTE · État de San Andreas</div>
+      </div>
+      <div class="doc-body">
+        <p style="text-align:center;font-style:italic">Le présent règlement s'applique à <strong>l'ensemble du personnel du Club 77</strong>, sans exception de grade ou de fonction. Il complète le contrat de travail individuel et précise les droits et devoirs de chacun.</p>
+        <div class="doc-chapters">
+          <div class="doc-chapter">
+            <h6>Chapitre I · Discipline générale</h6>
+            <ul>
+              <li><strong>Art. 1.1</strong> Ponctualité absolue selon le planning établi.</li>
+              <li><strong>Art. 1.2</strong> Tenue adaptée, propre, professionnelle.</li>
+              <li><strong>Art. 1.3</strong> Aucune consommation d'alcool ou substance en service.</li>
+              <li><strong>Art. 1.4</strong> Téléphone personnel utilisé avec discrétion uniquement.</li>
+            </ul>
+          </div>
+          <div class="doc-chapter">
+            <h6>Chapitre II · Comportement & relations</h6>
+            <ul>
+              <li><strong>Art. 2.1</strong> Respect mutuel entre collègues et envers la clientèle.</li>
+              <li><strong>Art. 2.2</strong> Confidentialité stricte sur les informations internes.</li>
+              <li><strong>Art. 2.3</strong> Représentation digne du Club 77, même hors service.</li>
+            </ul>
+          </div>
+          <div class="doc-chapter">
+            <h6>Chapitre III · Sécurité</h6>
+            <ul>
+              <li><strong>Art. 3.1</strong> Maîtrise des protocoles d'évacuation et de conflit.</li>
+              <li><strong>Art. 3.2</strong> Signalement immédiat de tout incident à la direction.</li>
+              <li><strong>Art. 3.3</strong> Coopération sans réserve avec les agents de sécurité.</li>
+            </ul>
+          </div>
+          <div class="doc-chapter">
+            <h6>Chapitre IV · Hygiène & propreté</h6>
+            <ul>
+              <li><strong>Art. 4.1</strong> Hygiène du bar : lavage des mains, nettoyage continu.</li>
+              <li><strong>Art. 4.2</strong> Maintien permanent de la propreté des espaces communs.</li>
+              <li><strong>Art. 4.3</strong> Gestion rigoureuse des déchets et des stocks périssables.</li>
+            </ul>
+          </div>
+          <div class="doc-chapter">
+            <h6>Chapitre V · Sanctions</h6>
+            <ul>
+              <li><strong>Art. 5.1</strong> Avertissement pour manquement mineur.</li>
+              <li><strong>Art. 5.2</strong> Suspension pour récidive ou faute moyenne.</li>
+              <li><strong>Art. 5.3</strong> Licenciement immédiat pour faute grave (TTE Art. 2-4.4).</li>
+            </ul>
+          </div>
+          <div class="doc-chapter">
+            <h6>Chapitre VI · Application</h6>
+            <ul>
+              <li><strong>Art. 6.1</strong> Affichage permanent au sein de l'établissement (Art. 4-1.7).</li>
+              <li><strong>Art. 6.2</strong> Signature obligatoire à l'embauche, annexé au contrat.</li>
+              <li><strong>Art. 6.3</strong> Modifications soumises à information du personnel.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="doc-signatures">
+        <div class="doc-sig"><span class="doc-sig-role">Direction du Club 77</span><span class="doc-sig-name">Hybie FAITH · Gérante</span><div class="doc-sig-line"></div></div>
+        <div class="doc-sig"><span class="doc-sig-role">Date d'application</span><span class="doc-sig-name">Le ____ / ____ / 20____</span><div class="doc-sig-line"></div></div>
+      </div>
+    </div></div></div>
+  </section>
+
 </main>
 
 <nav class="nav-bar" aria-label="Navigation des slides">
   <button type="button" class="nav-btn prev" aria-label="Slide précédente">‹</button>
-  <span class="counter"><span class="current" id="cur">01</span> / <span class="total" id="tot">20</span></span>
+  <span class="counter"><span class="current" id="cur">01</span> / <span class="total" id="tot">24</span></span>
   <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
   <button type="button" class="nav-btn next" aria-label="Slide suivante">›</button>
   <button type="button" class="nav-action" id="fs-btn">⛶ Plein écran</button>
